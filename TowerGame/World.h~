@@ -1,0 +1,10 @@
+#pragma once
+
+class World
+{
+public:
+  
+  virtual void RenderWindow(sf::RenderWindow& window);
+  sf::Time elapsed;
+
+};
