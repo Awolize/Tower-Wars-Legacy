@@ -1,8 +1,16 @@
 #include <iostream>
+
 using namespace std;
 
 int main()
 {
+
+// re
+
+
+//loopen
+
+//
     cout << endl;
     return 0;
 }

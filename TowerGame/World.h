@@ -1,10 +1,12 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+
 
 class World
 {
 public:
-  
-  virtual void Render(sf::RenderWindow& window) = 0;
+
+  void RenderWindow(sf::RenderWindow& window);
   sf::Time elapsed;
 
 };
