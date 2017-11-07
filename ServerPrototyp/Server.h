@@ -15,5 +15,9 @@ private:
 
     sf::IpAddress ipAddress;
     int connectionPort{6789};
+    sf::Socket::Status status; 
+    sf::TcpListener listener;
+    sf::TcpSocket clientSocket;
+
 };
 
