@@ -8,7 +8,7 @@ class Client
 public:
     Client();
     ~Client();
-    void Run();
+    void Boot();
 
 private:
     void Init();

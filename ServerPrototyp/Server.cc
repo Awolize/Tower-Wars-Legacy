@@ -13,7 +13,7 @@ Server::~Server()
 {
 }
 
-void Server::Run()
+void Server::Boot()
 {
     Init();
     Connect();
@@ -50,12 +50,10 @@ void Server::Connect()
 {
     cout << "Establishing a connection..." << endl;
     
-
     if (listener.listen(connectionPort) != sf::Socket::Done)
     {
 	//Error
     }
-    
     
     if (listener.accept(clientSocket) != sf::Socket::Done)
     {
@@ -63,6 +61,14 @@ void Server::Connect()
     }
     cout << "Connection establishinged" << endl;
 
+}
+
+
+
+
+
+
+/* // Chatting function
 
     sf::Thread thread([&]()
     {
@@ -70,7 +76,7 @@ void Server::Connect()
 	string text;
 	while(1)
 	{
-	    cout << "Message to client: ";
+	    cout << "Message to client: " << endl;
 	    getline(cin, text);
 	    packet << text;
 	    clientSocket.send(packet);
@@ -91,5 +97,5 @@ void Server::Connect()
 	    packet.clear();
 	}
     }
-}
 
+*/

@@ -8,7 +8,7 @@ class Server
 public:
     Server();
     ~Server();
-    void Run();
+    void Boot();
 private:
     void Init();
     void Connect();

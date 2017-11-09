@@ -14,7 +14,7 @@ Client::~Client()
 {
 }
 
-void Client::Run()
+void Client::Boot()
 {
     Init();
     Connect();
@@ -46,40 +46,12 @@ void Client::Init()
 void Client::Connect()
 {
     std::cout << "Establishing a connection..." << std::endl;
+
     status = socket.connect(ipAddress, connectionPort);
     if (status != sf::Socket::Done)
     {
 	// error
     }
     cout << "Connection establishinged" << endl;
-    
-
-    sf::Thread thread([&]()
-    {
-	sf::Packet packet;
-	string text;
-	while(1)
-	{
-	    cout << "Message to server: ";
-	    getline(cin, text);
-	    packet << text;
-	    socket.send(packet);
-	    packet.clear();
-	}
-    });
-    thread.launch();
-
-    string text;
-    sf::Packet packet;
-
-    while(1)
-    {
-	socket.receive(packet);
-	if (packet >> text)
-	{
-	    cout << "Message from the server: " << text << endl;
-	    packet.clear();
-	}
-    }
-
+  
 }
