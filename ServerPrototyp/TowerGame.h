@@ -3,13 +3,15 @@
 #include <SFML/Network.hpp>
 #include <iostream>
 
+
 class TowerGame
 {
 public:
     TowerGame();
     ~TowerGame();
     void Run();
-private:
     void MainMenu(sf::RenderWindow &window);
+private:
+    int menuOption = 0;
   
 };
