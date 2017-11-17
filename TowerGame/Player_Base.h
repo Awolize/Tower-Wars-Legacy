@@ -5,7 +5,7 @@ class Player_Base // : public Player
 {
 public:
 
-  Player_Base(sf::vector2f PositionXY, float BaseHealthPoints, sf::Texture* BaseTexture);
+  Player_Base(sf::Vector2f PositionXY, float BaseHealthPoints);
   bool isDestroyed{ false };
   void Update(float Time);
   //on Collision (med soldier) ? --> lose hp --> destroy soldier
