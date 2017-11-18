@@ -1,0 +1,17 @@
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
+#include <iostream>
+
+#include "MainMenu.h"
+
+using namespace std;
+
+int main()
+{
+    
+    sf::RenderWindow window(sf::VideoMode(1280, 1024), "Tower Wars Legacy", sf::Style::Close);
+
+    MainMenu mainMenu;
+    mainMenu.Run(window);
+}
