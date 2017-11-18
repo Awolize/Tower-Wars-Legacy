@@ -25,5 +25,7 @@ private:
     sf::Text Header;
     sf::Text Question;
     sf::Text Answer;
+    sf::FloatRect textRect;
+    float heightCenter;
 };
 
