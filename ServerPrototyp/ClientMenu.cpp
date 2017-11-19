@@ -209,48 +209,23 @@ void ClientMenu::Connect(sf::RenderWindow &window)
     // Main window loop
     thread.launch();
 
-    if (socket.connect(ipAddress, connectionPort) == sf::Socket::Done)
+    if (socket.connect(ipAddress, connectionPort, sf::seconds(10)) == sf::Socket::Done)
     {
 	//Success
 	ifNext = true;
 	thread.wait();
-    }
-	
-// jumpToNextStage(window, socket);
+        // jumpToNextStage(window, socket);
+    }	
+    // Timeout/Error
+    ifNext = true;
+    thread.wait();
+    // Going back to the menu!
 }
 
 void ClientMenu::Draw(sf::RenderWindow &window)
 {  
-    sf::RectangleShape rectangle;
-    rectangle.setSize(sf::Vector2f(1, 10000));
-    rectangle.setOutlineColor(sf::Color::Red);
-    rectangle.setOutlineThickness(1);
-    rectangle.setPosition(window.getSize().x / 2,  window.getSize().y / 2);
-    rectangle.setOrigin(rectangle.getSize().x / 2,  rectangle.getSize().y / 2);
-    sf::RectangleShape rectangle1;
-    rectangle1.setSize(sf::Vector2f(10000, 1));
-    rectangle1.setOutlineColor(sf::Color::Red);
-    rectangle1.setOutlineThickness(1);
-    rectangle1.setPosition(window.getSize().x / 2,  window.getSize().y / 2);
-    rectangle1.setOrigin(rectangle1.getSize().x / 2,  rectangle1.getSize().y / 2);
-    sf::RectangleShape rectangle2;
-    rectangle2.setSize(sf::Vector2f(1, 10000));
-    rectangle2.setOutlineColor(sf::Color::Green);
-    rectangle2.setOutlineThickness(1);
-    rectangle2.setPosition(window.getSize().x / 2 - 40,  window.getSize().y / 2);
-    rectangle2.setOrigin(rectangle.getSize().x / 2,  rectangle.getSize().y / 2);
-    sf::RectangleShape rectangle3;
-    rectangle3.setSize(sf::Vector2f(1, 10000));
-    rectangle3.setOutlineColor(sf::Color::Blue);
-    rectangle3.setOutlineThickness(1);
-    rectangle3.setPosition(window.getSize().x / 2 + 40,  window.getSize().y / 2);
-    rectangle3.setOrigin(rectangle.getSize().x / 2,  rectangle.getSize().y / 2);
-
     window.clear();
-    window.draw(rectangle);
-    window.draw(rectangle1);
-    window.draw(rectangle2);
-    window.draw(rectangle3);
+
     window.draw(Header);
     window.draw(Question);
     window.draw(Answer);
