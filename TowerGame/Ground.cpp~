@@ -1,0 +1,51 @@
+#include "Ground.h"
+
+Ground::Ground()
+{
+    
+}
+/*
+Ground::~Ground()
+{
+
+}
+*/
+void Ground::Update()
+{
+
+}
+
+void Ground::Draw()
+{
+
+}
+
+void Ground::PlaceTower()
+{
+
+}
+
+void Ground::SelectPosition()
+{
+
+}
+
+bool Ground::PlacementAvaliable()
+{
+
+}
+
+void Ground::SellTower()
+{
+
+}
+
+void Ground::UpgradeTower()
+{
+
+}
+
+void Ground::GroundTile()
+{
+
+}
