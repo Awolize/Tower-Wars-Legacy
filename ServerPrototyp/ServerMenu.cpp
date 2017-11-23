@@ -3,6 +3,9 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 #include <iostream>
+
+#include "Server.h"
+
 using namespace std;
 
 ServerMenu::ServerMenu(sf::RenderWindow &window)
@@ -14,7 +17,7 @@ ServerMenu::ServerMenu(sf::RenderWindow &window)
     Header.setCharacterSize(40);
     Header.setStyle(sf::Text::Bold);
     Header.setFillColor(sf::Color::White);
-    Header.setString("Host Game");
+    Header.setString("Server");
     Header.setPosition(window.getSize().x / 2,  60);
     textRect = Header.getLocalBounds();
     Header.setOrigin(textRect.left + textRect.width/2.0f,
@@ -207,7 +210,7 @@ void ServerMenu::Connect(sf::RenderWindow &window)
 	textRect = Question.getLocalBounds();
 	Question.setOrigin(textRect.left + textRect.width/2.0f, heightCenter);
     
-	Answer.setString("Waiting for Player...");
+	Answer.setString("Waiting for Players...");
 	Answer.setPosition(window.getSize().x / 2,  window.getSize().y / 2 + 50);
 	textRect = Answer.getLocalBounds();
 	Answer.setOrigin(textRect.left + textRect.width/2.0f, heightCenter);
@@ -216,14 +219,20 @@ void ServerMenu::Connect(sf::RenderWindow &window)
 	thread.launch();
 
 	listener.listen(connectionPort);
-	if (listener.accept(socket) == sf::Socket::Done)
+	if (listener.accept(socketP1) == sf::Socket::Done)
 	{
 	    //Success
-	    cout << "New connection received from: " << socket.getRemoteAddress() << endl;
+	    cout << "New connection received from: " << socketP1.getRemoteAddress() << endl;
+	}
+	if (listener.accept(socketP2) == sf::Socket::Done)
+	{
+	    //Success
+	    cout << "New connection received from: " << socketP2.getRemoteAddress() << endl;
 	    ifNext = true;
 	    thread.wait();
+	    Server server(window, socketP1, socketP2);
+	    server.RunServer();
 	}	
-// jumpToNextStage(window, socket);
     }
 }
 

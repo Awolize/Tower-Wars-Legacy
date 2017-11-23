@@ -4,18 +4,20 @@
 #include <iostream>
 
 
-class TowerGame
+class Server
 {
 public:
-    TowerGame(sf::RenderWindow &window, sf::TcpSocket &socket) : window(window), socket(socket) {};
+    Server(sf::RenderWindow &window, sf::TcpSocket &socket1, sf::TcpSocket &socket2) 
+    : window(window), socketP1(socket1), socketP2(socket2) {};
 
-    void RunGame();
+    void RunServer();
 private:
     void Update();
     void Draw();
 
     sf::RenderWindow &window;
-    sf::TcpSocket &socket;
+    sf::TcpSocket &socketP1;  
+    sf::TcpSocket &socketP2;
     float deltaTime = 0.0f;
     sf::Clock clock;
 };

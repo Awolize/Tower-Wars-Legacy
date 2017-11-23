@@ -18,7 +18,8 @@ private:
 
     sf::IpAddress ipAddress;
     int connectionPort{6789};
-    sf::TcpSocket socket;
+    sf::TcpSocket socketP1;
+    sf::TcpSocket socketP2;
     sf::Socket::Status status; 
     sf::TcpListener listener;
     sf::Font font;

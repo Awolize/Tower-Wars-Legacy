@@ -4,6 +4,8 @@
 #include <SFML/Network.hpp>
 #include <iostream>
 
+#include "TowerGame.h"
+
 using namespace std;
 
 ClientMenu::ClientMenu(sf::RenderWindow &window)
@@ -209,12 +211,13 @@ void ClientMenu::Connect(sf::RenderWindow &window)
     // Main window loop
     thread.launch();
 
-    if (socket.connect(ipAddress, connectionPort, sf::seconds(10)) == sf::Socket::Done)
+    if (socket.connect(ipAddress, connectionPort, sf::seconds(30)) == sf::Socket::Done)
     {
 	//Success
 	ifNext = true;
 	thread.wait();
-        // jumpToNextStage(window, socket);
+	TowerGame towerGame(window, socket);
+        towerGame.RunGame();
     }	
     // Timeout/Error
     ifNext = true;

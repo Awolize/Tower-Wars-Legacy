@@ -1,20 +1,19 @@
+#include "Server.h" 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 #include <iostream>
 
-#include "TowerGame.h" 
-
 using namespace std;
 
-void TowerGame::RunGame()
+void Server::RunServer()
 {
     clock.restart();
 
-    cout << "TowerGame.cpp" << endl;
+    cout << "Server.cpp" << endl;
     bool ifNext = false;
-
     sf::Packet packet;
+
 
     while(window.isOpen() && !ifNext)
     {
@@ -30,16 +29,21 @@ void TowerGame::RunGame()
 	    }
 	}
 	
-	socket.receive(packet);
-	packet >> deltaTime;
+	
+	
 
-	sf::Time time = clock.getElapsedTime();
-	cout << time.asSeconds() << endl;
-
+	
 //	deltaTime = clock.restart().asSeconds();
 	if (deltaTime > 1.0f / 60.0f)
 	    deltaTime = 1.0f / 60.0f;
-	
+	packet << deltaTime;
+//	cout << deltaTime << endl;
+	socketP1.send(packet);
+	socketP2.send(packet);
+
+	sf::Time time = clock.getElapsedTime();
+	cout << time.asSeconds() << endl; 
+
 	Update();
 	window.clear();
 	Draw();
@@ -48,10 +52,11 @@ void TowerGame::RunGame()
     }
 }
 
-void TowerGame::Update()
+void Server::Update()
 {
 }
 
-void TowerGame::Draw()
+void Server::Draw()
 {
 }
+
