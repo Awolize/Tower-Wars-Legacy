@@ -1,5 +1,5 @@
 
-# Makefile för lol
+# Makefile för TowerWarLegacy
 #
 
 G	= g++
