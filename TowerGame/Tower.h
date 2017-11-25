@@ -14,7 +14,7 @@ class Tower : public Entity
 
   void Update(float deltaTime) override;
   void Draw(sf::RenderWindow& window); // override;
-  std::vector<Tower> Tower_list; 
+  std::vector<Tower> Tower_List; 
   void Create(int type, sf::Texture& TowerText);
   void Delete(); 
  

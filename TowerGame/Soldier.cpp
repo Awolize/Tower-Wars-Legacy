@@ -41,14 +41,12 @@ void Soldier::Create(int type, sf::Texture& SoldierText)
 {
   if(type == 1)
   {
-    Soldier_List.push_back(Soldier(3.0f, 2.0f, 2.0f, sf::Vector2f(0, 0), sf::Vector2i(3, 4), 0.2f, &SoldierText));
-
-    //player.money --; 
+    // Soldier_List.push_back(Soldier(3.0f, 2.0f, 2.0f, sf::Vector2f(0, 0), sf::Vector2i(3, 4), 0.2f, &SoldierText)); 
   }
 
   if(type == 2)
   {
-    Soldier_List.push_back(Soldier(3.0f, 2.0f, 2.0f, sf::Vector2f(100, 0), sf::Vector2i(3, 4), 0.2f, &SoldierText));   
+    //Soldier_List.push_back(Soldier(3.0f, 2.0f, 2.0f, sf::Vector2f(100, 0), sf::Vector2i(3, 4), 0.2f, &SoldierText));   
   }
 
 }

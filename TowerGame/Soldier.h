@@ -5,12 +5,11 @@
 
 class Soldier : public Entity
 {
-public:
-  //Behöver lägga till Imagecount från amnimation sen
-  Soldier(float HealthPoints, float Income, float MoveSpeed, float Cost,
-	  sf::Vector2f Position, sf::Vector2i imageCount, float switchTime,
-	  sf::Texture* SoldierTexture);
-  ~Soldier();
+ public:
+  Soldier(float HealthPoints, float Income, float MoveSpeed, float Cost, sf::Vector2f Position,
+	  sf::Vector2i imageCount, float switchTime, sf::Texture* SoldierTexture);
+  
+    ~Soldier();
 
   void Intelligence(sf::Vector2f Distance);
   void Update(float deltaTime) override;
