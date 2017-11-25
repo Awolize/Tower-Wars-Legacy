@@ -11,6 +11,7 @@ int main()
 {
     
     sf::RenderWindow window(sf::VideoMode(1280, 1024), "Tower Wars Legacy", sf::Style::Close);
+    window.setVerticalSyncEnabled(true);
 
     MainMenu mainMenu;
     mainMenu.Run(window);

@@ -7,8 +7,8 @@
 class Server
 {
 public:
-    Server(sf::RenderWindow &window, sf::TcpSocket &socket1, sf::TcpSocket &socket2) 
-    : window(window), socketP1(socket1), socketP2(socket2) {};
+    Server(sf::RenderWindow &window, sf::TcpSocket &socketP1, sf::TcpSocket &socketP2) 
+    : window(window), socketP1(socketP1), socketP2(socketP2) {};
 
     void RunServer();
 private:
