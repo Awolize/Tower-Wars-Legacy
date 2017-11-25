@@ -1,3 +1,6 @@
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
 #include "Ground.h"
 #include "Tower.h"
 #include "Soldier.h"
@@ -61,7 +64,7 @@ void Ground::MoveSoldier(Soldier soldier)
     
 }
 
-void Ground::RemoveTower(Soldier soldier)
+void Ground::RemoveSoldier(Soldier soldier)
 {
 
 }

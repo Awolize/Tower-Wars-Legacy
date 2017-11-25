@@ -1,8 +1,8 @@
 #ifndef GROUND_H
 #define GROUND_H
-#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
 #include <vector>
 #include <iostream>
 #include "Tower.h"
