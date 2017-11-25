@@ -38,8 +38,8 @@ void Server::RunServer()
 	    deltaTime = 1.0f / 60.0f;
 	packet << deltaTime;
 //	cout << deltaTime << endl;
-	socketP1.send(packet);
-	socketP2.send(packet);
+//	socketP1.send(packet);
+//	socketP2.send(packet);
 
 	sf::Time time = clock.getElapsedTime();
 	cout << time.asSeconds() << endl; 

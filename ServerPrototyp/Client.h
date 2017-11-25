@@ -2,6 +2,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 #include <iostream>
+#include <vector>
 
 class Client
 {
@@ -11,6 +12,7 @@ public:
 
     void RunClient();
 private:
+    void userInterface();
     void Update();
     void Draw();
 
@@ -18,4 +20,9 @@ private:
     sf::TcpSocket &socket;
     float deltaTime = 0.0f;
     sf::Clock clock;
+
+    sf::Packet sendPacket;
+    sf::Packet recPacket;
+    std::string sendData;
+    std::string recData;
 };

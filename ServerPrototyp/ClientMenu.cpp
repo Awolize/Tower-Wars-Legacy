@@ -4,7 +4,7 @@
 #include <SFML/Network.hpp>
 #include <iostream>
 
-#include "TowerGame.h"
+#include "Client.h"
 
 using namespace std;
 
@@ -71,7 +71,12 @@ void ClientMenu::CustomIpAddress(sf::RenderWindow &window)
 	    else if (event.type == sf::Event::KeyPressed)
 	    {
 		if (event.key.code == sf::Keyboard::Escape)
+		{
+		    Client client(window, socket);  //remove later
+		    client.RunClient();  // remove later
+		    
 		    window.close();
+		}
 		else if (event.key.code == sf::Keyboard::Return)
 		    ifNext = true;
 	    }
@@ -216,8 +221,8 @@ void ClientMenu::Connect(sf::RenderWindow &window)
 	//Success
 	ifNext = true;
 	thread.wait();
-	TowerGame towerGame(window, socket);
-        towerGame.RunGame();
+	Client client(window, socket);
+        client.RunClient();
     }	
     // Timeout/Error
     ifNext = true;

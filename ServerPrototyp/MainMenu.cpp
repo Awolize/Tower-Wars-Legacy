@@ -78,30 +78,27 @@ void MainMenu::Run(sf::RenderWindow &window)
 	JoinGameText.setFillColor(sf::Color::White);
 	QuitGameText.setFillColor(sf::Color::White);
 
-
-
-    //  Animation hover
-
-	if (   sf::Mouse::getPosition(window).x > HostMenuOption.getPosition().x - HostMenuOption.getSize().x / 2 
-	       && sf::Mouse::getPosition(window).x < HostMenuOption.getPosition().x + HostMenuOption.getSize().x / 2
-	       && sf::Mouse::getPosition(window).y > HostMenuOption.getPosition().y - HostMenuOption.getSize().y / 2
-	       && sf::Mouse::getPosition(window).y < HostMenuOption.getPosition().y + HostMenuOption.getSize().y / 2 )
+	//  Animation hover
+	if (   sf::Mouse::getPosition(window).x > HostMenuOption.getPosition().x - HostMenuOption.getSize().x / 2 &&
+	       sf::Mouse::getPosition(window).x < HostMenuOption.getPosition().x + HostMenuOption.getSize().x / 2 &&
+	       sf::Mouse::getPosition(window).y > HostMenuOption.getPosition().y - HostMenuOption.getSize().y / 2 &&
+	       sf::Mouse::getPosition(window).y < HostMenuOption.getPosition().y + HostMenuOption.getSize().y / 2 )
 	{
 	    HostGameText.setFillColor(sf::Color::Red);
 	}
 
-	if (   sf::Mouse::getPosition(window).x > JoinMenuOption.getPosition().x - JoinMenuOption.getSize().x / 2 
-	       && sf::Mouse::getPosition(window).x < JoinMenuOption.getPosition().x + JoinMenuOption.getSize().x / 2 
-	       && sf::Mouse::getPosition(window).y > JoinMenuOption.getPosition().y - JoinMenuOption.getSize().y / 2 
-	       && sf::Mouse::getPosition(window).y < JoinMenuOption.getPosition().y + JoinMenuOption.getSize().y / 2 )
+	else if (   sf::Mouse::getPosition(window).x > JoinMenuOption.getPosition().x - JoinMenuOption.getSize().x / 2 && 
+		    sf::Mouse::getPosition(window).x < JoinMenuOption.getPosition().x + JoinMenuOption.getSize().x / 2 && 
+		    sf::Mouse::getPosition(window).y > JoinMenuOption.getPosition().y - JoinMenuOption.getSize().y / 2 && 
+		    sf::Mouse::getPosition(window).y < JoinMenuOption.getPosition().y + JoinMenuOption.getSize().y / 2 )
 	{
 	    JoinGameText.setFillColor(sf::Color::Red);
 	}
 
-	if (   sf::Mouse::getPosition(window).x > QuitMenuOption.getPosition().x - QuitMenuOption.getSize().x / 2 
-	       && sf::Mouse::getPosition(window).x < QuitMenuOption.getPosition().x + QuitMenuOption.getSize().x / 2  
-	       && sf::Mouse::getPosition(window).y > QuitMenuOption.getPosition().y - QuitMenuOption.getSize().y / 2 
-	       && sf::Mouse::getPosition(window).y < QuitMenuOption.getPosition().y + QuitMenuOption.getSize().y / 2 )
+	else if (   sf::Mouse::getPosition(window).x > QuitMenuOption.getPosition().x - QuitMenuOption.getSize().x / 2 && 
+		    sf::Mouse::getPosition(window).x < QuitMenuOption.getPosition().x + QuitMenuOption.getSize().x / 2 && 
+		    sf::Mouse::getPosition(window).y > QuitMenuOption.getPosition().y - QuitMenuOption.getSize().y / 2 && 
+		    sf::Mouse::getPosition(window).y < QuitMenuOption.getPosition().y + QuitMenuOption.getSize().y / 2 )
 	{	
 	    QuitGameText.setFillColor(sf::Color::Red);
 	}
@@ -110,12 +107,17 @@ void MainMenu::Run(sf::RenderWindow &window)
 	while(window.pollEvent(event))
 	{
 	    if (event.type == event.Closed)
-		window.close();      
+		window.close();    
+	    else if (event.type == sf::Event::KeyPressed)
+	    {
+		if (event.key.code == sf::Keyboard::Escape)
+		    window.close();
+	    }  
 	    // HostMenuOption
-	    if (   event.mouseButton.x > HostMenuOption.getPosition().x - HostMenuOption.getSize().x / 2 
-		   && event.mouseButton.x < HostMenuOption.getPosition().x + HostMenuOption.getSize().x / 2
-		   && event.mouseButton.y > HostMenuOption.getPosition().y - HostMenuOption.getSize().y / 2
-		   && event.mouseButton.y < HostMenuOption.getPosition().y + HostMenuOption.getSize().y / 2 )
+	    else if (   event.mouseButton.x > HostMenuOption.getPosition().x - HostMenuOption.getSize().x / 2 && 
+			event.mouseButton.x < HostMenuOption.getPosition().x + HostMenuOption.getSize().x / 2 && 
+			event.mouseButton.y > HostMenuOption.getPosition().y - HostMenuOption.getSize().y / 2 && 
+			event.mouseButton.y < HostMenuOption.getPosition().y + HostMenuOption.getSize().y / 2 )
 	    {		
 		if (event.mouseButton.button == sf::Mouse::Left)
 		{
@@ -124,10 +126,10 @@ void MainMenu::Run(sf::RenderWindow &window)
 		}
 	    }		
 	    // JoinMenuOption
-	    if (   event.mouseButton.x > JoinMenuOption.getPosition().x - JoinMenuOption.getSize().x / 2 
-		   && event.mouseButton.x < JoinMenuOption.getPosition().x + JoinMenuOption.getSize().x / 2 
-		   && event.mouseButton.y > JoinMenuOption.getPosition().y - JoinMenuOption.getSize().y / 2 
-		   && event.mouseButton.y < JoinMenuOption.getPosition().y + JoinMenuOption.getSize().y / 2 )
+	    else if (   event.mouseButton.x > JoinMenuOption.getPosition().x - JoinMenuOption.getSize().x / 2 && 
+			event.mouseButton.x < JoinMenuOption.getPosition().x + JoinMenuOption.getSize().x / 2 && 
+		        event.mouseButton.y > JoinMenuOption.getPosition().y - JoinMenuOption.getSize().y / 2 && 
+			event.mouseButton.y < JoinMenuOption.getPosition().y + JoinMenuOption.getSize().y / 2 )
 	    {
 		if (event.mouseButton.button == sf::Mouse::Left)
 		{
@@ -136,10 +138,10 @@ void MainMenu::Run(sf::RenderWindow &window)
 		}
 	    }
 	    // QuitMenuOption
-	    if (   event.mouseButton.x > QuitMenuOption.getPosition().x - QuitMenuOption.getSize().x / 2 
-		   && event.mouseButton.x < QuitMenuOption.getPosition().x + QuitMenuOption.getSize().x / 2  
-		   && event.mouseButton.y > QuitMenuOption.getPosition().y - QuitMenuOption.getSize().y / 2 
-		   && event.mouseButton.y < QuitMenuOption.getPosition().y + QuitMenuOption.getSize().y / 2 )
+	    else if (   event.mouseButton.x > QuitMenuOption.getPosition().x - QuitMenuOption.getSize().x / 2 && 
+			event.mouseButton.x < QuitMenuOption.getPosition().x + QuitMenuOption.getSize().x / 2 && 
+			event.mouseButton.y > QuitMenuOption.getPosition().y - QuitMenuOption.getSize().y / 2 && 
+			event.mouseButton.y < QuitMenuOption.getPosition().y + QuitMenuOption.getSize().y / 2 )
 	    {	
 		if (event.mouseButton.button == sf::Mouse::Left)
 		{        
