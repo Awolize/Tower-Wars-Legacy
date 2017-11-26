@@ -20,6 +20,8 @@ public:
   void Create(int type, sf::Texture& SoldierText);
   void Delete();
 
+  int Cost { 2 };
+
 private:
 
   int row{ 0 };
