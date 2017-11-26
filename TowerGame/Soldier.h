@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SOLDIER_H
+#define SOLDIER_H
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
 #include "Animation.h"
@@ -6,29 +7,29 @@
 class Soldier: public Entity
 {
 public:
-  //Behöver lägga till Imagecount från amnimation sen
-  Soldier(float HealthPoints, float Income, float MoveSpeed,
-	  sf::Vector2f Position, sf::Vector2i imageCount, float switchTime,
-	  sf::Texture* SoldierTexture);
-  ~Soldier();
+    //Behöver lägga till Imagecount
+    Soldier(int type);
+    ~Soldier();
 
-  void Intelligence(sf::Vector2f Distance);
-  void Update(float deltaTime) override;
-  void Draw(sf::RenderWindow& window) override;
-
-  std::vector<Soldier> Soldier_List;
-  void Create(int type, sf::Texture& SoldierText);
-  void Delete();
-
-    float Cost {0};
+    void Intelligence(sf::Vector2f Distance);
+    void Update(float deltaTime) override;
+    void Draw(sf::RenderWindow& window) override;
+    void Delete();
+    float getCost() {return cost;};
 
 private:
-
-  int row{ 0 };
-  float HealthPoints{ 3 };
-  float Income{ 2 };
-  float MoveSpeed{ 2 };
-  //Animation
+    void Create(int type);
+    float cost {0};
+    int row{ 0 };
+    float healthPoints{ 3 };
+    float income{ 2 };
+    float moveSpeed{ 2 };
+    float damagePoints {0}; 
+//    Animation animation; 
+    sf::Texture texture;
+    float imageCount = 0;
+    float switchTime = 0;
  
 
 };
+#endif

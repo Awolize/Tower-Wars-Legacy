@@ -12,16 +12,19 @@ public:
     void Update(float deltaTime) override;
     void Draw(sf::RenderWindow& window); // override;
     void Delete(); 
-    void getCost();
+    float getCost() {return cost;};
 
 private:
     void Create(int type);
-    float Cost {0};
-    float DamagePoints {0}; 
+    float cost {0};
+    float damagePoints {0}; 
     float attackSpeed {0};
     float reloadTime {0};
-    float Range {0}; 
-    Animation animation; 
+    float range {0}; 
+//    Animation animation; 
+    sf::Texture texture;
+    float imageCount = 0;
+    float switchTime = 0;
     int row {0}; 
   
 };
