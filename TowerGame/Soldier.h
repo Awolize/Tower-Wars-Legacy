@@ -15,7 +15,7 @@ public:
     void Update(float deltaTime) override;
     void Draw(sf::RenderWindow& window) override;
     void Delete();
-    float getCost() {return cost;};
+    float GetCost() {return cost;};
 
 private:
     void Create(int type);

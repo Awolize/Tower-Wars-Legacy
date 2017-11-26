@@ -3,6 +3,7 @@
 #include <SFML/Network.hpp>
 #include <iostream>
 #include <vector>
+#include "StoreMenu.h"
 
 class Client
 {
@@ -21,7 +22,7 @@ private:
     float deltaTime = 0.0f;
     sf::Clock clock;
     bool ifNext = false;
-
+    StoreMenu storeMenu;
     sf::Packet sendPacket;
     sf::Packet recPacket;
     std::string sendData;

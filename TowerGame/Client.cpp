@@ -3,7 +3,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 #include <iostream>
-
+#include "StoreMenu.h"
 #include <sstream>
 
 using namespace std;
@@ -41,13 +41,13 @@ void Client::userInterface()
 void Client::Update()
 {
 //    Update();
-
+    storeMenu.StoreMenuLogic(window);
 }
 
 void Client::Draw()
 {
     window.clear(sf::Color(20,20,20,255));  
-    
+    storeMenu.DrawStoreMenu(window);
     window.display();
 }
 
