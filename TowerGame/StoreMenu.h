@@ -6,6 +6,7 @@
 #include "Tower.h"
 #include "Soldier.h"
 #include "Player.h"
+
 class StoreMenu
 {
 public:
@@ -13,7 +14,7 @@ public:
     Soldier BuySoldier(float, Soldier, Player);
     void DefineTexture();
     void DrawStoreMenu(sf::RenderWindow & window);
-    void StoreMenuLogic(sf::RenderWindow & windo);
+    std::string StoreMenuLogic(sf::RenderWindow & window);
 private:
     sf::Sprite StoreMenuSprite; 
     sf::Texture StoreMenuTexture;
@@ -26,6 +27,12 @@ private:
     sf::RectangleShape StylingOne;
     sf::RectangleShape StylingTwo;
     bool oneTime = true;
+    int option = 0;
+    sf::Clock clock;
+    sf::Time time;
+    bool readyRight = true;
+    bool readyLeft = true;
+
 };
 
 #endif

@@ -41,7 +41,18 @@ void Client::userInterface()
 void Client::Update()
 {
 //    Update();
-    storeMenu.StoreMenuLogic(window);
+    string sendData;
+    sendData = storeMenu.StoreMenuLogic(window);
+//    coords.x = sf::Mouse::getPosition(window).x / 60;
+//    coords.y = sf::Mouse::getPosition(window).y / 60;
+    if (soldierList.size() > 0 && towerList.size() > 0)
+    {
+	for (Soldier soldier : soldierList)
+	    soldier.Update(deltaTime);
+	for (Tower tower : towerList)
+	    for (Soldier soldier : soldierList)
+		tower.Update(soldier, deltaTime);
+    }
 }
 
 void Client::Draw()

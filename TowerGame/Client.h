@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include "StoreMenu.h"
+#include "Soldier.h"
+#include "Tower.h"
 
 class Client
 {
@@ -27,6 +29,9 @@ private:
     sf::Packet recPacket;
     std::string sendData;
     std::string recData;
+    std::vector<Soldier> soldierList;
+    std::vector<Tower> towerList;
+
 };
 
 /*

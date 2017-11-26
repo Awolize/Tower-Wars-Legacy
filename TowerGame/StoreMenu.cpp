@@ -1,4 +1,6 @@
 #include "StoreMenu.h" 
+using namespace std;
+
 Tower StoreMenu::BuyTower(float Coins, Tower Tower, Player Player)
 {
     if (Player.Coins >= Tower.GetCost())
@@ -49,7 +51,7 @@ void StoreMenu::DefineTexture()
     OptSix.setSize(sf::Vector2f(200, 40));
     OptSix.setPosition(740,960);
     OptSix.setOrigin(sf::Vector2f(OptOne.getSize() / 2.0f));
-    OptSix.setFillColor(sf::Color::Transparent);  
+    OptSix.setFillColor(sf::Color::Black);  
   
 }
 void StoreMenu::DrawStoreMenu(sf::RenderWindow & window)
@@ -67,74 +69,75 @@ void StoreMenu::DrawStoreMenu(sf::RenderWindow & window)
     window.draw(OptFive);
     window.draw(OptSix);
 }
-void StoreMenu::StoreMenuLogic(sf::RenderWindow & window)
+string StoreMenu::StoreMenuLogic(sf::RenderWindow & window)
 {
-    if (   sf::Mouse::getPosition(window).x > OptOne.getPosition().x - OptOne.getSize().x / 2 &&
-	   sf::Mouse::getPosition(window).x < OptOne.getPosition().x + OptOne.getSize().x / 2 &&
-	   sf::Mouse::getPosition(window).y > OptOne.getPosition().y - OptOne.getSize().y / 2 &&
-	   sf::Mouse::getPosition(window).y < OptOne.getPosition().y + OptOne.getSize().y / 2 )
+    if (!sf::Mouse::isButtonPressed(sf::Mouse::Right))
+	readyRight = true;
+    if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	readyLeft = true;
+    
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && readyRight)
     {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	readyRight = false;
+	option = 0;
+    }
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && readyLeft)
+    {
+	readyLeft = false;
+	if ( sf::Mouse::getPosition(window).x > OptOne.getPosition().x - OptOne.getSize().x / 2 &&
+	     sf::Mouse::getPosition(window).x < OptOne.getPosition().x + OptOne.getSize().x / 2 &&
+	     sf::Mouse::getPosition(window).y > OptOne.getPosition().y - OptOne.getSize().y / 2 &&
+	     sf::Mouse::getPosition(window).y < OptOne.getPosition().y + OptOne.getSize().y / 2 )
 	{
 	    std::cout << "player bought tower type 1" << std::endl;
+	    option = 1;
 	}
-      
-    }
   
-    if (   sf::Mouse::getPosition(window).x > OptTwo.getPosition().x - OptTwo.getSize().x / 2 &&
-	   sf::Mouse::getPosition(window).x < OptTwo.getPosition().x + OptTwo.getSize().x / 2 &&
-	   sf::Mouse::getPosition(window).y > OptTwo.getPosition().y - OptTwo.getSize().y / 2 &&
-	   sf::Mouse::getPosition(window).y < OptTwo.getPosition().y + OptTwo.getSize().y / 2 )
-    {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	else if ( sf::Mouse::getPosition(window).x > OptTwo.getPosition().x - OptTwo.getSize().x / 2 &&
+		  sf::Mouse::getPosition(window).x < OptTwo.getPosition().x + OptTwo.getSize().x / 2 &&
+		  sf::Mouse::getPosition(window).y > OptTwo.getPosition().y - OptTwo.getSize().y / 2 &&
+		  sf::Mouse::getPosition(window).y < OptTwo.getPosition().y + OptTwo.getSize().y / 2 )
 	{
-	    std::cout << "player bought tower type 2" << std::endl;	}
-      
-    }
+	    std::cout << "player bought tower type 2" << std::endl;
+	    option = 2;
+	}
   
-    if (   sf::Mouse::getPosition(window).x > OptThree.getPosition().x - OptThree.getSize().x / 2 &&
-	   sf::Mouse::getPosition(window).x < OptThree.getPosition().x + OptThree.getSize().x / 2 &&
-	   sf::Mouse::getPosition(window).y > OptThree.getPosition().y - OptThree.getSize().y / 2 &&
-	   sf::Mouse::getPosition(window).y < OptThree.getPosition().y + OptThree.getSize().y / 2 )
-    {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	else if ( sf::Mouse::getPosition(window).x > OptThree.getPosition().x - OptThree.getSize().x / 2 &&
+		  sf::Mouse::getPosition(window).x < OptThree.getPosition().x + OptThree.getSize().x / 2 &&
+		  sf::Mouse::getPosition(window).y > OptThree.getPosition().y - OptThree.getSize().y / 2 &&
+		  sf::Mouse::getPosition(window).y < OptThree.getPosition().y + OptThree.getSize().y / 2 )
 	{
 	    std::cout << "player bought soldier type 1" << std::endl;
+	    option = 3;    
 	}
-      
-    }
   
-    if (  sf::Mouse::getPosition(window).x > OptFour.getPosition().x - OptFour.getSize().x / 2 &&
-	  sf::Mouse::getPosition(window).x < OptFour.getPosition().x + OptFour.getSize().x / 2 &&
-	  sf::Mouse::getPosition(window).y > OptFour.getPosition().y - OptFour.getSize().y / 2 &&
-	  sf::Mouse::getPosition(window).y < OptFour.getPosition().y + OptFour.getSize().y / 2 )
-    {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	else if ( sf::Mouse::getPosition(window).x > OptFour.getPosition().x - OptFour.getSize().x / 2 &&
+		  sf::Mouse::getPosition(window).x < OptFour.getPosition().x + OptFour.getSize().x / 2 &&
+		  sf::Mouse::getPosition(window).y > OptFour.getPosition().y - OptFour.getSize().y / 2 &&
+		  sf::Mouse::getPosition(window).y < OptFour.getPosition().y + OptFour.getSize().y / 2 )
 	{
 	    std::cout << "player bought soldier type 2" << std::endl;
+	    option = 4;      
 	}
-      
-    }
-    if (  sf::Mouse::getPosition(window).x > OptFive.getPosition().x - OptFive.getSize().x / 2 &&
-	  sf::Mouse::getPosition(window).x < OptFive.getPosition().x + OptFive.getSize().x / 2 &&
-	  sf::Mouse::getPosition(window).y > OptFive.getPosition().y - OptFive.getSize().y / 2 &&
-	  sf::Mouse::getPosition(window).y < OptFive.getPosition().y + OptFive.getSize().y / 2 )
-    {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	else  if ( sf::Mouse::getPosition(window).x > OptFive.getPosition().x - OptFive.getSize().x / 2 &&
+		   sf::Mouse::getPosition(window).x < OptFive.getPosition().x + OptFive.getSize().x / 2 &&
+		   sf::Mouse::getPosition(window).y > OptFive.getPosition().y - OptFive.getSize().y / 2 &&
+		   sf::Mouse::getPosition(window).y < OptFive.getPosition().y + OptFive.getSize().y / 2 )
 	{
 	    std::cout << "player sold marked tower" << std::endl;
+	    option = 5;	
 	}
-      
     }
-    if (  sf::Mouse::getPosition(window).x > OptSix.getPosition().x - OptSix.getSize().x / 2 &&
-	  sf::Mouse::getPosition(window).x < OptSix.getPosition().x + OptSix.getSize().x / 2 &&
-	  sf::Mouse::getPosition(window).y > OptSix.getPosition().y - OptSix.getSize().y / 2 &&
-	  sf::Mouse::getPosition(window).y < OptSix.getPosition().y + OptSix.getSize().y / 2 )
-    {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-	{
-	    std::cout << "player sold marked soldier" << std::endl;
-	}
-      
-    }
+
+    if (option == 2,3 && readyLeft)
+
+    
+    string str = "";
+    return str;
 }
+
+// add en rektangle för left side som är lika stor som mappen(bild)
+// placeras på 60*10/2 för att få x mittpunkt
+// placeras på 60*14/2 för att få y mittpunkt
+// origin = reksize.xy/2
+// size.x = 60*10, .y = 60*14 

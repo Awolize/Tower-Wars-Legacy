@@ -8,11 +8,11 @@ class Soldier: public Entity
 {
 public:
     //Behöver lägga till Imagecount
-    Soldier(int type);
+    Soldier(int type, int index);
     ~Soldier();
 
     void Intelligence(sf::Vector2f Distance);
-    void Update(float deltaTime) override;
+    void Update(float deltaTime);
     void Draw(sf::RenderWindow& window) override;
     void Delete();
     float GetCost() {return cost;};
@@ -29,6 +29,7 @@ private:
     sf::Texture texture;
     float imageCount = 0;
     float switchTime = 0;
+    int index;
  
 
 };

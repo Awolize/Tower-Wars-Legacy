@@ -1,13 +1,13 @@
 #include "Tower.h" 
 
-Tower::Tower(int type)
+Tower::Tower(int type, int index) : index(index)
 {
     Create(type);
 }
 
 Tower::~Tower() {} 
 
-void Tower::Update(float deltaTime)
+void Tower::Update(Soldier soldier, float deltaTime)
 {
     if (true)
     {
@@ -40,7 +40,7 @@ void Tower::Create(int type)
     }
     if(type == 2)
     {
-	texture.loadFromFile("Tower1.png");
+	texture.loadFromFile("Tower2.png");
 	cost = 20;
 	range = 4;
 	attackSpeed = 0,8;

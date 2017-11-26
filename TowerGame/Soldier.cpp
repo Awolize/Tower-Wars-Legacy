@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Soldier::Soldier(int type)
+Soldier::Soldier(int type, int index) : index(index)
 {
     Create(type);
 }
@@ -37,6 +37,7 @@ void Soldier::Intelligence(sf::Vector2f Distance)
 
 void Soldier::Create(int type)
 {
+    
     if(type == 1) // change values
     {
 	texture.loadFromFile("Soldier1.png");
@@ -51,7 +52,7 @@ void Soldier::Create(int type)
     }
     if(type == 2) // not done
     {
-	texture.loadFromFile("Soldier1.png");
+	texture.loadFromFile("Soldier2.png");
 	cost = 10;
 	healthPoints = 1;
 	damagePoints = 20;

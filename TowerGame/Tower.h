@@ -3,13 +3,14 @@
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
 #include "Animation.h" 
+#include "Soldier.h"
 
 class Tower : public Entity 
 {
 public: 
-    Tower(int type);
+    Tower(int type, int index);
     ~Tower();
-    void Update(float deltaTime) override;
+    void Update(Soldier soldier, float deltaTime);
     void Draw(sf::RenderWindow& window); // override;
     void Delete(); 
     float GetCost() {return cost;};
@@ -26,6 +27,6 @@ private:
     float imageCount = 0;
     float switchTime = 0;
     int row {0}; 
-  
+    int index;
 };
 #endif
