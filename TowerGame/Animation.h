@@ -1,10 +1,13 @@
+#ifndef ANIMATION_H
+#define ANIMATION_H
 #include <SFML/Graphics.hpp>
-#pragma once
+
 
 class Animation
 {
 public:
-	Animation(sf::Texture* texture, sf::Vector2i imageCount, float switchTime);
+	Animation(sf::Texture* texture, sf::Vector2i imageCount, 
+		  float switchTime);
 	~Animation();
 
 	void Update(int row, float deltaTime);
@@ -16,3 +19,4 @@ private:
 	sf::Vector2i imageCount;
 	sf::Vector2i currentImage;
 };
+#endif
