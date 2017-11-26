@@ -1,12 +1,9 @@
 #include "Tower.h" 
 
-Tower::Tower(float HealthPoints, float Cost, float DamagePoints, float Range, sf::Vector2f Position,
-	     sf::Vector2i imageCount, float switchTime, sf::Texture* TowerTexture)
-    :Entity(Position), animation(TowerTexture, imageCount, switchTime), 
-     HealthPoints{HealthPoints}, Cost{Cost}, DamagePoints{DamagePoints}, Range{Range}
- {
-     body.setTexture(TowerTexture);
- }
+Tower::Tower(int type)
+{
+    Create(int type);
+}
 
 Tower::~Tower() {} 
 
@@ -17,6 +14,8 @@ void Tower::Update(float deltaTime)
 	animation.Update(row, deltaTime);
 	body.setTextureRect(animation.xyRect);
     }
+    else
+	body.setPosition(sf::Vector2f(5000,5000));
 }
 
 void Tower::Draw(sf::RenderWindow& window)
@@ -25,17 +24,32 @@ void Tower::Draw(sf::RenderWindow& window)
 	window.draw(body);
 }
 
-void Tower::Create(int type, sf::Texture& TowerText)
+void Tower::Create(int type)
 {
+    sf::Texture texture
     if(type == 1)
     {
-	// Tower_List.push_back(Tower(3.0f, 2.0f, 2.0f, sf::Vector2f(0, 0), sf::Vector2i(3, 4), 0.2f, &TowerText));
+	texture.loadFromFile("Tower1.png")
+	cost = 10;
+	range = 3;
+	attackSpeed = 0,4;
+	reloadTime = 1 / attackspeed;
+	damagePoints = 20;
+	imageCount = ;
+	switchTime = ;
     }
-
     if(type == 2)
     {
-	// Tower_List.push_back(Tower(3.0f, 2.0f, 2.0f, sf::Vector2f(100, 0), sf::Vector2i(3, 4), 0.2f, &TowerText));   
+	cost = 20;
+	range = 4;
+	attackSpeed = 0,8;
+	reloadTime = 1 / attackspeed;
+	damagePoints = 40;
+	imageCount = ;
+	switchTime = ;
     }
+    body.setTexture(texture);
+    body.setPosition(sf::Vector2f(10,10));
 }
 
 void Tower::Delete()

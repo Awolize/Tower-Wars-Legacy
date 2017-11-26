@@ -7,22 +7,19 @@
 class Tower : public Entity 
 {
 public: 
-    Tower(float HealthPoints, float Cost, float DamagePoints, float Range,
-	  sf::Vector2f Position, sf::Vector2i imageCount, float switchTime,
-	  sf::Texture* TowerTexture);
+    Tower(int type);
     ~Tower();
-
     void Update(float deltaTime) override;
     void Draw(sf::RenderWindow& window); // override;
-    std::vector<Tower> Tower_List; 
-    void Create(int type, sf::Texture& TowerText);
     void Delete(); 
- 
+    void getCost();
 
-    // private:
-    float HealthPoints {0}; 
+private:
+    void Create(int type);
     float Cost {0};
     float DamagePoints {0}; 
+    float attackSpeed {0};
+    float reloadTime {0};
     float Range {0}; 
     Animation animation; 
     int row {0}; 

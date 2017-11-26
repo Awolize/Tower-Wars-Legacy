@@ -21,13 +21,13 @@ class Soldier : public Entity
   void Create(int type, sf::Texture& SoldierText);
   void Delete();
 
-  //private:
-
+    float Cost {0};
+private:
   int row{ 0 };
   float HealthPoints{ 3 };
   float Income{ 2 };
   float MoveSpeed{ 2 };
-  float Cost {0};
+  
   Animation animation;
   //Animation
  
