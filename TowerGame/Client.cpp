@@ -4,6 +4,7 @@
 #include <SFML/Network.hpp>
 #include <iostream>
 #include "StoreMenu.h"
+#include "Ground.h"
 #include <sstream>
 
 using namespace std;
@@ -41,24 +42,17 @@ void Client::userInterface()
 void Client::Update()
 {
 //    Update();
-    string sendData;
-    sendData = storeMenu.StoreMenuLogic(window);
-//    coords.x = sf::Mouse::getPosition(window).x / 60;
-//    coords.y = sf::Mouse::getPosition(window).y / 60;
-    if (soldierList.size() > 0 && towerList.size() > 0)
-    {
-	for (Soldier soldier : soldierList)
-	    soldier.Update(deltaTime);
-	for (Tower tower : towerList)
-	    for (Soldier soldier : soldierList)
-		tower.Update(soldier, deltaTime);
-    }
+  storeMenu.StoreMenuLogic(window);
+  ground1.SetPosition(0, 0);
+  ground2.SetPosition(680, 0);
 }
 
 void Client::Draw()
 {
     window.clear(sf::Color(20,20,20,255));  
     storeMenu.DrawStoreMenu(window);
+    ground1.Draw(window);
+    ground2.Draw(window);
     window.display();
 }
 

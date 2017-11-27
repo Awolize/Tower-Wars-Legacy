@@ -11,15 +11,20 @@
 class Ground
 {
 public:
-    Ground();
-    void AddTower(Tower tower);
-    void RemoveTower(Tower tower);
+  Ground();
+  void AddTower(Tower tower);
+  void RemoveTower(Tower tower);
 
-    void AddSoldier(Soldier soldier);
-    void MoveSoldier(Soldier soldier);
-    void RemoveSoldier(Soldier soldier);
+  void AddSoldier(Soldier soldier);
+  void MoveSoldier(Soldier soldier);
+  void RemoveSoldier(Soldier soldier);
+  void Draw(sf::RenderWindow& window);
+  void SetPosition(int x, int y);
+
 private:
-    std::array<std::array<std::vector<int>, 14>, 10> grid;
+  std::array<std::array<std::vector<int>, 14>, 10> grid;
+  sf::Sprite background;
+  sf::Texture GroundText;
 };
 
 #endif
