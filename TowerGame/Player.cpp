@@ -1,97 +1,101 @@
 #include "Player.h"
 
-Player::Player(float coins)
-  :coins{coins}, income{10} {
+Player::Player()
+    :coins{100}, income{10} {
+	DefineEconomyMisc();
+		   }
 
-}
 
-/*
-void Player::AddIncome();
+void Player::AddIncome()
 {
-  Coins = Coins + Income;
+    coins = coins + income;
 }
 
-void Player::TimerForIncome(bool cycle)
+void Player::TimerForIncome()
 {
-
+    clock.restart();
+    AddIncome();
 }
 
+void Player::UpdateEconomy()
+{
+    sf::Time time = clock.getElapsedTime();
+    if(time.asSeconds() >= 1.0)
+	TimerForIncome();
+    std::string tempIncome = std::to_string(income);
+    std::string tempCoins = std::to_string(coins);
+    CoinsValue.setString(tempCoins);
+    IncomeValue.setString(tempIncome);
+}
 
 void Player::DefineEconomyMisc()
 {
-  int charsize = 20;
-  sf::Font font;
-  font.loadFromeFile("Arial.ttf");
-  coinRectangle.setSize(sf::Vector2f(200, 40));
-  coinRectangle.setPosition(960,960);
-  coinRectangle.setOrigin(sf::Vector2f(coinRectangle.getSize() / 2.0f));
-  coinRectangle.setFillColor(sf::Color::Black);  
+    int charsize = 20;
 
-  incomeRectangle.setSize(sf::Vector2f(200, 40));
-  incomeRectangle.setPosition(960,1000);
-  incomeRectangle.setOrigin(sf::Vector2f(incomeRectangle.getSize() / 2.0f));
-  incomeRectangle.setFillColor(sf::Color::Black);  
-  sf::FloatRect textRect;
-  sf::Text CoinsText;
-  CoinsText.setFont(font);
-  CoinsText.setCharacterSize(charsize);
-  CoinsText.SetFillColor(sf::Color::White);
-  CoinsText.setString("Coins");
-  CoinsText.setPosition(sf::Vector2f(coinRectangle.getPosition()));
-  textRect = CoinText.getLocalBounds();
-  sf::Text CoinsValue;
-  CoinsValue.setFont(font);
-  CoinsValue.setCharacterSize(charsize);
-  CoinsValue.SetFillColor(sf::Color::White);
-  CoinsValue.setString(coins);
-  CoinsValue.setPosition(sf::Vector2f(coinRectangle.getPosition()));
-  textRect = CoinsValue.getLocalBounds();
+    font.loadFromFile("Arial.ttf");
+    coinRectangle.setSize(sf::Vector2f(200, 40));
+    coinRectangle.setPosition(900,960);
+    coinRectangle.setOrigin(sf::Vector2f(coinRectangle.getSize() / 2.0f));
+    coinRectangle.setFillColor(sf::Color::Black);  
 
-  sf::Text IncomeText;
-  IncomeText.setFont(font);
-  IncomeText.setCharacterSize(charsize);
-  IncomeText.SetFillColor(sf::Color::White);
-  IncomeText.setString("Income");
-  IncomeText.setPosition(sf::Vector2f(incomeRectangle.getPosition()));
-  textRect = IncomeText.getLocalBounds();
-
-  sf::Text IncomeValue;
-  IncomeValue.setFont(font);
-  IncomeValue.setCharacterSize(charsize);
-  IncomeValuet.SetFillColor(sf::Color::White);
-  IncomeValue.setString(income);
-  IncomeValue.setPosition(sf::Vector2f(incomeRectangle.getPosition()));
-  textRect = IncomeValue.getLocalBounds();
-
-  
+    incomeRectangle.setSize(sf::Vector2f(200, 40));
+    incomeRectangle.setPosition(900,1000);
+    incomeRectangle.setOrigin(sf::Vector2f(incomeRectangle.getSize() / 2.0f));
+    incomeRectangle.setFillColor(sf::Color::Black);  
 
 
+    CoinsText.setFont(font);
+    CoinsText.setCharacterSize(charsize);
+    CoinsText.setFillColor(sf::Color::White);
+    CoinsText.setString("Coins:");
+    CoinsText.setPosition(sf::Vector2f(coinRectangle.getPosition()));
+    textRect = CoinsText.getLocalBounds();
 
+    std::string tempCoins = std::to_string(coins);
+    CoinsValue.setFont(font);
+    CoinsValue.setCharacterSize(charsize);
+    CoinsValue.setFillColor(sf::Color::White);
+    CoinsValue.setString(tempCoins);
+    CoinsValue.setPosition(sf::Vector2f(coinRectangle.getPosition().x + 150.f, coinRectangle.getPosition().y));
+    textRect = CoinsValue.getLocalBounds();
+
+    IncomeText.setFont(font);
+    IncomeText.setCharacterSize(charsize);
+    IncomeText.setFillColor(sf::Color::White);
+    IncomeText.setString("Income:");
+    IncomeText.setPosition(sf::Vector2f(incomeRectangle.getPosition()));
+    textRect = IncomeText.getLocalBounds();
+
+    std::string tempIncome = std::to_string(income);
+    IncomeValue.setFont(font);
+    IncomeValue.setCharacterSize(charsize);
+    IncomeValue.setFillColor(sf::Color::White);
+    IncomeValue.setString(tempIncome);
+    IncomeValue.setPosition(sf::Vector2f(incomeRectangle.getPosition().x + 150.f, incomeRectangle.getPosition().y));
+    textRect = IncomeValue.getLocalBounds();
 }
-*/
-/*
-void Player::DrawEconomy(sf::renderwindow & window)
+
+
+void Player::DrawEconomy(sf::RenderWindow & window)
 { 
-  window.draw(incomeRectangle);
-  window.draw(incomeRectangle);
-  window.draw(incomeRectangle);
-  window.draw(incomeRectangle);
+    UpdateEconomy();
+    window.draw(incomeRectangle);
+    window.draw(coinRectangle);
+    window.draw(IncomeText);
+    window.draw(CoinsText);
+    window.draw(IncomeValue);
+    window.draw(CoinsValue);
 
 }
-*/
+
 void Player::BuyWithCoins(float money)
 {
-  coins =- money;
+    coins = coins - money;
 }
 
 float Player::GetCoins()
 {
-  return coins;
+    return coins;
 }
 
 
-void Player::UpdateEconomy(float currCoin, float currIncome)
-{
-  income = currIncome;
-  coins = currCoin;
-}

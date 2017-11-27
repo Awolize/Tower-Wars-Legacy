@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "StoreMenu.h"
+#include "Player.h"
 #include "Ground.h"
 
 class Client
@@ -26,6 +27,7 @@ private:
   StoreMenu storeMenu;
   Ground ground1;
   Ground ground2;
+    Player player;
   sf::Packet sendPacket;
   sf::Packet recPacket;
   std::string sendData;

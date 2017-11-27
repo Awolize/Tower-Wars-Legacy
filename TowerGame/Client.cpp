@@ -53,6 +53,7 @@ void Client::Draw()
     storeMenu.DrawStoreMenu(window);
     ground1.Draw(window);
     ground2.Draw(window);
+    player.DrawEconomy(window);
     window.display();
 }
 
