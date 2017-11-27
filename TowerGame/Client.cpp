@@ -15,11 +15,11 @@ void Client::RunClient()
 
     while(window.isOpen() && !ifNext)
     {
-	userInterface();
-	// Send data to server	    
-	// Rec
-	Update();
-	Draw();
+ 	userInterface();
+ 	// Send data to server	    
+ 	// Rec
+ 	Update();
+ 	Draw();
     }
 }
 
@@ -43,8 +43,6 @@ void Client::Update()
 //    Update();
     string sendData;
     sendData = storeMenu.StoreMenuLogic(window);
-//    coords.x = sf::Mouse::getPosition(window).x / 60;
-//    coords.y = sf::Mouse::getPosition(window).y / 60;
     if (soldierList.size() > 0 && towerList.size() > 0)
     {
 	for (Soldier soldier : soldierList)

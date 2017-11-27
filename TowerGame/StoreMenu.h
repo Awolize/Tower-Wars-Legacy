@@ -12,7 +12,7 @@ class StoreMenu
 public:
     Tower BuyTower(float, Tower, Player); 
     Soldier BuySoldier(float, Soldier, Player);
-    void DefineTexture();
+    void DefineTexture(sf::RenderWindow & window);
     void DrawStoreMenu(sf::RenderWindow & window);
     std::string StoreMenuLogic(sf::RenderWindow & window);
 private:
@@ -26,12 +26,17 @@ private:
     sf::RectangleShape OptSix;
     sf::RectangleShape StylingOne;
     sf::RectangleShape StylingTwo;
+    sf::RectangleShape maphitbox1;
+    sf::RectangleShape maphitbox2;
+
     bool oneTime = true;
     int option = 0;
     sf::Clock clock;
     sf::Time time;
     bool readyRight = true;
     bool readyLeft = true;
+
+    std::string data;
 
 };
 

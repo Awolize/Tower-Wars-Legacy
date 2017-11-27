@@ -1,4 +1,5 @@
 #include "StoreMenu.h" 
+#include <sstream>
 using namespace std;
 
 Tower StoreMenu::BuyTower(float Coins, Tower Tower, Player Player)
@@ -17,7 +18,7 @@ Soldier StoreMenu::BuySoldier(float Coins, Soldier Soldier, Player Player)
 	return Soldier;
     } 
 }
-void StoreMenu::DefineTexture()
+void StoreMenu::DefineTexture(sf::RenderWindow & window)
 {
     StoreMenuTexture.loadFromFile("StoreMenu.png");
     StoreMenuSprite.setTexture(StoreMenuTexture);
@@ -48,20 +49,32 @@ void StoreMenu::DefineTexture()
     OptFive.setOrigin(sf::Vector2f(OptOne.getSize() / 2.0f));
     OptFive.setFillColor(sf::Color::Transparent);
 
-    OptSix.setSize(sf::Vector2f(200, 40));
-    OptSix.setPosition(740,960);
+    OptSix.setSize(sf::Vector2f(200, 80));
+    OptSix.setPosition(740,940);
     OptSix.setOrigin(sf::Vector2f(OptOne.getSize() / 2.0f));
     OptSix.setFillColor(sf::Color::Black);  
-  
+
+    maphitbox1.setSize(sf::Vector2f(600, 840));
+    maphitbox1.setPosition(maphitbox1.getSize().x / 2, maphitbox1.getSize().y / 2);
+    maphitbox1.setOrigin(sf::Vector2f(maphitbox1.getSize() / 2.0f));
+    maphitbox1.setFillColor(sf::Color::Red);  
+
+    maphitbox2.setSize(sf::Vector2f(600, 840));
+    maphitbox2.setPosition(window.getSize().x - maphitbox2.getSize().x / 2, maphitbox2.getSize().y / 2);
+    maphitbox2.setOrigin(sf::Vector2f(maphitbox2.getSize() / 2.0f));
+    maphitbox2.setFillColor(sf::Color::Blue);  
 }
+
 void StoreMenu::DrawStoreMenu(sf::RenderWindow & window)
 {
     if(oneTime)
     {
-	DefineTexture();
+	DefineTexture(window);
 	oneTime = false;
     }
     window.draw(StoreMenuSprite);
+    window.draw(maphitbox1);
+    window.draw(maphitbox2);
     window.draw(OptOne);
     window.draw(OptTwo);
     window.draw(OptThree);
@@ -71,6 +84,7 @@ void StoreMenu::DrawStoreMenu(sf::RenderWindow & window)
 }
 string StoreMenu::StoreMenuLogic(sf::RenderWindow & window)
 {
+    data = "";
     if (!sf::Mouse::isButtonPressed(sf::Mouse::Right))
 	readyRight = true;
     if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -127,17 +141,26 @@ string StoreMenu::StoreMenuLogic(sf::RenderWindow & window)
 	    std::cout << "player sold marked tower" << std::endl;
 	    option = 5;	
 	}
-    }
-
-    if (option == 2,3 && readyLeft)
-
     
-    string str = "";
-    return str;
-}
 
-// add en rektangle för left side som är lika stor som mappen(bild)
-// placeras på 60*10/2 för att få x mittpunkt
-// placeras på 60*14/2 för att få y mittpunkt
-// origin = reksize.xy/2
-// size.x = 60*10, .y = 60*14 
+	if (option == 1 || option == 2 || option == 3 || option == 4)
+	    if (option == 3 || option == 4)
+		data = to_string(option);
+	    else if ( sf::Mouse::getPosition(window).x > maphitbox1.getPosition().x - maphitbox1.getSize().x / 2 &&
+		      sf::Mouse::getPosition(window).x < maphitbox1.getPosition().x + maphitbox1.getSize().x / 2 &&
+		      sf::Mouse::getPosition(window).y > maphitbox1.getPosition().y - maphitbox1.getSize().y / 2 &&
+		      sf::Mouse::getPosition(window).y < maphitbox1.getPosition().y + maphitbox1.getSize().y / 2 )
+	    {
+		stringstream ss;
+		ss << option << " (";
+		ss << sf::Mouse::getPosition(window).x / 60;
+		ss << ",";
+		ss << sf::Mouse::getPosition(window).y / 60;
+		ss << ") ";
+		data = ss.str();
+		option = 0;
+	    }
+    }
+    cout << data;
+    return data;
+}
