@@ -4,17 +4,17 @@ using namespace std;
 
 Tower StoreMenu::BuyTower(float Coins, Tower Tower, Player Player)
 {
-    if (Player.Coins >= Tower.GetCost())
+  if (Player.GetCoins() >= Tower.GetCost())
     {
-	Player.Coins =- Tower.GetCost(); 
+      Player.BuyWithCoins(Tower.GetCost()); 
 	return Tower;
     } 
 }
 Soldier StoreMenu::BuySoldier(float Coins, Soldier Soldier, Player Player)
 {
-    if (Player.Coins >= Soldier.GetCost())
+  if (Player.GetCoins() >= Soldier.GetCost())
     {
-	Player.Coins =- Soldier.GetCost(); 
+      Player.BuyWithCoins(Soldier.GetCost()); 
 	return Soldier;
     } 
 }
@@ -141,7 +141,6 @@ string StoreMenu::StoreMenuLogic(sf::RenderWindow & window)
 	    std::cout << "player sold marked tower" << std::endl;
 	    option = 5;	
 	}
-    
 
 	if (option == 1 || option == 2 || option == 3 || option == 4)
 	    if (option == 3 || option == 4)

@@ -4,14 +4,14 @@
 #include <iostream>
 #include <vector>
 #include "StoreMenu.h"
-#include "Soldier.h"
-#include "Tower.h"
+#include "Player.h"
+#include "Ground.h"
 
 class Client
 {
 public:
     Client(sf::RenderWindow &window, sf::TcpSocket &socket) 
-    : window(window), socket(socket) {};
+	: window(window), socket(socket) {};
 
     void RunClient();
 private:
@@ -25,13 +25,15 @@ private:
     sf::Clock clock;
     bool ifNext = false;
     StoreMenu storeMenu;
+    Ground ground1;
+    Ground ground2;
+    Player player;
     sf::Packet sendPacket;
     sf::Packet recPacket;
     std::string sendData;
     std::string recData;
     std::vector<Soldier> soldierList;
     std::vector<Tower> towerList;
-
 };
 
 /*

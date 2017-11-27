@@ -19,7 +19,7 @@ public:
 
 private:
     void Create(int type);
-    float cost {0};
+    float cost {100};
     int row{ 0 };
     float healthPoints{ 3 };
     float income{ 2 };
