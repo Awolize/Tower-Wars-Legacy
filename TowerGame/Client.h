@@ -34,10 +34,6 @@ private:
     std::string recData;
     std::vector<Soldier> soldierList;
     std::vector<Tower> towerList;
-<<<<<<< HEAD
-=======
-
->>>>>>> f958d0994f864114af9eba24980efd5d7da086aa
 };
 
 /*
