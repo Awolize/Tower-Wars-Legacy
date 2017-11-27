@@ -16,10 +16,11 @@ public:
     void Draw(sf::RenderWindow& window) override;
     void Delete();
     float GetCost() {return cost;};
+    float GetIncome() {return income;};
 
 private:
     void Create(int type);
-    float cost {100};
+    float cost {0};
     int row{ 0 };
     float healthPoints{ 3 };
     float income{ 2 };
