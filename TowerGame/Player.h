@@ -6,6 +6,8 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include "Soldier.h"
+//#include "Client.h"
 
 class Player 
 {
@@ -16,8 +18,8 @@ public:
     void TimerForIncome();
     //void UpdateEconomy(float currCoin, float currIncome);
     void DrawEconomy(sf::RenderWindow & window);
-    float GetCoins();
-    void BuyWithCoins(float money);
+    float GetCoins() {return coins;};
+    void BuyWithCoins(float money, float);
 
 private:
     void DefineEconomyMisc();

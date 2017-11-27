@@ -88,14 +88,9 @@ void Player::DrawEconomy(sf::RenderWindow & window)
 
 }
 
-void Player::BuyWithCoins(float money)
+void Player::BuyWithCoins(float money, float increaseIncome)
 {
     coins = coins - money;
+    income = income + increaseIncome;
 }
-
-float Player::GetCoins()
-{
-    return coins;
-}
-
 

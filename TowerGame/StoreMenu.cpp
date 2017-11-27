@@ -5,7 +5,7 @@ Tower StoreMenu::BuyTower(float Coins, Tower Tower, Player Player)
 {
   if (Player.GetCoins() >= Tower.GetCost())
     {
-      Player.BuyWithCoins(Tower.GetCost()); 
+	Player.BuyWithCoins(Tower.GetCost(), 0.f); 
 	return Tower;
     } 
 }
@@ -13,7 +13,7 @@ Soldier StoreMenu::BuySoldier(float Coins, Soldier Soldier, Player Player)
 {
   if (Player.GetCoins() >= Soldier.GetCost())
     {
-      Player.BuyWithCoins(Soldier.GetCost()); 
+	Player.BuyWithCoins(Soldier.GetCost(), Soldier.GetIncome()); 
 	return Soldier;
     } 
 }
