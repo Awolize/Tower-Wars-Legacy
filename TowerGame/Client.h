@@ -10,28 +10,31 @@
 class Client
 {
 public:
-  Client(sf::RenderWindow &window, sf::TcpSocket &socket) 
-    : window(window), socket(socket) {};
+    Client(sf::RenderWindow &window, sf::TcpSocket &socket) 
+	: window(window), socket(socket) {};
 
-  void RunClient();
+    void RunClient();
 private:
-  void userInterface();
-  void Update();
-  void Draw();
+    void userInterface();
+    void Update();
+    void Draw();
 
-  sf::RenderWindow &window;
-  sf::TcpSocket &socket;
-  float deltaTime = 0.0f;
-  sf::Clock clock;
-  bool ifNext = false;
-  StoreMenu storeMenu;
-  Ground ground1;
-  Ground ground2;
+    sf::RenderWindow &window;
+    sf::TcpSocket &socket;
+    float deltaTime = 0.0f;
+    sf::Clock clock;
+    bool ifNext = false;
+    StoreMenu storeMenu;
+    Ground ground1;
+    Ground ground2;
     Player player;
-  sf::Packet sendPacket;
-  sf::Packet recPacket;
-  std::string sendData;
-  std::string recData;
+    sf::Packet sendPacket;
+    sf::Packet recPacket;
+    std::string sendData;
+    std::string recData;
+    std::vector<Soldier> soldierList;
+    std::vector<Tower> towerList;
+
 };
 
 /*
