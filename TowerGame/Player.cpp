@@ -34,12 +34,12 @@ void Player::DefineEconomyMisc()
 
     font.loadFromFile("Arial.ttf");
     coinRectangle.setSize(sf::Vector2f(200, 40));
-    coinRectangle.setPosition(900,960);
+    coinRectangle.setPosition(450,920);
     coinRectangle.setOrigin(sf::Vector2f(coinRectangle.getSize() / 2.0f));
     coinRectangle.setFillColor(sf::Color::Black);  
 
     incomeRectangle.setSize(sf::Vector2f(200, 40));
-    incomeRectangle.setPosition(900,1000);
+    incomeRectangle.setPosition(800,920);
     incomeRectangle.setOrigin(sf::Vector2f(incomeRectangle.getSize() / 2.0f));
     incomeRectangle.setFillColor(sf::Color::Black);  
 
@@ -56,7 +56,7 @@ void Player::DefineEconomyMisc()
     CoinsValue.setCharacterSize(charsize);
     CoinsValue.setFillColor(sf::Color::White);
     CoinsValue.setString(tempCoins);
-    CoinsValue.setPosition(sf::Vector2f(coinRectangle.getPosition().x + 150.f, coinRectangle.getPosition().y));
+    CoinsValue.setPosition(sf::Vector2f(coinRectangle.getPosition().x + 60.f, coinRectangle.getPosition().y));
     textRect = CoinsValue.getLocalBounds();
 
     IncomeText.setFont(font);
@@ -71,7 +71,7 @@ void Player::DefineEconomyMisc()
     IncomeValue.setCharacterSize(charsize);
     IncomeValue.setFillColor(sf::Color::White);
     IncomeValue.setString(tempIncome);
-    IncomeValue.setPosition(sf::Vector2f(incomeRectangle.getPosition().x + 150.f, incomeRectangle.getPosition().y));
+    IncomeValue.setPosition(sf::Vector2f(incomeRectangle.getPosition().x + 75.f, incomeRectangle.getPosition().y));
     textRect = IncomeValue.getLocalBounds();
 }
 
