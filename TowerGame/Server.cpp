@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -12,8 +13,6 @@ void Server::RunServer()
 
     cout << "Server.cpp" << endl;
     bool ifNext = false;
-    sf::Packet packet;
-
 
     while(window.isOpen() && !ifNext)
     {
@@ -29,17 +28,32 @@ void Server::RunServer()
 	    }
 	}
 	
-	
-	
+	socketP1.receive(packetP1);
+	socketP2.receive(packetP2);
+	cout << packetP1.getDataSize() << endl;
+	{
+	    string data;
+	    if(packetP1.getDataSize() > 0)
+	    {
+		stringstream ss;
+		float coins; 
+		float income;
+		int option;
+		int x;
+		int y;
+		while (packetP1 >> data)
+		{
+		    ss << data << " ";
+		}
+		string data = ss.str();
+		ss >> coins >> income >> option >> x >> y;
+		cout << ss.str() << endl;
+	    } 
+	}
+/*	if(recPacketP2 >> x >> y >> z >> w)
+	{
 
-	
-//	deltaTime = clock.restart().asSeconds();
-	if (deltaTime > 1.0f / 60.0f)
-	    deltaTime = 1.0f / 60.0f;
-	packet << deltaTime;
-//	cout << deltaTime << endl;
-//	socketP1.send(packet);
-//	socketP2.send(packet);
+	} */
 
 	sf::Time time = clock.getElapsedTime();
 	cout << time.asSeconds() << endl; 
