@@ -19,6 +19,7 @@ public:
     //void UpdateEconomy(float currCoin, float currIncome);
     void DrawEconomy(sf::RenderWindow & window);
     float GetCoins() {return coins;};
+    float GetIncome() {return income;};
     void BuyWithCoins(float money, float);
 
 private:

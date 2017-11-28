@@ -22,7 +22,7 @@ void Client::RunClient()
     while(window.isOpen() && !ifNext)
     {
  	userInterface();
- 	// Send data to server	    
+	SendDataToServer(strRequest());    
  	// Rec
  	Update();
  	Draw();
@@ -44,11 +44,13 @@ void Client::userInterface()
     }
 }
 
+string Client::strRequest()
+{
+    return storeMenu.StoreMenuLogic(window);
+}
+
 void Client::Update()
 {
-//    Update();
-    string sendData;
-    sendData = storeMenu.StoreMenuLogic(window);
     if (soldierList.size() > 0 && towerList.size() > 0)
     {
 	for (Soldier soldier : soldierList)
@@ -69,3 +71,15 @@ void Client::Draw()
     window.display();
 }
 
+void Client::SendDataToServer(string option)
+{
+    if (option != "")
+    {
+	sf::Packet packet;
+	stringstream ss;
+	ss << player.GetCoins() << " " << player.GetIncome() << " " << option;
+	packet << ss.str();
+	socket.send(packet);
+	cout << ss.str() << endl;
+    }
+}

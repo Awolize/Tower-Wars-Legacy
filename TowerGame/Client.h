@@ -16,9 +16,12 @@ public:
     void RunClient();
 private:
     void userInterface();
+    std::string strRequest();
+    void SendDataToServer(std::string option);
     void Update();
     void Draw();
 
+	    
     sf::RenderWindow &window;
     sf::TcpSocket &socket;
     float deltaTime = 0.0f;
@@ -28,9 +31,7 @@ private:
     Ground ground1;
     Ground ground2;
     Player player;
-    sf::Packet sendPacket;
     sf::Packet recPacket;
-    std::string sendData;
     std::string recData;
     std::vector<Soldier> soldierList;
     std::vector<Tower> towerList;
