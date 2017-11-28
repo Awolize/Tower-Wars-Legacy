@@ -23,16 +23,12 @@ private:
     sf::Text TowerType2;
     sf::Text SellTower;
     sf::FloatRect textRect;
-    sf::Sprite StoreMenuSprite; 
-    sf::Texture StoreMenuTexture;
     sf::RectangleShape OptOne;
     sf::RectangleShape OptTwo;
     sf::RectangleShape OptThree;
     sf::RectangleShape OptFour;
     sf::RectangleShape OptFive;
     sf::RectangleShape OptSix;
-    sf::RectangleShape StylingOne;
-    sf::RectangleShape StylingTwo;
     sf::RectangleShape maphitbox1;
     sf::RectangleShape maphitbox2;
 
