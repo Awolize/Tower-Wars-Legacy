@@ -1,4 +1,4 @@
-#ifndef GROUND_H
+ #ifndef GROUND_H
 #define GROUND_H
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -22,7 +22,7 @@ public:
   void SetPosition(int x, int y);
 
 private:
-  std::array<std::array<std::vector<int>, 14>, 10> grid;
+  std::array<std::array<int, 14>, 10> grid;
   sf::Sprite background;
   sf::Texture GroundText;
 };

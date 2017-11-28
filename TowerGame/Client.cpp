@@ -15,15 +15,24 @@ void Client::RunClient()
 {
     clock.restart();
     cout << "Client.cpp" << endl;
-
     ground1.SetPosition(0, 0);
     ground2.SetPosition(680, 0);
-
+/*
+    sf::Thread thread[&]()
+    {
+	sf::Packet packet;
+	socket.receive(packet);
+	if (true) //krille insert packet hantering
+	{
+	    
+	}
+    };
+*/    
     while(window.isOpen() && !ifNext)
     {
  	userInterface();
 	SendDataToServer(strRequest());    
- 	// Rec
+// 	thread.launch(); //Om det inte ska vara en loop som håller på 24/7
  	Update();
  	Draw();
     }
@@ -51,12 +60,20 @@ string Client::strRequest()
 
 void Client::Update()
 {
-    if (soldierList.size() > 0 && towerList.size() > 0)
+    if (soldierListP1.size() > 0 && towerListP1.size() > 0)
     {
-	for (Soldier soldier : soldierList)
+	for (Soldier soldier : soldierListP1)
 	    soldier.Update(deltaTime);
-	for (Tower tower : towerList)
-	    for (Soldier soldier : soldierList)
+	for (Tower tower : towerListP1)
+	    for (Soldier soldier : soldierListP1)
+		tower.Update(soldier, deltaTime);
+    }
+    if (soldierListP2.size() > 0 && towerListP2.size() > 0)
+    {
+	for (Soldier soldier : soldierListP2)
+	    soldier.Update(deltaTime);
+	for (Tower tower : towerListP2)
+	    for (Soldier soldier : soldierListP2)
 		tower.Update(soldier, deltaTime);
     }
 }

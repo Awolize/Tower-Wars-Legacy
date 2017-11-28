@@ -31,10 +31,10 @@ private:
     Ground ground1;
     Ground ground2;
     Player player;
-    sf::Packet recPacket;
-    std::string recData;
-    std::vector<Soldier> soldierList;
-    std::vector<Tower> towerList;
+    std::vector<Soldier> soldierListP1;
+    std::vector<Tower> towerListP1;
+    std::vector<Soldier> soldierListP2;
+    std::vector<Tower> towerListP2;
 };
 
 /*
