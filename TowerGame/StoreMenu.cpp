@@ -4,7 +4,7 @@ using namespace std;
 
 Tower StoreMenu::BuyTower(float Coins, Tower Tower, Player Player)
 {
-  if (Player.GetCoins() >= Tower.GetCost())
+    if (Player.GetCoins() >= Tower.GetCost())
     {
 	Player.BuyWithCoins(Tower.GetCost(), 0.f); 
 	return Tower;
@@ -12,7 +12,7 @@ Tower StoreMenu::BuyTower(float Coins, Tower Tower, Player Player)
 }
 Soldier StoreMenu::BuySoldier(float Coins, Soldier Soldier, Player Player)
 {
-  if (Player.GetCoins() >= Soldier.GetCost())
+    if (Player.GetCoins() >= Soldier.GetCost())
     {
 	Player.BuyWithCoins(Soldier.GetCost(), Soldier.GetIncome()); 
 	return Soldier;
@@ -20,34 +20,35 @@ Soldier StoreMenu::BuySoldier(float Coins, Soldier Soldier, Player Player)
 }
 void StoreMenu::DefineTexture(sf::RenderWindow & window)
 {
-    StoreMenuTexture.loadFromFile("StoreMenu.png");
-    StoreMenuSprite.setTexture(StoreMenuTexture);
-    StoreMenuSprite.setPosition(120,800);
-  
+    /*
+      StoreMenuTexture.loadFromFile("StoreMenu.png");
+      StoreMenuSprite.setTexture(StoreMenuTexture);
+      StoreMenuSprite.setPosition(120,800);
+    */
     OptOne.setSize(sf::Vector2f(200, 40));
     OptOne.setPosition(270,870);
     OptOne.setOrigin(sf::Vector2f(OptOne.getSize() / 2.0f));
-    OptOne.setFillColor(sf::Color::Transparent);
+    OptOne.setFillColor(sf::Color::Black);
 
     OptTwo.setSize(sf::Vector2f(200, 40));
     OptTwo.setPosition(520,870);
     OptTwo.setOrigin(sf::Vector2f(OptOne.getSize() / 2.0f));
-    OptTwo.setFillColor(sf::Color::Transparent);
+    OptTwo.setFillColor(sf::Color::Black);
 
     OptThree.setSize(sf::Vector2f(200, 40));
     OptThree.setPosition(735,870);
     OptThree.setOrigin(sf::Vector2f(OptOne.getSize() / 2.0f));
-    OptThree.setFillColor(sf::Color::Transparent);
+    OptThree.setFillColor(sf::Color::Black);
 
     OptFour.setSize(sf::Vector2f(200, 40));
     OptFour.setPosition(960,870);
     OptFour.setOrigin(sf::Vector2f(OptOne.getSize() / 2.0f));
-    OptFour.setFillColor(sf::Color::Transparent);
+    OptFour.setFillColor(sf::Color::Black);
 
     OptFive.setSize(sf::Vector2f(200, 40));
     OptFive.setPosition(250,960);
     OptFive.setOrigin(sf::Vector2f(OptOne.getSize() / 2.0f));
-    OptFive.setFillColor(sf::Color::Transparent);
+    OptFive.setFillColor(sf::Color::Black);
 
     OptSix.setSize(sf::Vector2f(200, 80));
     OptSix.setPosition(740,940);

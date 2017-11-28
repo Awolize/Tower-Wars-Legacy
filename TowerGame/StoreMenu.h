@@ -16,6 +16,13 @@ public:
     void DrawStoreMenu(sf::RenderWindow & window);
     std::string StoreMenuLogic(sf::RenderWindow & window);
 private:
+    sf::Font font;
+    sf::Text SoldierType1;
+    sf::Text SoldierType2;
+    sf::Text TowerType1;
+    sf::Text TowerType2;
+    sf::Text SellTower;
+    sf::FloatRect textRect;
     sf::Sprite StoreMenuSprite; 
     sf::Texture StoreMenuTexture;
     sf::RectangleShape OptOne;
