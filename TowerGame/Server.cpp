@@ -38,7 +38,6 @@ void Server::RunServer()
 	window.clear();
 	Draw();
 	window.display();
-
     }
 }
     
@@ -67,7 +66,7 @@ void Server::PacketHandling(sf::TcpSocket &socket, sf::TcpSocket &socket2, Groun
 	if (SGM.Run(coins, income, option, x, y, ground))
 	{
 	    socket.send(packet);
-	    packet << "P2";
+	    packet << "P2 ";
 	    socket2.send(packet);	    
 	}
     } 

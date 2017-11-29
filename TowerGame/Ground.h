@@ -12,14 +12,10 @@ class Ground
 {
 public:
     Ground();
-    void AddTower(Tower tower);
-    void RemoveTower(Tower tower);
-    void AddSoldier(Soldier soldier);
-    void MoveSoldier(Soldier soldier);
-    void RemoveSoldier(Soldier soldier);
+    void Insert(sf::Vector2i pos);
     void Draw(sf::RenderWindow& window);
     void SetPosition(int x, int y);
-
+    bool IsPlacementAvailable(sf::Vector2i pos);
 private:
     std::array<std::array<int, 14>, 10> grid;
     sf::Sprite background;

@@ -11,10 +11,9 @@ class ServerGameManager
 {
 public:
     ServerGameManager();
-    bool Run(float coins, float income, int option, int x, int y, Ground ground);
+    bool Run(float coins, float income, int option, int x, int y, Ground &ground);
 
 private:
-    bool IsPlacementAcceptable(int x, int y);
     bool IsBuyAcceptable(float coins, int option);
 
     int s1Cost;

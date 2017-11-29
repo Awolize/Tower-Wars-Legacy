@@ -12,12 +12,11 @@ ServerGameManager::ServerGameManager()
     s2Cost = s2.GetCost();
 }
 
-bool ServerGameManager::Run(float coins, float income, int option, int x, int y, Ground ground)
+bool ServerGameManager::Run(float coins, float income, int option, int x, int y, Ground &ground)
 {
     if(IsBuyAcceptable(coins, option))
-	if(IsPlacementAcceptable(x, y))
-//	    if(ooooo())
-		return true;
+	if(ground.IsPlacementAvailable(sf::Vector2i(x,y)))
+	    return true;
     return false;
 }
 
@@ -44,13 +43,6 @@ bool ServerGameManager::IsBuyAcceptable(float coins, int option)
 	    return true;
     }
     return false;
-}
-
-bool ServerGameManager::IsPlacementAcceptable(int x , int y)
-{
-    return true;
-//Check if ground matrix position is available
-
 }
 
 
