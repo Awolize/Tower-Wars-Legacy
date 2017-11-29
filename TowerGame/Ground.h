@@ -1,4 +1,4 @@
- #ifndef GROUND_H
+#ifndef GROUND_H
 #define GROUND_H
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -11,20 +11,19 @@
 class Ground
 {
 public:
-  Ground();
-  void AddTower(Tower tower);
-  void RemoveTower(Tower tower);
-
-  void AddSoldier(Soldier soldier);
-  void MoveSoldier(Soldier soldier);
-  void RemoveSoldier(Soldier soldier);
-  void Draw(sf::RenderWindow& window);
-  void SetPosition(int x, int y);
+    Ground();
+    void AddTower(Tower tower);
+    void RemoveTower(Tower tower);
+    void AddSoldier(Soldier soldier);
+    void MoveSoldier(Soldier soldier);
+    void RemoveSoldier(Soldier soldier);
+    void Draw(sf::RenderWindow& window);
+    void SetPosition(int x, int y);
 
 private:
-  std::array<std::array<int, 14>, 10> grid;
-  sf::Sprite background;
-  sf::Texture GroundText;
+    std::array<std::array<int, 14>, 10> grid;
+    sf::Sprite background;
+    sf::Texture GroundText;
 };
 
 #endif
