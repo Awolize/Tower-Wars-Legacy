@@ -140,45 +140,31 @@ string StoreMenu::StoreMenuLogic(sf::RenderWindow & window)
 	   sf::Mouse::getPosition(window).x < OptOne.getPosition().x + OptOne.getSize().x / 2 &&
 	   sf::Mouse::getPosition(window).y > OptOne.getPosition().y - OptOne.getSize().y / 2 &&
 	   sf::Mouse::getPosition(window).y < OptOne.getPosition().y + OptOne.getSize().y / 2 )
-	{
-	  std::cout << "player bought tower type 1" << std::endl;
 	  option = 1;
-	}
   
       else if ( sf::Mouse::getPosition(window).x > OptTwo.getPosition().x - OptTwo.getSize().x / 2 &&
 		sf::Mouse::getPosition(window).x < OptTwo.getPosition().x + OptTwo.getSize().x / 2 &&
 		sf::Mouse::getPosition(window).y > OptTwo.getPosition().y - OptTwo.getSize().y / 2 &&
 		sf::Mouse::getPosition(window).y < OptTwo.getPosition().y + OptTwo.getSize().y / 2 )
-	{
-	  std::cout << "player bought tower type 2" << std::endl;
 	  option = 2;
-	}
   
       else if ( sf::Mouse::getPosition(window).x > OptThree.getPosition().x - OptThree.getSize().x / 2 &&
 		sf::Mouse::getPosition(window).x < OptThree.getPosition().x + OptThree.getSize().x / 2 &&
 		sf::Mouse::getPosition(window).y > OptThree.getPosition().y - OptThree.getSize().y / 2 &&
 		sf::Mouse::getPosition(window).y < OptThree.getPosition().y + OptThree.getSize().y / 2 )
-	{
-	  std::cout << "player bought soldier type 1" << std::endl;
 	  option = 3;    
-	}
-  
+ 
       else if ( sf::Mouse::getPosition(window).x > OptFour.getPosition().x - OptFour.getSize().x / 2 &&
 		sf::Mouse::getPosition(window).x < OptFour.getPosition().x + OptFour.getSize().x / 2 &&
 		sf::Mouse::getPosition(window).y > OptFour.getPosition().y - OptFour.getSize().y / 2 &&
 		sf::Mouse::getPosition(window).y < OptFour.getPosition().y + OptFour.getSize().y / 2 )
-	{
-	  std::cout << "player bought soldier type 2" << std::endl;
 	  option = 4;      
-	}
+	
       else  if ( sf::Mouse::getPosition(window).x > OptFive.getPosition().x - OptFive.getSize().x / 2 &&
 		 sf::Mouse::getPosition(window).x < OptFive.getPosition().x + OptFive.getSize().x / 2 &&
 		 sf::Mouse::getPosition(window).y > OptFive.getPosition().y - OptFive.getSize().y / 2 &&
 		 sf::Mouse::getPosition(window).y < OptFive.getPosition().y + OptFive.getSize().y / 2 )
-	{
-	  std::cout << "player sold marked tower" << std::endl;
 	  option = 5;	
-	}
 
       if (option == 1 || option == 2 || option == 3 || option == 4)
 	if (option == 3 || option == 4)
@@ -189,15 +175,12 @@ string StoreMenu::StoreMenuLogic(sf::RenderWindow & window)
 		  sf::Mouse::getPosition(window).y < maphitbox1.getPosition().y + maphitbox1.getSize().y / 2 )
 	  {
 	    stringstream ss;
-	    ss << option << " (";
-	    ss << sf::Mouse::getPosition(window).x / 60;
-	    ss << ",";
-	    ss << sf::Mouse::getPosition(window).y / 60;
-	    ss << ") ";
+	    ss << option << " ";
+	    ss << sf::Mouse::getPosition(window).x / 60 << " ";
+	    ss << sf::Mouse::getPosition(window).y / 60 << " ";
 	    data = ss.str();
 	    option = 0;
 	  }
     }
-  cout << data;
   return data;
 }

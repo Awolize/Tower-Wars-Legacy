@@ -23,21 +23,27 @@ bool ServerGameManager::Run(float coins, float income, int option, int x, int y,
 
 bool ServerGameManager::IsBuyAcceptable(float coins, int option)
 {
-    if(option == 1 || option == 2)
+    if(option == 1)
     {
-	if(t1Cost - coins >= 0 || t2Cost - coins >= 0)
+	if (coins - t1Cost >= 0)
 	    return true;       
-	else
-	    return false;
     }
-    if(option == 3 || option == 4)
+    else if(option == 2)
     {
-	if(s1Cost - coins >= 0 || s2Cost - coins >= 0)
-	    return true;
-	else
-	    return false;
+	if (coins - t2Cost >= 0)
+	    return true;     
     }
-
+    else if (option == 3 )
+    {
+	if (coins - s1Cost >= 0)
+	    return true;
+    }
+    else if (option == 4)
+    {
+	if (coins - s2Cost >= 0)
+	    return true;
+    }
+    return false;
 }
 
 bool ServerGameManager::IsPlacementAcceptable(int x , int y)

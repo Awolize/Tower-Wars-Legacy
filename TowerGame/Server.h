@@ -12,10 +12,11 @@ public:
     : window(window), socketP1(socketP1), socketP2(socketP2) {};
 
     void RunServer();
+
+private:
+    void PacketHandling(sf::TcpSocket &socket, sf::TcpSocket &socket2, Ground ground);
     void Update();
     void Draw();
-private:
-
 
     float deltaTime = 0.0f;
     sf::RenderWindow &window;

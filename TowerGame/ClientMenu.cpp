@@ -219,10 +219,16 @@ void ClientMenu::Connect(sf::RenderWindow &window)
     if (socket.connect(ipAddress, connectionPort, sf::seconds(30)) == sf::Socket::Done)
     {
 	//Success
-	ifNext = true;
-	thread.wait();
-	Client client(window, socket);
-        client.RunClient();
+	while(true){
+	    sf::Packet packet;
+	    socket.receive(packet);
+	    if (packet.getDataSize() > 0){
+		ifNext = true;
+		thread.wait();
+		Client client(window, socket);
+		client.RunClient();
+	    }
+	}
     }	
     // Timeout/Error
     ifNext = true;

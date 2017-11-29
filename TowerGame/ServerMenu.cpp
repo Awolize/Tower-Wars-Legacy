@@ -228,6 +228,10 @@ void ServerMenu::Connect(sf::RenderWindow &window)
 	{
 	    //Success
 	    cout << "New connection received from: " << socketP2.getRemoteAddress() << endl;
+	    sf::Packet packet;
+	    packet << "KÖR!";
+	    socketP1.send(packet);
+	    socketP2.send(packet);
 	    ifNext = true;
 	    thread.wait();
 	    Server server(window, socketP1, socketP2);
