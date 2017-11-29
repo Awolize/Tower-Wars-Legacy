@@ -3,9 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
-#include "Player.h"
-#include "Soldier.h"
-#include "Ground.h"
+#include "../Game/Player.h"
+#include "../Game/Soldier.h"
+#include "../Game/Ground.h"
 
 class ServerGameManager
 {
