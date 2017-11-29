@@ -3,7 +3,7 @@
 #include <SFML/Network.hpp>
 #include <iostream>
 
-#include "Menu/MainMenu.h"
+#include "MainMenu.h"
 
 using namespace std;
 
