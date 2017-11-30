@@ -43,11 +43,11 @@ void Client::RunClient()
 	    cout << ss.str() << endl;
 	} 
     });
-    thread.launch(); //Om det inte ska vara en loop som håller på 24/7
     while(window.isOpen() && !ifNext)
     {
  	userInterface();
 	SendDataToServer(strRequest());
+	thread.launch(); //Om det inte ska vara en loop som håller på 24/7
  	Update();
  	Draw();
     }
