@@ -17,22 +17,37 @@ void Client::RunClient()
     cout << "Client.cpp" << endl;
     ground1.SetPosition(0, 0);
     ground2.SetPosition(680, 0);
-/*
-    sf::Thread thread[&]()
+
+    sf::Thread thread([&]()
     {
 	sf::Packet packet;
+	string data;
 	socket.receive(packet);
-	if (true) //krille insert packet hantering
+	if(packet.getDataSize() > 0)
 	{
-	    
-	}
-    };
-*/    
+	    cout << "Packet Size:" << packet.getDataSize() << endl;
+		
+	    stringstream ss;
+	    string user;
+	    float coins; 
+	    float income;
+	    int option;
+	    int x;
+	    int y;
+	    while (packet >> data)
+	    {
+		ss << data << " ";
+	    }
+	    string data = ss.str();
+	    ss >> coins >> income >> option >> x >> y >> user;
+	    cout << ss.str() << endl;
+	} 
+    });
+    thread.launch(); //Om det inte ska vara en loop som håller på 24/7
     while(window.isOpen() && !ifNext)
     {
  	userInterface();
-	SendDataToServer(strRequest());    
-// 	thread.launch(); //Om det inte ska vara en loop som håller på 24/7
+	SendDataToServer(strRequest());
  	Update();
  	Draw();
     }
@@ -84,6 +99,16 @@ void Client::Draw()
     storeMenu.DrawStoreMenu(window);
     ground1.Draw(window);
     ground2.Draw(window);
+
+    for (Soldier soldier : soldierListP1)
+	soldier.Draw(window);
+    for (Tower tower : towerListP1)
+	tower.Draw(window);
+    for (Soldier soldier : soldierListP2)
+	soldier.Draw(window);
+    for (Tower tower : towerListP2)
+	tower.Draw(window);
+
     player.DrawEconomy(window);
     window.display();
 }

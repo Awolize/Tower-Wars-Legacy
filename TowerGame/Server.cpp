@@ -41,14 +41,14 @@ void Server::RunServer()
     }
 }
     
-void Server::PacketHandling(sf::TcpSocket &socket, sf::TcpSocket &socket2, Ground ground)
+void Server::PacketHandling(sf::TcpSocket &socket, sf::TcpSocket &socket2, Ground &ground)
 {
     sf::Packet packet;
     string data;
     socket.receive(packet);
     if(packet.getDataSize() > 0)
     {
-	cout << "Packet Size:" << packetP1.getDataSize() << endl;
+	cout << "Packet Size:" << packet.getDataSize() << endl;
 		
 	stringstream ss;
 	float coins; 
@@ -67,7 +67,7 @@ void Server::PacketHandling(sf::TcpSocket &socket, sf::TcpSocket &socket2, Groun
 	{
 	    socket.send(packet);
 	    packet << "P2 ";
-	    socket2.send(packet);	    
+	    socket2.send(packet);
 	}
     } 
 }
@@ -78,5 +78,6 @@ void Server::Update()
 
 void Server::Draw()
 {
+
 }
 

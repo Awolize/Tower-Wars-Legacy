@@ -12,7 +12,6 @@ class Client
 public:
     Client(sf::RenderWindow &window, sf::TcpSocket &socket) 
 	: window(window), socket(socket) {};
-
     void RunClient();
 private:
     void userInterface();
