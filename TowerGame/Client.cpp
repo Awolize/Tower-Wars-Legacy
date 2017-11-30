@@ -19,35 +19,38 @@ void Client::RunClient()
     ground2.SetPosition(680, 0);
 
     sf::Thread thread([&]()
-    {
-	sf::Packet packet;
-	string data;
-	socket.receive(packet);
-	if(packet.getDataSize() > 0)
-	{
-	    cout << "Packet Size:" << packet.getDataSize() << endl;
+		      {
+			  while(window.isOpen())
+			  {
+			      sf::Packet packet;
+			      string data;
+			      socket.receive(packet);
+			      if(packet.getDataSize() > 0)
+			      {
+				  cout << "Packet Size:" << packet.getDataSize() << endl;
 		
-	    stringstream ss;
-	    string user;
-	    float coins; 
-	    float income;
-	    int option;
-	    int x;
-	    int y;
-	    while (packet >> data)
-	    {
-		ss << data << " ";
-	    }
-	    string data = ss.str();
-	    ss >> coins >> income >> option >> x >> y >> user;
-	    cout << ss.str() << endl;
-	} 
-    });
+				  stringstream ss;
+				  string user;
+				  float coins; 
+				  float income;
+				  int option;
+				  int x;
+				  int y;
+				  while (packet >> data)
+				  {
+				      ss << data << " ";
+				  }
+				  string data = ss.str();
+				  ss >> coins >> income >> option >> x >> y >> user;
+				  cout << ss.str() << endl;
+			      } 
+			  }
+		      });
+    thread.launch(); //Om det inte ska vara en loop som håller på 24/7
     while(window.isOpen() && !ifNext)
     {
  	userInterface();
 	SendDataToServer(strRequest());
-	thread.launch(); //Om det inte ska vara en loop som håller på 24/7
  	Update();
  	Draw();
     }
