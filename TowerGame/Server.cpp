@@ -98,7 +98,7 @@ void Server::RunServer()
 //	PacketHandling(socketP2, socketP1, groundP2);
 	
 	sf::Time time = clock.getElapsedTime();
-	cout << time.asSeconds() << endl; 
+//	cout << time.asSeconds() << endl; 
 
 	Update();
 	window.clear();

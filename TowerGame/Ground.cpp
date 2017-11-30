@@ -44,10 +44,10 @@ Ground::Ground()
 
 bool Ground::IsPlacementAvailable(sf::Vector2i pos)
 {
-    
     if (grid.at(pos.x).at(pos.y) == 0)
     {
-	grid.at(pos.x).at(pos.y) = 1;
+	if (pos.x != 0 && pos.y != 0)
+	    grid.at(pos.x).at(pos.y) = 1;
 	return true;
     }
     else return false;
