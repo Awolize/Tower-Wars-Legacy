@@ -23,20 +23,21 @@ public:
 private:
     void MoveOneTile();
     void Create(int type);
-    float cost {0};
-    int row{ 0 };
-    float healthPoints{ 3 };
-    float income{ 2 };
-    float moveSpeed{ 2 };
-    float damagePoints {0}; 
+    float cost;
+    float healthPoints;
+    float income;
+    float moveSpeed;
+    float damagePoints; 
 //    Animation animation; 
     sf::Texture texture;
     float imageCount = 0;
     float switchTime = 0;
+    int row;
     int index;
     sf::Clock moveClock;
-    int tileNumber;
+    int tileNumber = 0;
     // Ground ground;
+    float time = 0;
     std::array<sf::Vector2i,51> tilePos;
     
 

@@ -1,21 +1,21 @@
 #include "Tower.h" 
 
-Tower::Tower(int type, int index) : index(index)
+Tower::Tower(int type, sf::Vector2i pos, int index) : index(index)
 {
-    Create(type);
+    Create(type, pos);
 }
 
 Tower::~Tower() {} 
 
 void Tower::Update(Soldier soldier, float deltaTime)
 {
-    if (true)
+    if (false)
     {
 //	animation.Update(row, deltaTime);
 //	body.setTextureRect(animation.xyRect);
     }
     else
-	body.setPosition(sf::Vector2f(5000,5000));
+	body.setPosition(sf::Vector2f(100, 500));
 }
 
 void Tower::Draw(sf::RenderWindow& window)
@@ -24,11 +24,11 @@ void Tower::Draw(sf::RenderWindow& window)
 	window.draw(body);
 }
 
-void Tower::Create(int type)
+void Tower::Create(int type, sf::Vector2i pos)
 {
     if(type == 1)
     {
-	texture.loadFromFile("Tower1.png");
+	texture.loadFromFile("images/Tower1.png");
 	cost = 10;
 	range = 3;
 	attackSpeed = 0,4;
@@ -40,7 +40,7 @@ void Tower::Create(int type)
     }
     if(type == 2)
     {
-	texture.loadFromFile("Tower2.png");
+	texture.loadFromFile("images/Tower2.png");
 	cost = 20;
 	range = 4;
 	attackSpeed = 0,8;
@@ -50,7 +50,7 @@ void Tower::Create(int type)
 	switchTime = 0;
     }
     body.setTexture(&texture);
-    body.setPosition(sf::Vector2f(10,10));
+    body.setPosition(sf::Vector2f(pos));
 }
 
 void Tower::Delete()

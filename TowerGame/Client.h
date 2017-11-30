@@ -19,7 +19,6 @@ private:
     void SendDataToServer(std::string option);
     void Update();
     void Draw();
-
 	    
     sf::RenderWindow &window;
     sf::TcpSocket &socket;
@@ -34,6 +33,10 @@ private:
     std::vector<Tower> towerListP1;
     std::vector<Soldier> soldierListP2;
     std::vector<Tower> towerListP2;
+    int towerIndexP1 = 0;
+    int soldierIndexP1 = 0;
+    int towerIndexP2 = 0;
+    int soldierIndexP2 = 0;
 };
 
 /*

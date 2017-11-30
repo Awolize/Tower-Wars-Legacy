@@ -39,8 +39,9 @@ void Server::RunServer()
 		    cout << "Packet data: " << ss.str() << endl;
 		    if (SGM.Run(coins, income, option, x, y, groundP1))
 		    {
+			packet << "P";
 			socketP1.send(packet);
-			packet << "P2 ";
+			packet << "2";
 			socketP2.send(packet);
 		    }
 		} 
@@ -73,8 +74,9 @@ void Server::RunServer()
 		    cout << "Packet data: " << ss.str() << endl;
 		    if (SGM.Run(coins, income, option, x, y, groundP2))
 		    {
+			packet << "P";
 			socketP2.send(packet);
-			packet << "P2 ";
+			packet << "2 ";
 			socketP1.send(packet);
 		    }
 		}

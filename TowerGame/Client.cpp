@@ -14,6 +14,7 @@ using namespace std;
 void Client::RunClient()
 {
     clock.restart();
+    sf::Clock deltaTimeClock;
     cout << "Client.cpp" << endl;
     ground1.SetPosition(0, 0);
     ground2.SetPosition(680, 0);
@@ -31,7 +32,7 @@ void Client::RunClient()
 				  cout << "Packet Size:" << packet.getDataSize() << endl;
 		
 				  stringstream ss;
-				  string user;
+				  string user = "P";
 				  float coins; 
 				  float income;
 				  int option;
@@ -44,12 +45,34 @@ void Client::RunClient()
 				  string data = ss.str();
 				  ss >> coins >> income >> option >> x >> y >> user;
 				  cout << ss.str() << endl;
-			      } 
+				  cout << "Coins: " << coins << endl;
+				  cout << "income: " << income << endl;
+				  cout << "option: " << option << endl;
+				  cout << "x, y " << x << ", " << y << endl;
+				  cout << "user: " << user << endl;
+
+				  if (user == "P2")
+				  {
+				      if (option == 1 || option == 2)
+					  towerListP2.push_back(Tower(option, sf::Vector2i(x,y), towerIndexP2++));
+				      else if (option == 3 || option == 4)
+					  soldierListP2.push_back(Soldier(option, soldierIndexP2++));
+				  }
+				  else 
+				  {
+				      if (option == 1 || option == 2)
+					  towerListP1.push_back(Tower(option, sf::Vector2i(x,y), towerIndexP1++));
+					  
+				      else if (option == 3 || option == 4)
+					  soldierListP1.push_back(Soldier(option, soldierIndexP1++));
+				  } 
+			      }
 			  }
 		      });
     thread.launch(); //Om det inte ska vara en loop som håller på 24/7
     while(window.isOpen() && !ifNext)
     {
+	deltaTime = deltaTimeClock.restart().asSeconds();
  	userInterface();
 	SendDataToServer(strRequest());
  	Update();
@@ -81,18 +104,18 @@ void Client::Update()
 {
     if (soldierListP1.size() > 0 && towerListP1.size() > 0)
     {
-	for (Soldier soldier : soldierListP1)
+	for (Soldier & soldier : soldierListP1)
 	    soldier.Update(deltaTime);
-	for (Tower tower : towerListP1)
-	    for (Soldier soldier : soldierListP1)
+	for (Tower & tower : towerListP1)
+	    for (Soldier & soldier : soldierListP1)
 		tower.Update(soldier, deltaTime);
     }
     if (soldierListP2.size() > 0 && towerListP2.size() > 0)
     {
-	for (Soldier soldier : soldierListP2)
+	for (Soldier & soldier : soldierListP2)
 	    soldier.Update(deltaTime);
-	for (Tower tower : towerListP2)
-	    for (Soldier soldier : soldierListP2)
+	for (Tower & tower : towerListP2)
+	    for (Soldier & soldier : soldierListP2)
 		tower.Update(soldier, deltaTime);
     }
 }
@@ -104,15 +127,18 @@ void Client::Draw()
     ground1.Draw(window);
     ground2.Draw(window);
 
-    for (Soldier soldier : soldierListP1)
-	soldier.Draw(window);
-    for (Tower tower : towerListP1)
-	tower.Draw(window);
-    for (Soldier soldier : soldierListP2)
-	soldier.Draw(window);
-    for (Tower tower : towerListP2)
-	tower.Draw(window);
-
+    if (soldierListP1.size() > 0)
+	for (Soldier & soldier : soldierListP1)
+	    soldier.Draw(window);
+    if (towerListP1.size() > 0)
+	for (Tower & tower : towerListP1)
+	    tower.Draw(window);
+    if (soldierListP2.size() > 0)
+	for (Soldier & soldier : soldierListP2)
+	    soldier.Draw(window);
+    if (towerListP2.size() > 0)
+	for (Tower & tower : towerListP2)
+	    tower.Draw(window);
     player.DrawEconomy(window);
     window.display();
 }

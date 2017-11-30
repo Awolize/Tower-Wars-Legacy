@@ -1,4 +1,5 @@
 #include "Soldier.h"
+#include <iostream>
 
 using namespace std;
 
@@ -33,15 +34,19 @@ void Soldier::Update(float deltaTime)
     if (healthPoints > 0)
     {
 //	animation.Update(row, deltaTime);
-//	body.setTextureRect(animation.xyRect);
-	//body.move(deltaTime);
+//	body.setTextureRect(animation.xyRect);  
+// 	sf::Time time = moveClock.getElapsedTime();
+//	if(time.asMilliseconds() >= 400)
+	time += deltaTime;
+	if (time > 5)
+	{
+	    Logic();
+	    cout << "Tid: " << time << endl;
+	    time = 0;
+	}
     }
-    sf::Time time = moveClock.getElapsedTime();
-    if(time.asMilliseconds() >= 400)
-    {
-	MoveOneTile();
-	Logic();
-    }
+    else 
+	cout << "DÖD!" << endl;
 }
 
 
@@ -53,16 +58,13 @@ void Soldier::Draw(sf::RenderWindow& window)
     }
 }
 
-void Soldier::MoveOneTile()
-{
-    tileNumber++;
-    moveClock.restart();
-    
-}
-
 void Soldier::Logic()
 {
-    body.setPosition(sf::Vector2f(tilePos[tileNumber]*60));
+    tileNumber++;
+    float tempPosx = tilePos[tileNumber].x;
+    float tempPosy = tilePos[tileNumber].y;
+    cout << "x, y: "  << tilePos[tileNumber].x << tilePos[tileNumber].y;
+    body.setPosition(sf::Vector2f(tempPosx*60.0f, tempPosy*60.0f));
 }
 
 void Soldier::Create(int type)
@@ -70,9 +72,9 @@ void Soldier::Create(int type)
     
     if(type == 1) // change values
     {
-	texture.loadFromFile("Soldier1.png");
+	texture.loadFromFile("images/Soldier1.png");
 	cost = 10;
-	healthPoints = 1;
+	healthPoints = 100;
 	damagePoints = 20;
 	imageCount = 0;
 	switchTime = 0;
@@ -82,9 +84,9 @@ void Soldier::Create(int type)
 	tileNumber = 0;
 	
     }
-    if(type == 2) // not done
+    if(type == 2) // change values
     {
-	texture.loadFromFile("Soldier2.png");
+	texture.loadFromFile("images/Soldier2.png");
 	cost = 10;
 	healthPoints = 1;
 	damagePoints = 20;
@@ -97,8 +99,7 @@ void Soldier::Create(int type)
     }
     moveClock.restart();
     body.setTexture(&texture);
-    body.setPosition(sf::Vector2f(10,10));
-
+    body.setPosition(sf::Vector2f(3*60,0*60));
 }
 
 void Soldier::Delete()

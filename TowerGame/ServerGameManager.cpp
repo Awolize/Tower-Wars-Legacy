@@ -2,13 +2,13 @@
 
 ServerGameManager::ServerGameManager() 
 {
-    Tower t1(1,1);
+    Tower t1(1, sf::Vector2i(0, 0), 1);
     t1Cost = t1.GetCost();
-    Tower t2(1,1);
+    Tower t2(2, sf::Vector2i(0, 0), 1);
     t2Cost = t2.GetCost();
-    Soldier s1(1,1);
+    Soldier s1(1, 1);
     s1Cost = s1.GetCost();
-    Soldier s2(2,1);
+    Soldier s2(2, 1);
     s2Cost = s2.GetCost();
 }
 
