@@ -9,11 +9,78 @@ using namespace std;
 
 void Server::RunServer()
 {
-    clock.restart();
-
     cout << "Server.cpp" << endl;
     bool ifNext = false;
+    clock.restart();
 
+    sf::Thread thread1([&](){
+	    while(window.isOpen())
+	    {
+		sf::Packet packet;
+		string data;
+		socketP1.receive(packet);
+		if(packet.getDataSize() > 0)
+		{
+		    cout << "Packet Size:" << packet.getDataSize() << endl;
+		
+		    stringstream ss;
+		    float coins; 
+		    float income;
+		    int option;
+		    int x;
+		    int y;
+		    while (packet >> data)
+		    {
+			ss << data << " ";
+		    }
+		    string data = ss.str();
+		    ss >> coins >> income >> option >> x >> y;
+		    cout << "Packet data: " << ss.str() << endl;
+		    if (SGM.Run(coins, income, option, x, y, groundP1))
+		    {
+			socketP1.send(packet);
+			packet << "P2 ";
+			socketP2.send(packet);
+		    }
+		} 
+	    }
+	});
+
+    sf::Thread thread2([&](){
+	    while(window.isOpen())
+	    {
+		sf::Packet packet;
+		string data;
+		socketP2.receive(packet);
+		if(packet.getDataSize() > 0)
+		{
+		    cout << "Packet Size:" << packet.getDataSize() << endl;
+		
+		    stringstream ss;
+		    float coins; 
+		    float income;
+		    int option;
+		    int x;
+		    int y;
+		    while (packet >> data)
+		    {
+			ss << data << " ";
+		    }
+		    string data = ss.str();
+		    ss >> coins >> income >> option >> x >> y;
+		    cout << "Packet data: " << ss.str() << endl;
+		    if (SGM.Run(coins, income, option, x, y, groundP2))
+		    {
+			socketP2.send(packet);
+			packet << "P2 ";
+			socketP1.send(packet);
+		    }
+		}
+	    } 
+	});
+
+    thread1.launch();
+    thread2.launch(); 
     while(window.isOpen() && !ifNext)
     {
 	sf::Event event;
@@ -28,8 +95,7 @@ void Server::RunServer()
 	    }
 	}
        	
-	PacketHandling(socketP1, socketP2, groundP1);
-	PacketHandling(socketP2, socketP1, groundP2);
+//	PacketHandling(socketP2, socketP1, groundP2);
 	
 	sf::Time time = clock.getElapsedTime();
 	cout << time.asSeconds() << endl; 
