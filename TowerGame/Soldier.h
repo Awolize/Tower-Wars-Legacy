@@ -38,7 +38,7 @@ private:
     int tileNumber;
     // Ground ground;
     std::array<sf::Vector2i,51> tilePos;
- 
+    
 
 };
 #endif
