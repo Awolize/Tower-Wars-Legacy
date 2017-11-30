@@ -23,7 +23,6 @@ Soldier::Soldier(int type, int index) : index(index)
     tilePos[45] = sf::Vector2i(8,4);    tilePos[46] = sf::Vector2i(8,3);    tilePos[47] = sf::Vector2i(8,2);
     tilePos[48] = sf::Vector2i(8,1);    tilePos[49] = sf::Vector2i(7,1);    tilePos[50] = sf::Vector2i(6,1);
     tilePos[51] = sf::Vector2i(6,0);
-
 }
 
 
@@ -39,9 +38,10 @@ void Soldier::Update(float deltaTime)
     }
     sf::Time time = moveClock.getElapsedTime();
     if(time.asMilliseconds() >= 400)
+    {
 	MoveOneTile();
-    Logic();
-  
+	Logic();
+    }
 }
 
 
@@ -62,8 +62,7 @@ void Soldier::MoveOneTile()
 
 void Soldier::Logic()
 {
-
-    
+    body.setPosition(sf::Vector2f(tilePos[tileNumber]*60));
 }
 
 void Soldier::Create(int type)
