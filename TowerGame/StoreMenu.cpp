@@ -182,7 +182,7 @@ string StoreMenu::StoreMenuLogic(sf::RenderWindow & window)
 		stringstream ss;
 		ss << option << " ";
 		ss << sf::Mouse::getPosition(window).x / 60 << " ";
-		ss << sf::Mouse::getPosition(window).y / 60 << " ";
+		ss << sf::Mouse::getPosition(window).y / 60;
 		data = ss.str();
 		option = 0;
 	    }

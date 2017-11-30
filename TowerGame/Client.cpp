@@ -126,6 +126,5 @@ void Client::SendDataToServer(string option)
 	ss << player.GetCoins() << " " << player.GetIncome() << " " << option;
 	packet << ss.str();
 	socket.send(packet);
-	cout << ss.str() << endl;
     }
 }
