@@ -183,8 +183,8 @@ string StoreMenu::StoreMenuLogic(sf::RenderWindow & window)
 	      ss << sf::Mouse::getPosition(window).x / 60 << " ";
 	      ss << sf::Mouse::getPosition(window).y / 60 << " ";
 	      data = ss.str();
-	      option = 0;
 	  }
+	  option = 0;
       }
     }
   return data;
