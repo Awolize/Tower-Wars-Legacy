@@ -24,6 +24,7 @@ void Client::RunClient()
 			  {
 			      sf::Packet packet;
 			      string data;
+			      packet.clear();
 			      socket.receive(packet);
 			      if(packet.getDataSize() > 0)
 			      {

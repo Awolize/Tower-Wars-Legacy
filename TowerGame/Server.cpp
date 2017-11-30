@@ -18,6 +18,7 @@ void Server::RunServer()
 	    {
 		sf::Packet packet;
 		string data;
+		packet.clear();
 		socketP1.receive(packet);
 		if(packet.getDataSize() > 0)
 		{
@@ -51,6 +52,7 @@ void Server::RunServer()
 	    {
 		sf::Packet packet;
 		string data;
+		packet.clear();
 		socketP2.receive(packet);
 		if(packet.getDataSize() > 0)
 		{
