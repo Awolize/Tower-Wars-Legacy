@@ -58,8 +58,8 @@ void ClientMenu::CustomIpAddress(sf::RenderWindow &window)
     textRect = Question.getLocalBounds();
     Question.setOrigin(textRect.left + textRect.width, heightCenter);
 
-    string answer = "";
-    Answer.setString("");
+    string answer = "130.236.181.73";
+    Answer.setString("130.236.181.73");
     Answer.setPosition(window.getSize().x / 2,  window.getSize().y / 2);
 
     while(window.isOpen() && !ifNext)

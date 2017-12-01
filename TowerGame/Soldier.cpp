@@ -38,10 +38,9 @@ void Soldier::Update(float deltaTime)
 // 	sf::Time time = moveClock.getElapsedTime();
 //	if(time.asMilliseconds() >= 400)
 	time += deltaTime;
-	if (time > 5)
+	if (time > 0,8)
 	{
 	    Logic();
-	    cout << "Tid: " << time << endl;
 	    time = 0;
 	}
     }
@@ -60,16 +59,14 @@ void Soldier::Draw(sf::RenderWindow& window)
 
 void Soldier::Logic()
 {
-    tileNumber++;
-    float tempPosx = tilePos[tileNumber].x;
-    float tempPosy = tilePos[tileNumber].y;
-    cout << "x, y: "  << tilePos[tileNumber].x << tilePos[tileNumber].y;
-    body.setPosition(sf::Vector2f(tempPosx*60.0f, tempPosy*60.0f));
+    if(tileNumber == 51)
+        health = 0;
+    body.setPosition(sf::Vector2f(tilePos[tileNumber++]*60));
 }
 
 void Soldier::Create(int type)
 {
-    
+    texture.loadFromFile("images/Soldier1.png");
     if(type == 1) // change values
     {
 	texture.loadFromFile("images/Soldier1.png");
@@ -98,6 +95,8 @@ void Soldier::Create(int type)
 	tileNumber = 0;
     }
     moveClock.restart();
+    body.setSize(sf::Vector2f(40,40));
+    body.setOrigin(body.getSize() / 2.0f);
     body.setTexture(&texture);
     body.setPosition(sf::Vector2f(3*60,0*60));
 }
