@@ -18,6 +18,8 @@ void Client::RunClient()
     cout << "Client.cpp" << endl;
     ground1.SetPosition(0, 0);
     ground2.SetPosition(680, 0);
+    soldierListP1.push_back(Soldier(1, soldierIndexP1++));
+    towerListP1.push_back(Tower(1, sf::Vector2i(5,5), towerIndexP1++));
 
     sf::Thread thread([&]()
 		      {
