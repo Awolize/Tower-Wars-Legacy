@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Soldier::Soldier(int type, int index) : index(index)
+Soldier::Soldier(int type, int index, int user) : index(index), user(user)
 {
     Create(type);
     tilePos[0] = sf::Vector2i(3,0);      tilePos[1] = sf::Vector2i(3,1);     tilePos[2] = sf::Vector2i(2,1);
@@ -34,8 +34,6 @@ void Soldier::Update(float deltaTime)
     {
 //	animation.Update(row, deltaTime);
 //	body.setTextureRect(animation.xyRect);  
-// 	sf::Time time = moveClock.getElapsedTime();
-//	if(time.asMilliseconds() >= 400)
 	time += deltaTime;
 	if (time > moveSpeed)
 	{

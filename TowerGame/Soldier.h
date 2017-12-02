@@ -10,7 +10,7 @@ class Soldier: public Entity
 {
 public:
     //Behöver lägga till Imagecount
-    Soldier(int type, int index);
+    Soldier(int type, int index, int user);
     ~Soldier();
 
     void Logic();
@@ -39,7 +39,7 @@ private:
     // Ground ground;
     float time = 0;
     std::array<sf::Vector2i,51> tilePos;
-    
+    int user = 0;
 
 };
 #endif

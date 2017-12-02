@@ -18,8 +18,8 @@ void Client::RunClient()
     cout << "Client.cpp" << endl;
     ground1.SetPosition(0, 0);
     ground2.SetPosition(680, 0);
-    soldierListP1.push_back(Soldier(1, soldierIndexP1++));
-    towerListP1.push_back(Tower(1, sf::Vector2i(5,5), towerIndexP1++));
+    soldierListP1.push_back(Soldier(1, soldierIndexP1++, 1));
+    towerListP1.push_back(Tower(1, sf::Vector2i(5,5), towerIndexP1++, 1));
 
     sf::Thread thread([&]()
 		      {
@@ -56,17 +56,17 @@ void Client::RunClient()
 				  if (user == "P2")
 				  {
 				      if (option == 1 || option == 2)
-					  towerListP2.push_back(Tower(option, sf::Vector2i(x,y), towerIndexP2++));
+					  towerListP2.push_back(Tower(option, sf::Vector2i(x,y), towerIndexP2++, 2));
 				      else if (option == 3 || option == 4)
-					  soldierListP2.push_back(Soldier(option, soldierIndexP2++));
+					  soldierListP2.push_back(Soldier(option, soldierIndexP2++, 2));
 				  }
 				  else 
 				  {
 				      if (option == 1 || option == 2)
-					  towerListP1.push_back(Tower(option, sf::Vector2i(x,y), towerIndexP1++));
+					  towerListP1.push_back(Tower(option, sf::Vector2i(x,y), towerIndexP1++, 1));
 					  
 				      else if (option == 3 || option == 4)
-					  soldierListP1.push_back(Soldier(option, soldierIndexP1++));
+					  soldierListP1.push_back(Soldier(option, soldierIndexP1++, 1));
 				  } 
 			      }
 			  }
@@ -104,22 +104,21 @@ string Client::strRequest()
 
 void Client::Update()
 {
-    if (soldierListP1.size() > 0 && towerListP1.size() > 0)
-    {
+    if (soldierListP1.size() > 0)
 	for (Soldier & soldier : soldierListP1)
 	    soldier.Update(deltaTime);
+    if (soldierListP1.size() > 0 && towerListP1.size() > 0)
 	for (Tower & tower : towerListP1)
 	    for (Soldier & soldier : soldierListP1)
 		tower.Update(soldier, deltaTime);
-    }
-    if (soldierListP2.size() > 0 && towerListP2.size() > 0)
-    {
+
+    if (soldierListP2.size() > 0)
 	for (Soldier & soldier : soldierListP2)
 	    soldier.Update(deltaTime);
+    if (soldierListP2.size() > 0 && towerListP2.size() > 0)
 	for (Tower & tower : towerListP2)
 	    for (Soldier & soldier : soldierListP2)
 		tower.Update(soldier, deltaTime);
-    }
 }
 
 void Client::Draw()

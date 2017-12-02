@@ -1,6 +1,6 @@
 #include "Tower.h" 
 
-Tower::Tower(int type, sf::Vector2i pos, int index) : index(index)
+Tower::Tower(int type, sf::Vector2i pos, int index, int user) : index(index), user(user)
 {
     Create(type, pos);
 }
@@ -14,9 +14,6 @@ void Tower::Update(Soldier & soldier, float deltaTime)
 //	animation.Update(row, deltaTime);
 //	body.setTextureRect(animation.xyRect);
     }
-    else
-	body.setPosition(sf::Vector2f(100, 500));
-   
 }
 
 void Tower::Draw(sf::RenderWindow& window)
@@ -49,7 +46,10 @@ void Tower::Create(int type, sf::Vector2i pos)
 	damagePoints = 40;
 	imageCount = 0;
 	switchTime = 0;
+	row = 0;
     }
+    body.setSize(sf::Vector2f(pos));
+    body.setOrigin(body.getSize()/2.0f);
     body.setPosition(sf::Vector2f(pos));
     body.setTexture(&texture);
 }

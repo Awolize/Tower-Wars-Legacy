@@ -8,7 +8,7 @@
 class Tower : public Entity 
 {
 public: 
-    Tower(int type, sf::Vector2i pos, int inded);
+    Tower(int type, sf::Vector2i pos, int inded, int user);
     ~Tower();
     void Update(Soldier & soldier, float deltaTime);
     void Draw(sf::RenderWindow & window); // override;
@@ -27,6 +27,7 @@ private:
     float switchTime = 0;
     int row {0}; 
     int index;
+    int user = 0;
 
 
 };
