@@ -11,4 +11,6 @@ Tower Wars Legacy
 -	Tower Select Target + Fire
 -	Tower, Soldier placement for p2
 -	Redo Ground to fit in the new grid 
+-	Delete Soldier
+-	Sell Tower
 	
