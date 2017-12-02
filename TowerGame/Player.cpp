@@ -3,7 +3,7 @@
 Player::Player()
     :coins{100}, income{10} {
 	DefineEconomyMisc();
-		   }
+		 }
 
 
 void Player::AddIncome()
@@ -20,7 +20,7 @@ void Player::TimerForIncome()
 void Player::UpdateEconomy()
 {
     sf::Time time = clock.getElapsedTime();
-    if(time.asSeconds() >= 1.0)
+    if(time.asSeconds() >= 10.0)
 	TimerForIncome();
     std::string tempIncome = std::to_string(income);
     std::string tempCoins = std::to_string(coins);
@@ -88,9 +88,9 @@ void Player::DrawEconomy(sf::RenderWindow & window)
 
 }
 
-void Player::BuyWithCoins(float money, float increaseIncome)
+void Player::BuyWithCoins(float cost, float increaseIncome)
 {
-    coins = coins - money;
+    coins = coins - cost;
     income = income + increaseIncome;
 }
 

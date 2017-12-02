@@ -26,6 +26,20 @@ Soldier::Soldier(int type, int index, int user) : index(index), user(user)
     tilePos[51] = sf::Vector2i(6,0);
 }
 
+Soldier::Soldier(int type)
+{
+    if (type == 3)
+    {
+	cost = 10;
+	income = 1;
+    }	
+    else
+    { 
+	cost = 20;
+	income = 2;
+    }
+}
+
 Soldier::~Soldier() {}
 
 void Soldier::Update(float deltaTime)
@@ -97,6 +111,7 @@ void Soldier::Create(int type)
     body.setSize(sf::Vector2f(50, 50));
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(sf::Vector2f(3*60,-1*60));
+    body.setTexture(&texture);
 }
 
 void Soldier::Delete()

@@ -11,6 +11,7 @@ class Soldier: public Entity
 public:
     //Behöver lägga till Imagecount
     Soldier(int type, int index, int user);
+    Soldier(int type);
     ~Soldier();
 
     void Logic();

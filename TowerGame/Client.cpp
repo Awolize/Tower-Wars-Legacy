@@ -63,10 +63,15 @@ void Client::RunClient()
 				  else 
 				  {
 				      if (option == 1 || option == 2)
+				      {
 					  towerListP1.push_back(Tower(option, sf::Vector2i(x,y), towerIndexP1++, 1));
-					  
+					  player.BuyWithCoins(Tower(option).getCost(), 0);
+				      }	  
 				      else if (option == 3 || option == 4)
+				      {
 					  soldierListP1.push_back(Soldier(option, soldierIndexP1++, 1));
+					  player.BuyWithCoins(Soldier(option).getCost(), Soldier(option).getIncome());
+				      }
 				  } 
 			      }
 			  }
@@ -93,6 +98,10 @@ void Client::userInterface()
 	{
 	    if (event.key.code == sf::Keyboard::Escape)
 		window.close();
+	    if (event.key.code == sf::Keyboard::Num1)
+		soldierListP1.push_back(Soldier(1, 1, 1));
+	    if (event.key.code == sf::Keyboard::Num2)
+		soldierListP1.push_back(Soldier(2, 1, 2));
 	}
     }
 }

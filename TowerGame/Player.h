@@ -20,7 +20,7 @@ public:
     void DrawEconomy(sf::RenderWindow & window);
     float getCoins() {return coins;};
     float getIncome() {return income;};
-    void BuyWithCoins(float money, float);
+    void BuyWithCoins(float cost, float increaseIncome);
 
 private:
     void DefineEconomyMisc();
