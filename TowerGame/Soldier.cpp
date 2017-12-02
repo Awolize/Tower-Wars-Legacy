@@ -61,7 +61,8 @@ void Soldier::Logic()
 	if(tileNumber == 51)
 	    healthPoints = 0;
 	body.setPosition(sf::Vector2f(tilePos[tileNumber++]*60));
-	body.move(sf::Vector2f(30,15));
+	body.move(sf::Vector2f(30, 30));
+	body.setTexture(&texture);
     }
 }
 
@@ -69,7 +70,7 @@ void Soldier::Create(int type)
 {
     if(type == 1) // change values
     {
-	texture.loadFromFile("s.png");
+	texture.loadFromFile("images/Soldier1.png");
 	cost = 10;
 	healthPoints = 100;
 	damagePoints = 20;
@@ -83,8 +84,7 @@ void Soldier::Create(int type)
     }
     if(type == 2) // change values
     {
-//	texture.loadFromFile("images/Soldier2.png");
-	texture.loadFromFile("d.png");
+	texture.loadFromFile("images/Soldier2.png");
 	cost = 10;
 	healthPoints = 1;
 	damagePoints = 20;
@@ -96,9 +96,8 @@ void Soldier::Create(int type)
 	tileNumber = 0;
     }
     moveClock.restart();
-    body.setSize(sf::Vector2f(40,40));
+    body.setSize(sf::Vector2f(50, 50));
     body.setOrigin(body.getSize() / 2.0f);
-    body.setTexture(&texture);
     body.setPosition(sf::Vector2f(3*60,-1*60));
 }
 

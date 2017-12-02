@@ -16,7 +16,7 @@ void Tower::Update(Soldier & soldier, float deltaTime)
     }
     else
 	body.setPosition(sf::Vector2f(100, 500));
-    body.setTexture(&texture);
+   
 }
 
 void Tower::Draw(sf::RenderWindow& window)
@@ -51,6 +51,7 @@ void Tower::Create(int type, sf::Vector2i pos)
 	switchTime = 0;
     }
     body.setPosition(sf::Vector2f(pos));
+    body.setTexture(&texture);
 }
 
 void Tower::Delete()
