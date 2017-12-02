@@ -69,7 +69,7 @@ void Soldier::Create(int type)
 {
     if(type == 1) // change values
     {
-	texture.loadFromFile("images/Soldier1.png");
+	texture.loadFromFile("s.png");
 	cost = 10;
 	healthPoints = 100;
 	damagePoints = 20;
@@ -83,7 +83,8 @@ void Soldier::Create(int type)
     }
     if(type == 2) // change values
     {
-	texture.loadFromFile("images/Soldier2.png");
+//	texture.loadFromFile("images/Soldier2.png");
+	texture.loadFromFile("d.png");
 	cost = 10;
 	healthPoints = 1;
 	damagePoints = 20;

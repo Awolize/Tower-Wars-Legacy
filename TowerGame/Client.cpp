@@ -151,7 +151,7 @@ void Client::SendDataToServer(string option)
     {
 	sf::Packet packet;
 	stringstream ss;
-	ss << player.GetCoins() << " " << player.GetIncome() << " " << option;
+	ss << player.getCoins() << " " << player.getIncome() << " " << option;
 	packet << ss.str();
 	socket.send(packet);
     }

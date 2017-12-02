@@ -7,7 +7,7 @@ Tower::Tower(int type, sf::Vector2i pos, int index) : index(index)
 
 Tower::~Tower() {} 
 
-void Tower::Update(Soldier soldier, float deltaTime)
+void Tower::Update(Soldier & soldier, float deltaTime)
 {
     if (false)
     {
@@ -16,6 +16,7 @@ void Tower::Update(Soldier soldier, float deltaTime)
     }
     else
 	body.setPosition(sf::Vector2f(100, 500));
+    body.setTexture(&texture);
 }
 
 void Tower::Draw(sf::RenderWindow& window)
@@ -28,7 +29,7 @@ void Tower::Create(int type, sf::Vector2i pos)
 {
     if(type == 1)
     {
-	texture.loadFromFile("images/Tower1.png");
+	texture.loadFromFile("t1.png");
 	cost = 10;
 	range = 3;
 	attackSpeed = 0,4;
@@ -49,7 +50,6 @@ void Tower::Create(int type, sf::Vector2i pos)
 	imageCount = 0;
 	switchTime = 0;
     }
-    body.setTexture(&texture);
     body.setPosition(sf::Vector2f(pos));
 }
 

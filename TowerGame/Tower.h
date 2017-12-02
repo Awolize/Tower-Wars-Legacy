@@ -10,10 +10,10 @@ class Tower : public Entity
 public: 
     Tower(int type, sf::Vector2i pos, int inded);
     ~Tower();
-    void Update(Soldier soldier, float deltaTime);
-    void Draw(sf::RenderWindow& window); // override;
+    void Update(Soldier & soldier, float deltaTime);
+    void Draw(sf::RenderWindow & window); // override;
     void Delete(); 
-    float GetCost() {return cost;};
+    float getCost() {return cost;};
 private:
     void Create(int type, sf::Vector2i pos);
     float cost {0};

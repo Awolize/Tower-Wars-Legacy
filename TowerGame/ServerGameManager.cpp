@@ -3,13 +3,13 @@
 ServerGameManager::ServerGameManager() 
 {
     Tower t1(1, sf::Vector2i(0, 0), 1);
-    t1Cost = t1.GetCost();
+    t1Cost = t1.getCost();
     Tower t2(2, sf::Vector2i(0, 0), 1);
-    t2Cost = t2.GetCost();
+    t2Cost = t2.getCost();
     Soldier s1(1, 1);
-    s1Cost = s1.GetCost();
+    s1Cost = s1.getCost();
     Soldier s2(2, 1);
-    s2Cost = s2.GetCost();
+    s2Cost = s2.getCost();
 }
 
 bool ServerGameManager::Run(float coins, float income, int option, int x, int y, Ground &ground)
@@ -24,22 +24,22 @@ bool ServerGameManager::IsBuyAcceptable(float coins, int option)
 {
     if(option == 1)
     {
-	if (coins - t1Cost >= 0)
+	if (coins >= t1Cost)
 	    return true;       
     }
     else if(option == 2)
     {
-	if (coins - t2Cost >= 0)
+	if (coins >= t2Cost)
 	    return true;     
     }
     else if (option == 3 )
     {
-	if (coins - s1Cost >= 0)
+	if (coins >= s1Cost)
 	    return true;
     }
     else if (option == 4)
     {
-	if (coins - s2Cost >= 0)
+	if (coins >= s2Cost)
 	    return true;
     }
     return false;

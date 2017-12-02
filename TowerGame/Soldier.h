@@ -2,7 +2,7 @@
 #define SOLDIER_H
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
-#include "Animation.h"
+//#include "Animation.h"
 #include <array>
 //#include "Ground.h"
 
@@ -17,8 +17,8 @@ public:
     void Update(float deltaTime);
     void Draw(sf::RenderWindow& window) override;
     void Delete();
-    float GetCost() {return cost;};
-    float GetIncome() {return income;};
+    float getCost() {return cost;};
+    float getIncome() {return income;};
 
 private:
     void MoveOneTile();
