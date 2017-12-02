@@ -58,8 +58,8 @@ void ClientMenu::CustomIpAddress(sf::RenderWindow &window)
     textRect = Question.getLocalBounds();
     Question.setOrigin(textRect.left + textRect.width, heightCenter);
 
-    string answer = "130.236.181.73";
-    Answer.setString("130.236.181.73");
+    string answer = "130.236.181.74";
+    Answer.setString("130.236.181.74");
     Answer.setPosition(window.getSize().x / 2,  window.getSize().y / 2);
 
     while(window.isOpen() && !ifNext)
@@ -182,57 +182,60 @@ void ClientMenu::CustomPort(sf::RenderWindow &window)
 
 void ClientMenu::Connect(sf::RenderWindow &window)
 {
-    bool ifNext{false};
-
-    sf::Thread thread([&](){
-	    while(window.isOpen() && !ifNext)
-	    {
-		sf::Event event;
-		while(window.pollEvent(event))
-		{
-		    if (event.type == sf::Event::Closed)
-			window.close();
-		    else if (event.type == sf::Event::KeyPressed)
-		    {
-			if (event.key.code == sf::Keyboard::Escape)
-			    window.close();
-		    }
-		}
-		Draw(window);
-	    }
-	});
-
-    string temp = "Connection to IP: " + ipAddress.toString() + ":" + to_string(connectionPort);
-    Question.setString(temp);
-    Question.setPosition(window.getSize().x / 2,  window.getSize().y / 2);
-    textRect = Question.getLocalBounds();
-    Question.setOrigin(textRect.left + textRect.width/2.0f, heightCenter);
-    
-    Answer.setString("Waiting for Response...");
-    Answer.setPosition(window.getSize().x / 2,  window.getSize().y / 2 + 50);
-    textRect = Answer.getLocalBounds();
-    Answer.setOrigin(textRect.left + textRect.width/2.0f, heightCenter);
-
-    // Main window loop
-    thread.launch();
-
-    if (socket.connect(ipAddress, connectionPort, sf::seconds(30)) == sf::Socket::Done)
+    if (window.isOpen())
     {
-	//Success
-	while(true){
-	    sf::Packet packet;
-	    socket.receive(packet);
-	    if (packet.getDataSize() > 0){
-		ifNext = true;
-		thread.wait();
-		Client client(window, socket);
-		client.RunClient();
+	bool ifNext{false};
+
+	sf::Thread thread([&](){
+		while(window.isOpen() && !ifNext)
+		{
+		    sf::Event event;
+		    while(window.pollEvent(event))
+		    {
+			if (event.type == sf::Event::Closed)
+			    window.close();
+			else if (event.type == sf::Event::KeyPressed)
+			{
+			    if (event.key.code == sf::Keyboard::Escape)
+				window.close();
+			}
+		    }
+		    Draw(window);
+		}
+	    });
+
+	string temp = "Connection to IP: " + ipAddress.toString() + ":" + to_string(connectionPort);
+	Question.setString(temp);
+	Question.setPosition(window.getSize().x / 2,  window.getSize().y / 2);
+	textRect = Question.getLocalBounds();
+	Question.setOrigin(textRect.left + textRect.width/2.0f, heightCenter);
+    
+	Answer.setString("Waiting for Response...");
+	Answer.setPosition(window.getSize().x / 2,  window.getSize().y / 2 + 50);
+	textRect = Answer.getLocalBounds();
+	Answer.setOrigin(textRect.left + textRect.width/2.0f, heightCenter);
+
+	// Main window loop
+	thread.launch();
+
+	if (socket.connect(ipAddress, connectionPort, sf::seconds(30)) == sf::Socket::Done)
+	{
+	    //Success
+	    while(true){
+		sf::Packet packet;
+		socket.receive(packet);
+		if (packet.getDataSize() > 0){
+		    ifNext = true;
+		    thread.wait();
+		    Client client(window, socket);
+		    client.RunClient();
+		}
 	    }
-	}
-    }	
-    // Timeout/Error
-    ifNext = true;
-    thread.wait();
+	}	
+	// Timeout/Error
+	ifNext = true;
+	thread.wait();
+    }
     // Going back to the menu!
 }
 
