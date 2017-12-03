@@ -18,10 +18,10 @@ void Client::RunClient()
     cout << "Client.cpp" << endl;
     ground1.SetPosition(0, 0);
     ground2.SetPosition(680, 0);
-    soldierListP1.push_back(Soldier(1, soldierIndexP1++, 1));
+    soldierListP1.push_back(Soldier(3, soldierIndexP1++, 1));
     towerListP1.push_back(Tower(1, sf::Vector2i(5,5), towerIndexP1++, 1));
 
-    soldierListP2.push_back(Soldier(2, soldierIndexP2++, 2));
+    soldierListP2.push_back(Soldier(4, soldierIndexP2++, 2));
     towerListP2.push_back(Tower(2, sf::Vector2i(5,5), towerIndexP2++, 2));
 
     sf::Thread thread([&]()
@@ -60,7 +60,7 @@ void Client::RunClient()
 				      if (option == 1 || option == 2)
 					  towerListP2.push_back(Tower(option, sf::Vector2i(x,y), towerIndexP2++, 2));
 				      else if (option == 3 || option == 4)
-					  soldierListP2.push_back(Soldier(option, soldierIndexP2++, 2));
+					  soldierListP1.push_back(Soldier(option, soldierIndexP1++, 1));
 				  }
 				  else 
 				  {
@@ -71,7 +71,7 @@ void Client::RunClient()
 				      }	  
 				      else if (option == 3 || option == 4)
 				      {
-					  soldierListP1.push_back(Soldier(option, soldierIndexP1++, 1));
+					  soldierListP2.push_back(Soldier(option, soldierIndexP2++, 2));
 					  player.BuyWithCoins(Soldier(option).getCost(), Soldier(option).getIncome());
 				      }
 				  } 

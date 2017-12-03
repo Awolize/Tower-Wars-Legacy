@@ -21,6 +21,7 @@ public:
     float getIncome() {return income;};
 
 private:
+    void Create(int type);
     void MoveOneTile();
     float cost;
     float healthPoints;
