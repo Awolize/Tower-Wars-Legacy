@@ -37,7 +37,7 @@ void Client::RunClient()
 				  cout << "Packet Size:" << packet.getDataSize() << endl;
 		
 				  stringstream ss;
-				  string user = "P";
+				  int user = 1;
 				  float coins; 
 				  float income;
 				  int option;
@@ -56,8 +56,9 @@ void Client::RunClient()
 				  cout << "x, y " << x << ", " << y << endl;
 				  cout << "user: " << user << endl;
 
-				  if (user == "P2")
+				  if (user == 2)
 				  {
+				      cout << "För player 2! " << endl;
 				      if (option == 1 || option == 2)
 					  towerListP2.push_back(Tower(option, sf::Vector2i(x,y), towerIndexP2++, 2));
 				      else if (option == 3 || option == 4)

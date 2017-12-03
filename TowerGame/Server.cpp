@@ -39,7 +39,6 @@ void Server::RunServer()
 		    cout << "Packet data: " << ss.str() << endl;
 		    if (SGM.Run(coins, income, option, x, y, groundP1))
 		    {
-			packet << "P";
 			socketP1.send(packet);
 			packet << "2";
 			socketP2.send(packet);
@@ -74,9 +73,8 @@ void Server::RunServer()
 		    cout << "Packet data: " << ss.str() << endl;
 		    if (SGM.Run(coins, income, option, x, y, groundP2))
 		    {
-			packet << "P";
 			socketP2.send(packet);
-			packet << "2 ";
+			packet << "2";
 			socketP1.send(packet);
 		    }
 		}
@@ -97,49 +95,14 @@ void Server::RunServer()
 		if (event.key.code == sf::Keyboard::Escape)
 		    window.close();
 	    }
-	}
-       	
-//	PacketHandling(socketP2, socketP1, groundP2);
-	
+	}	
 	sf::Time time = clock.getElapsedTime();
-//	cout << time.asSeconds() << endl; 
 
 	Update();
 	window.clear();
 	Draw();
 	window.display();
     }
-}
-    
-void Server::PacketHandling(sf::TcpSocket &socket, sf::TcpSocket &socket2, Ground &ground)
-{
-    sf::Packet packet;
-    string data;
-    socket.receive(packet);
-    if(packet.getDataSize() > 0)
-    {
-	cout << "Packet Size:" << packet.getDataSize() << endl;
-		
-	stringstream ss;
-	float coins; 
-	float income;
-	int option;
-	int x;
-	int y;
-	while (packet >> data)
-	{
-	    ss << data << " ";
-	}
-	string data = ss.str();
-	ss >> coins >> income >> option >> x >> y;
-	cout << "Packet data: " << ss.str() << endl;
-	if (SGM.Run(coins, income, option, x, y, ground))
-	{
-	    socket.send(packet);
-	    packet << "P2 ";
-	    socket2.send(packet);
-	}
-    } 
 }
 
 void Server::Update()
