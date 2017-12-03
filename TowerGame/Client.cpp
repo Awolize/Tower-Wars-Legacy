@@ -30,7 +30,6 @@ void Client::RunClient()
 			  {
 			      sf::Packet packet;
 			      string data;
-			      packet.clear();
 			      socket.receive(packet);
 			      if(packet.getDataSize() > 0)
 			      {
@@ -53,12 +52,11 @@ void Client::RunClient()
 				  cout << "Coins: " << coins << endl;
 				  cout << "income: " << income << endl;
 				  cout << "option: " << option << endl;
-				  cout << "x, y " << x << ", " << y << endl;
+				  cout << "x, y: (" << x << ", " << y << ")" << endl;
 				  cout << "user: " << user << endl;
 
 				  if (user == 2)
 				  {
-				      cout << "För player 2! " << endl;
 				      if (option == 1 || option == 2)
 					  towerListP2.push_back(Tower(option, sf::Vector2i(x,y), towerIndexP2++, 2));
 				      else if (option == 3 || option == 4)

@@ -10,7 +10,39 @@ Soldier::Soldier(int type, int index, int user) : index(index), user(user)
     else if (user == 2)
 	offset = 60 * 10 + 80;
 
-    Create(type);
+    if(type == 1) // change values
+    {
+	texture.loadFromFile("images/Soldier1.png");
+	cost = 10;
+	healthPoints = 100;
+	damagePoints = 20;
+	imageCount = 0;
+	switchTime = 0;
+	row = 0;
+	income = 1;
+	moveSpeed = 0.6;
+	tileNumber = 0;
+	
+    }
+    if(type == 2) // change values
+    {
+	texture.loadFromFile("images/Soldier2.png");
+	cost = 20;
+	healthPoints = 100;
+	damagePoints = 20;
+	imageCount = 0;
+	switchTime = 0;
+	row = 0;
+	income = 2;
+	moveSpeed = 1.0;
+	tileNumber = 0;
+    }
+    moveClock.restart();
+    body.setSize(sf::Vector2f(50, 50));
+    body.setOrigin(body.getSize() / 2.0f);
+    body.setPosition(sf::Vector2f(3 * 60, -1 * 60));
+    body.move(sf::Vector2f(30 + offset, 30));
+    body.setTexture(&texture);
 
     tilePos[0] = sf::Vector2i(3,0);      tilePos[1] = sf::Vector2i(3,1);     tilePos[2] = sf::Vector2i(2,1);
     tilePos[3] = sf::Vector2i(1,1);      tilePos[4] = sf::Vector2i(1,2);     tilePos[5] = sf::Vector2i(1,3);
@@ -82,43 +114,6 @@ void Soldier::Logic()
 	body.setTexture(&texture);
 	++tileNumber;
     }
-}
-
-void Soldier::Create(int type)
-{
-    if(type == 1) // change values
-    {
-	texture.loadFromFile("images/Soldier1.png");
-	cost = 10;
-	healthPoints = 100;
-	damagePoints = 20;
-	imageCount = 0;
-	switchTime = 0;
-	row = 0;
-	income = 2;
-	moveSpeed = 0.6;
-	tileNumber = 0;
-	
-    }
-    if(type == 2) // change values
-    {
-	texture.loadFromFile("images/Soldier2.png");
-	cost = 10;
-	healthPoints = 100;
-	damagePoints = 20;
-	imageCount = 0;
-	switchTime = 0;
-	row = 0;
-	income = 2;
-	moveSpeed = 1.0;
-	tileNumber = 0;
-    }
-    moveClock.restart();
-    body.setSize(sf::Vector2f(50, 50));
-    body.setOrigin(body.getSize() / 2.0f);
-    body.setPosition(sf::Vector2f(3 * 60, -1 * 60));
-    body.move(sf::Vector2f(30 + offset, 30));
-    body.setTexture(&texture);
 }
 
 void Soldier::Delete()
