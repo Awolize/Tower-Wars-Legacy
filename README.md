@@ -6,10 +6,10 @@ Tower Wars Legacy
 
 
  Todo: 
--	Animation for all the entities
--	Base Soldier interaction
+-	Animation for all the entities   // HALF DONE
+-	Base Soldier interaction        
 -	Tower Select Target + Fire
--	Tower, Soldier placement for p2
+-	Tower, Soldier placement for p2  // DONE
 -	Redo Ground to fit in the new grid 
 -	Delete Soldier
 -	Sell Tower
