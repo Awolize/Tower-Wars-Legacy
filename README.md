@@ -8,7 +8,7 @@ Tower Wars Legacy
  Todo: 
 -	Animation for all the entities   // HALF DONE
 -	Base Soldier interaction        
--	Tower Select Target + Fire       // DONE, not tested fully
+-	Tower Select Target + Fire       // DONE, not tested 
 -	Tower, Soldier placement for p2  // DONE
 -	Redo Ground to fit in the new grid 
 -	Delete Soldier                   
