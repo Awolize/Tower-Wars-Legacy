@@ -1,13 +1,18 @@
-#include "Tower.h" 
+#include "Tower.h"
+#include <iostream>
 
-Tower::Tower(int type, sf::Vector2i pos, int index, int user) : index(index), user(user)
+using namespace std;
+
+Tower::Tower(int type, sf::Vector2i pos, int index, int user) : index(index), user(user), pos(pos)
 {
     if (user == 1)
 	offset = 0;
     else if (user == 2)
 	offset = 60 * 10 + 80;
 
-    Create(type, pos);
+    Create(type);
+
+    soldierP = NULL;
 }
 
 
@@ -21,14 +26,45 @@ Tower::Tower(int type)
 
 Tower::~Tower() {} 
 
-void Tower::Update(Soldier & soldier, float deltaTime)
-{
+void Tower::Update(float deltaTime)
+{   
+    time += deltaTime;
+    body.setFillColor(sf::Color::White);
     body.setTexture(&texture);
-    if (false)
+    if (time > reloadTime && gotTarget())
     {
-//	animation.Update(row, deltaTime);
-//	body.setTextureRect(animation.xyRect);
-    }
+	cout << "SKJUT!" << endl;
+	soldierP->takeDamage(damagePoints);
+	body.setFillColor(sf::Color::Red);
+	time = 0;
+    }   
+}
+
+bool Tower::gotTarget()
+{
+    if (soldierP != NULL)
+	if (soldierP->Alive())
+	    if (inRange())
+		return true;
+    return false;
+}
+
+void Tower::getTarget(Soldier & soldier)
+{
+    if (soldierP == NULL)
+	soldierP = &soldier;
+    else if (soldier.getTileNumber() > soldierP->getTileNumber())
+	soldierP = &soldier;
+}
+
+bool Tower::inRange()
+{
+    if (soldierP->getPos().x < pos.x + range &&
+	soldierP->getPos().x > pos.x - range && 
+	soldierP->getPos().y < pos.y + range &&
+	soldierP->getPos().y > pos.y - range)
+	return true;
+    return false;
 }
 
 void Tower::Draw(sf::RenderWindow& window)
@@ -37,31 +73,25 @@ void Tower::Draw(sf::RenderWindow& window)
 	window.draw(body);
 }
 
-void Tower::Create(int type, sf::Vector2i pos)
+void Tower::Create(int type)
 {
     if(type == 1)
     {
 	texture.loadFromFile("images/Tower1.png");
 	cost = 10;
 	range = 3;
-	attackSpeed = 0,4;
+	attackSpeed = 0.4;
 	reloadTime = 1 / attackSpeed;
-	damagePoints = 20;
-	imageCount = 0;
-	switchTime = 0;
-	row = 0;
+	damagePoints = 50;
     }
     if(type == 2)
     {
 	texture.loadFromFile("images/Tower2.png");
 	cost = 20;
 	range = 4;
-	attackSpeed = 0,8;
+	attackSpeed = 0.8;
 	reloadTime = 1 / attackSpeed;
 	damagePoints = 40;
-	imageCount = 0;
-	switchTime = 0;
-	row = 0;
     }
     body.setSize(sf::Vector2f(50, 50));
     body.setOrigin(body.getSize() / 2.0f);

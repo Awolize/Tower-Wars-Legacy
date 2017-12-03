@@ -18,11 +18,6 @@ void Client::RunClient()
     cout << "Client.cpp" << endl;
     ground1.SetPosition(0, 0);
     ground2.SetPosition(680, 0);
-    soldierListP1.push_back(Soldier(3, soldierIndexP1++, 1));
-    towerListP1.push_back(Tower(1, sf::Vector2i(5,5), towerIndexP1++, 1));
-
-    soldierListP2.push_back(Soldier(4, soldierIndexP2++, 2));
-    towerListP2.push_back(Tower(2, sf::Vector2i(5,5), towerIndexP2++, 2));
 
     sf::Thread thread([&]()
 		      {
@@ -101,9 +96,12 @@ void Client::userInterface()
 	    if (event.key.code == sf::Keyboard::Escape)
 		window.close();
 	    if (event.key.code == sf::Keyboard::Num1)
-		soldierListP1.push_back(Soldier(1, 1, 1));
+		soldierListP1.push_back(Soldier(3, 1, 1));
 	    if (event.key.code == sf::Keyboard::Num2)
-		soldierListP1.push_back(Soldier(2, 1, 2));
+		soldierListP1.push_back(Soldier(4, 1, 1));
+	    if (event.key.code == sf::Keyboard::Num3)
+		towerListP1.push_back(Tower(1, sf::Vector2i(5,5), towerIndexP1++, 1));
+
 	}
     }
 }
@@ -113,23 +111,37 @@ string Client::strRequest()
     return storeMenu.StoreMenuLogic(window);
 }
 
+// Remove index för allt, använder pointers istället
+
 void Client::Update()
 {
     if (soldierListP1.size() > 0)
 	for (Soldier & soldier : soldierListP1)
 	    soldier.Update(deltaTime);
-    if (soldierListP1.size() > 0 && towerListP1.size() > 0)
+	
+    if (towerListP1.size() > 0)
 	for (Tower & tower : towerListP1)
-	    for (Soldier & soldier : soldierListP1)
-		tower.Update(soldier, deltaTime);
+	{
+	    if (soldierListP1.size() > 0)
+		if (!tower.gotTarget())	
+		    for (Soldier & soldier : soldierListP1)
+			tower.getTarget(soldier);	 
+	    tower.Update(deltaTime);
+	}
 
     if (soldierListP2.size() > 0)
 	for (Soldier & soldier : soldierListP2)
 	    soldier.Update(deltaTime);
-    if (soldierListP2.size() > 0 && towerListP2.size() > 0)
+
+    if (towerListP2.size() > 0)
 	for (Tower & tower : towerListP2)
-	    for (Soldier & soldier : soldierListP2)
-		tower.Update(soldier, deltaTime);
+	{
+	    if (soldierListP2.size() > 0)
+		if (!tower.gotTarget())
+		    for (Soldier & soldier : soldierListP2)
+			tower.getTarget(soldier);
+	    tower.Update(deltaTime);
+	}
 }
 
 void Client::Draw()
