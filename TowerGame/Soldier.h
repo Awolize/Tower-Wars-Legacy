@@ -4,7 +4,6 @@
 #include "Entity.h"
 //#include "Animation.h"
 #include <array>
-//#include "Ground.h"
 
 class Soldier: public Entity
 {
@@ -18,6 +17,7 @@ public:
     void Update(float deltaTime);
     void Draw(sf::RenderWindow& window) override;
     void Delete();
+
     float getCost() {return cost;};
     float getIncome() {return income;};
 
@@ -39,9 +39,9 @@ private:
     int tileNumber = 0;
     // Ground ground;
     float time = 0;
-    std::array<sf::Vector2i,51> tilePos;
+    std::array<sf::Vector2i, 53> tilePos;
     int user = 0;
-
+    float offset;
 };
 #endif
 

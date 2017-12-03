@@ -21,6 +21,9 @@ void Client::RunClient()
     soldierListP1.push_back(Soldier(1, soldierIndexP1++, 1));
     towerListP1.push_back(Tower(1, sf::Vector2i(5,5), towerIndexP1++, 1));
 
+    soldierListP2.push_back(Soldier(2, soldierIndexP2++, 2));
+    towerListP2.push_back(Tower(2, sf::Vector2i(5,5), towerIndexP2++, 2));
+
     sf::Thread thread([&]()
 		      {
 			  while(window.isOpen())

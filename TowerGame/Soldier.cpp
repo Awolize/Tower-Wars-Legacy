@@ -5,7 +5,13 @@ using namespace std;
 
 Soldier::Soldier(int type, int index, int user) : index(index), user(user)
 {
+    if (user == 1)
+	offset = 0;
+    else if (user == 2)
+	offset = 60 * 10 + 80;
+
     Create(type);
+
     tilePos[0] = sf::Vector2i(3,0);      tilePos[1] = sf::Vector2i(3,1);     tilePos[2] = sf::Vector2i(2,1);
     tilePos[3] = sf::Vector2i(1,1);      tilePos[4] = sf::Vector2i(1,2);     tilePos[5] = sf::Vector2i(1,3);
     tilePos[6] = sf::Vector2i(1,4);      tilePos[7] = sf::Vector2i(1,5);     tilePos[8] = sf::Vector2i(1,6);
@@ -23,7 +29,7 @@ Soldier::Soldier(int type, int index, int user) : index(index), user(user)
     tilePos[42] = sf::Vector2i(8,7);     tilePos[43] = sf::Vector2i(8,6);    tilePos[44] = sf::Vector2i(8,5);
     tilePos[45] = sf::Vector2i(8,4);     tilePos[46] = sf::Vector2i(8,3);    tilePos[47] = sf::Vector2i(8,2);
     tilePos[48] = sf::Vector2i(8,1);     tilePos[49] = sf::Vector2i(7,1);    tilePos[50] = sf::Vector2i(6,1);
-    tilePos[51] = sf::Vector2i(6,0);
+    tilePos[51] = sf::Vector2i(5,1);     tilePos[52] = sf::Vector2i(5,0);  
 }
 
 Soldier::Soldier(int type)
@@ -33,7 +39,7 @@ Soldier::Soldier(int type)
 	cost = 10;
 	income = 1;
     }	
-    else
+    else if (type == 4)
     { 
 	cost = 20;
 	income = 2;
@@ -57,7 +63,6 @@ void Soldier::Update(float deltaTime)
     }
 }
 
-
 void Soldier::Draw(sf::RenderWindow& window)
 {
     if(healthPoints > 0)
@@ -70,11 +75,12 @@ void Soldier::Logic()
 {
     if (healthPoints > 0)
     {
-	if(tileNumber == 51)
+	if(tileNumber == 53)
 	    healthPoints = 0;
-	body.setPosition(sf::Vector2f(tilePos[tileNumber++]*60));
-	body.move(sf::Vector2f(30, 30));
+	body.setPosition(sf::Vector2f(tilePos[tileNumber] * 60));
+	body.move(sf::Vector2f(30 + offset, 30));
 	body.setTexture(&texture);
+	++tileNumber;
     }
 }
 
@@ -98,7 +104,7 @@ void Soldier::Create(int type)
     {
 	texture.loadFromFile("images/Soldier2.png");
 	cost = 10;
-	healthPoints = 1;
+	healthPoints = 100;
 	damagePoints = 20;
 	imageCount = 0;
 	switchTime = 0;
@@ -110,7 +116,8 @@ void Soldier::Create(int type)
     moveClock.restart();
     body.setSize(sf::Vector2f(50, 50));
     body.setOrigin(body.getSize() / 2.0f);
-    body.setPosition(sf::Vector2f(3*60,-1*60));
+    body.setPosition(sf::Vector2f(3 * 60, -1 * 60));
+    body.move(sf::Vector2f(30 + offset, 30));
     body.setTexture(&texture);
 }
 
