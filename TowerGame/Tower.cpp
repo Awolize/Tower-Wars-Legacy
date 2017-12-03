@@ -2,6 +2,11 @@
 
 Tower::Tower(int type, sf::Vector2i pos, int index, int user) : index(index), user(user)
 {
+    if (user == 1)
+	offset = 0;
+    else if (user == 2)
+	offset = 60 * 10 + 80;
+
     Create(type, pos);
 }
 
@@ -58,10 +63,10 @@ void Tower::Create(int type, sf::Vector2i pos)
 	switchTime = 0;
 	row = 0;
     }
-    body.setSize(sf::Vector2f(50,50));
-    body.setOrigin(body.getSize()/2.0f);
-    body.setPosition(sf::Vector2f(pos*60));
-    body.move(sf::Vector2f(30,30));
+    body.setSize(sf::Vector2f(50, 50));
+    body.setOrigin(body.getSize() / 2.0f);
+    body.setPosition(sf::Vector2f(pos * 60));
+    body.move(sf::Vector2f(30 + offset, 30));
     body.setTexture(&texture);
 }
 

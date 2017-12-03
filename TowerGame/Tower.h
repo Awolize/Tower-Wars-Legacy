@@ -29,6 +29,7 @@ private:
     int row {0}; 
     int index;
     int user = 0;
+    float offset;
 
 
 };
