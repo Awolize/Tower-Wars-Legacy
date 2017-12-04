@@ -42,9 +42,10 @@ private:
     sf::RectangleShape coinRectangle;
     sf::RectangleShape incomeRectangle;
     sf::Clock clock;
-    sf::RectangleShape base;
-    sf::Texture baseTexture;
+    sf::RectangleShape base, enemybase;
+    sf::Texture baseTexture, enemybaseTexture;
     sf::RectangleShape portal;
+    sf::RectangleShape enemyportal;
     sf::Texture portalTexture;
     int baseHealth { 100 };
 

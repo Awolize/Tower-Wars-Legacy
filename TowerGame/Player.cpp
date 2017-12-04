@@ -104,6 +104,13 @@ void Player::createBase()
     base.setPosition(sf::Vector2f(60*5, 0));
     base.move(30, 30);
     base.setTexture(&baseTexture);
+
+    enemybaseTexture.loadFromFile("images/base2.png");
+    enemybase.setSize(sf::Vector2f(50, 50));
+    enemybase.setOrigin(enemybase.getSize()/2.f);
+    enemybase.setPosition(sf::Vector2f(60*16, 0));
+    enemybase.move(50, 30);
+    enemybase.setTexture(&enemybaseTexture);
 }
 
 void Player::createPortal()
@@ -115,16 +122,25 @@ void Player::createPortal()
     portal.move(30, 30);
     portal.setTexture(&portalTexture);
 
+    enemyportal.setSize(sf::Vector2f(50, 50));
+    enemyportal.setOrigin(enemyportal.getSize()/2.f);
+    enemyportal.setPosition(sf::Vector2f(60*14, 0));
+    enemyportal.move(50, 30);
+    enemyportal.setTexture(&portalTexture);
+
 }
 
 void Player::drawBase(sf::RenderWindow& window)
 {
     if (baseHealth > 0)
 	window.draw(base);
+
+    window.draw(enemybase);
 }
 
 void Player::drawPortal(sf::RenderWindow& window)
 {
     window.draw(portal);
+    window.draw(enemyportal);
 }
 
