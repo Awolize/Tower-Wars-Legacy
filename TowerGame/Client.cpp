@@ -101,6 +101,8 @@ void Client::userInterface()
 		soldierListP1.push_back(Soldier(4,1));
 	    if (event.key.code == sf::Keyboard::Num3)
 		towerListP1.push_back(Tower(1, sf::Vector2i(5,5), 1));
+	    if (event.key.code == sf::Keyboard::Num4)
+		towerListP1.push_back(Tower(2, sf::Vector2i(3,3), 1));
 
 	}
     }

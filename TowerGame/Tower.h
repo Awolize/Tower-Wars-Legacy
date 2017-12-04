@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
 #include "Soldier.h"
+#include "math.h"
 
 class Tower : public Entity 
 {
@@ -31,5 +32,7 @@ private:
     Soldier * soldierP;
     sf::Vector2i pos;
     bool firstTarget = true;
+    float dir = 0;
+    float angle = 0;
 };
 #endif

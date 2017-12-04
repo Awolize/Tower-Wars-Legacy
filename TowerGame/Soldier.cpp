@@ -24,7 +24,7 @@ Soldier::Soldier(int type, int user) : index(index), user(user), animation()
     tilePos[24] = sf::Vector2i(2,9);     tilePos[25] = sf::Vector2i(1,9);    tilePos[26] = sf::Vector2i(1,10);
     tilePos[27] = sf::Vector2i(1,11);    tilePos[28] = sf::Vector2i(1,12);   tilePos[29] = sf::Vector2i(2,12);
     tilePos[30] = sf::Vector2i(3,12);    tilePos[31] = sf::Vector2i(4,12);   tilePos[32] = sf::Vector2i(5,12);
-    tilePos[33] = sf::Vector2i(6,12);    tilePos[34] = sf::Vector2i(7,12);    tilePos[35] = sf::Vector2i(8,12); 
+    tilePos[33] = sf::Vector2i(6,12);    tilePos[34] = sf::Vector2i(7,12);   tilePos[35] = sf::Vector2i(8,12); 
     tilePos[36] = sf::Vector2i(8,11);
     tilePos[37] = sf::Vector2i(8,10);    tilePos[38] = sf::Vector2i(8,9);    tilePos[39] = sf::Vector2i(8,8);
     tilePos[40] = sf::Vector2i(8,7);     tilePos[41] = sf::Vector2i(8,6);    tilePos[42] = sf::Vector2i(8,5);
@@ -59,19 +59,17 @@ void Soldier::Update(float deltaTime)
 	    Logic();
 	    time = 0;
 	}
-
-	if (tileNumber > 0)
+	if (tileNumber >= 0)
 	    if (tilePos[tileNumber].x < tilePos[tileNumber-1].x)
 		row = 1;
 	    else 
 		row = 0;
-
 	body.setTexture(&texture);
 	animation.Update(row, deltaTime);
 	body.setTextureRect(animation.xyRect);  
     }
     else
-	tileNumber = -1;
+	tileNumber = -100;
 }
 
 void Soldier::Draw(sf::RenderWindow& window)
@@ -113,8 +111,7 @@ void Soldier::Create(int type)
     switchTime = moveSpeed / 4;
     body.setSize(sf::Vector2f(50, 50));
     body.setOrigin(body.getSize() / 2.0f);
-    body.setPosition(sf::Vector2f(3 * 60, -1 * 60));
-    body.move(sf::Vector2f(30 + offset, 30));
+    body.setPosition(sf::Vector2f(-500.0f, -500.0f));
     body.setTexture(&texture);
 }
 

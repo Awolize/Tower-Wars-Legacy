@@ -1,5 +1,7 @@
 #include "Tower.h"
+
 #include <iostream>
+
 
 using namespace std;
 
@@ -27,16 +29,23 @@ Tower::~Tower() {}
 void Tower::Update(float deltaTime)
 {   
     time += deltaTime;
-    body.setFillColor(sf::Color::White);
-    body.setTexture(&texture);
     if (soldierP != NULL)
+    {
 	if (time > reloadTime && gotTarget())
 	{
-	    cout << "SKJUT!" << endl;
+	    body.rotate(-angle);
+	    angle = atan2(pos.y - soldierP->getPos().y, pos.x - soldierP->getPos().x);
+	    angle = angle*100;
+	    cout << "angle: " << angle << endl << endl;
+	    body.rotate(angle);
+
 	    soldierP->takeDamage(damagePoints);
-	    body.setFillColor(sf::Color::Red);
 	    time = 0;
+	    if(!soldierP->Alive())
+		soldierP = NULL;
 	}   
+    }
+    body.setTexture(&texture);
 }
 
 bool Tower::gotTarget()
@@ -100,6 +109,7 @@ void Tower::Create(int type)
     body.setPosition(sf::Vector2f(pos * 60));
     body.move(sf::Vector2f(30 + offset, 30));
     body.setTexture(&texture);
+    body.rotate(-90);
 }
 
 void Tower::Delete()
