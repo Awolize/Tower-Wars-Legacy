@@ -1,5 +1,8 @@
 #include "ServerGameManager.h"
 
+#include <iostream>
+using namespace std;
+
 ServerGameManager::ServerGameManager() 
 {
     Tower t1(1, sf::Vector2i(0, 0), 1);
@@ -14,7 +17,15 @@ ServerGameManager::ServerGameManager()
 
 bool ServerGameManager::Run(float coins, float income, int option, int x, int y, Ground &ground)
 {
-    if(IsBuyAcceptable(coins, option))
+    if (option == 5)
+    {
+	if(!ground.IsPlacementAvailable(sf::Vector2i(x,y)))
+	{
+	    ground.SellTower(sf::Vector2i(x,y));
+	    return true;
+	}
+    }
+    else if(IsBuyAcceptable(coins, option))
 	if(ground.IsPlacementAvailable(sf::Vector2i(x,y)))
 	    return true;
     return false;
@@ -22,6 +33,7 @@ bool ServerGameManager::Run(float coins, float income, int option, int x, int y,
 
 bool ServerGameManager::IsBuyAcceptable(float coins, int option)
 {
+    cout << coins << endl;
     if(option == 1)
     {
 	if (coins >= t1Cost)

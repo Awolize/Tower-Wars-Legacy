@@ -15,6 +15,7 @@ public:
     void Insert(sf::Vector2i pos);
     void Draw(sf::RenderWindow& window);
     void SetPosition(int x, int y);
+    void SellTower(sf::Vector2i pos);
     bool IsPlacementAvailable(sf::Vector2i pos);
 private:
     std::array<std::array<int, 14>, 10> grid;

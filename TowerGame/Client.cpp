@@ -57,6 +57,16 @@ void Client::RunClient()
 					  towerListP2.push_back(Tower(option, sf::Vector2i(x,y), 2));
 				      else if (option == 3 || option == 4)
 					  soldierListP1.push_back(Soldier(option, 1));
+				      else if (option == 5)
+				      {
+					  for (auto it = towerListP2.begin(); it != towerListP2.end(); ++it)
+					      if (sf::Vector2i(x,y) == it->getPos())
+					      {
+						  towerListP2.erase(it);
+						  break;
+					      }
+				      }
+
 				  }
 				  else 
 				  {
@@ -70,6 +80,17 @@ void Client::RunClient()
 					  soldierListP2.push_back(Soldier(option, 2));
 					  player.BuyWithCoins(Soldier(option).getCost(), Soldier(option).getIncome());
 				      }
+				      else if (option == 5)
+				      {
+					  for (auto it = towerListP1.begin(); it != towerListP1.end(); ++it)
+					      if (sf::Vector2i(x,y) == it->getPos())
+					      {
+						  towerListP1.erase(it);
+						  player.BuyWithCoins(-10, 0);	
+						  break;
+					      }
+				      }
+
 				  } 
 			      }
 			  }
@@ -150,14 +171,12 @@ void Client::Update()
 
 void Client::Draw()
 {
-    window.clear(sf::Color(20,20,20,255));  
+    window.clear(sf::Color(0,0,0,255));  
     storeMenu.DrawStoreMenu(window);
     ground1.Draw(window);
     ground2.Draw(window);
     player.drawBase(window);
     player.drawPortal(window);
-    
-    
 
     if (soldierListP1.size() > 0)
 	for (Soldier & soldier : soldierListP1)

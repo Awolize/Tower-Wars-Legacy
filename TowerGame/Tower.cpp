@@ -34,7 +34,6 @@ void Tower::Update(float deltaTime)
 	body.rotate(-angle);
 	angle = atan2(pos.y - soldierP->getPos().y, pos.x - soldierP->getPos().x);
 	angle = angle*180/3.14159265359;
-	cout << "angle: " << angle << endl << endl;
 	body.rotate(angle);
 
 	if (time > reloadTime)

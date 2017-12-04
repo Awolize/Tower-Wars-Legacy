@@ -14,10 +14,6 @@ public:
     void RunServer();
 
 private:
-    void PacketHandling(sf::TcpSocket &socket, sf::TcpSocket &socket2, Ground &ground);
-    void Update();
-    void Draw();
-
     float deltaTime = 0.0f;
     sf::RenderWindow &window;
     sf::Clock clock;

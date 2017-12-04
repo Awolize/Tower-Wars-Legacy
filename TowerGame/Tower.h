@@ -16,6 +16,7 @@ public:
     void Delete(); 
     bool gotTarget();
     void getTarget(Soldier & soldier);
+    sf::Vector2i getPos() {return pos;};
     float getCost() {return cost;};
 private:
     void Create(int type);

@@ -42,6 +42,11 @@ Ground::Ground()
 	}
 }
 
+void Ground::SellTower(sf::Vector2i pos)
+{
+    grid.at(pos.x).at(pos.y) = 0;
+}
+
 bool Ground::IsPlacementAvailable(sf::Vector2i pos)
 {
     if (grid.at(pos.x).at(pos.y) == 0)

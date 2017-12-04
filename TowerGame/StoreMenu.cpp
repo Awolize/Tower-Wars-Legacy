@@ -41,7 +41,7 @@ void StoreMenu::DefineTexture(sf::RenderWindow & window)
     OptFour.setFillColor(sf::Color::Black);
 
     OptFive.setSize(sf::Vector2f(200, 40));
-    OptFive.setPosition(160,960);
+    OptFive.setPosition(160,940);
     OptFive.setOrigin(sf::Vector2f(OptOne.getSize() / 2.0f));
     OptFive.setFillColor(sf::Color::Black);
 
@@ -166,7 +166,7 @@ string StoreMenu::StoreMenuLogic(sf::RenderWindow & window)
 		   sf::Mouse::getPosition(window).y < OptFive.getPosition().y + OptFive.getSize().y / 2 )
 	    option = 5;	
 
-	if (option == 1 || option == 2 || option == 3 || option == 4)
+	if (option == 1 || option == 2 || option == 3 || option == 4 || option == 5)
 	{
 	    if (option == 3 || option == 4)
 	    {

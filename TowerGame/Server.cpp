@@ -98,19 +98,8 @@ void Server::RunServer()
 	}	
 	sf::Time time = clock.getElapsedTime();
 
-	Update();
 	window.clear();
-	Draw();
 	window.display();
     }
-}
-
-void Server::Update()
-{
-}
-
-void Server::Draw()
-{
-
 }
 

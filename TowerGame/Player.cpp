@@ -1,4 +1,9 @@
 #include "Player.h"
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
 
 Player::Player()
     :coins{100}, income{10} {
@@ -24,8 +29,15 @@ void Player::UpdateEconomy()
     sf::Time time = clock.getElapsedTime();
     if(time.asSeconds() >= 10.0)
 	TimerForIncome();
-    std::string tempIncome = std::to_string(income);
-    std::string tempCoins = std::to_string(coins);
+    
+    std::stringstream ss;
+    ss << fixed << setprecision(0) << income;
+    std::string tempIncome = "";
+    ss >> tempIncome;
+    ss.clear();
+    ss << fixed << setprecision(0) << coins;
+    std::string tempCoins = "";
+    ss >> tempCoins; 
     CoinsValue.setString(tempCoins);
     IncomeValue.setString(tempIncome);
 }
@@ -36,13 +48,13 @@ void Player::DefineEconomyMisc()
 
     font.loadFromFile("Arial.ttf");
     coinRectangle.setSize(sf::Vector2f(200, 40));
-    coinRectangle.setPosition(450,920);
-    coinRectangle.setOrigin(sf::Vector2f(coinRectangle.getSize() / 2.0f));
+    coinRectangle.setPosition(750, 930);
+    //   coinRectangle.setOrigin(coinRectangle.getSize() / 2.0f);
     coinRectangle.setFillColor(sf::Color::Black);  
 
     incomeRectangle.setSize(sf::Vector2f(200, 40));
-    incomeRectangle.setPosition(800,920);
-    incomeRectangle.setOrigin(sf::Vector2f(incomeRectangle.getSize() / 2.0f));
+    incomeRectangle.setPosition(1070, 930);
+//    incomeRectangle.setOrigin(incomeRectangle.getSize() / 2.0f);
     incomeRectangle.setFillColor(sf::Color::Black);  
 
 
@@ -50,6 +62,7 @@ void Player::DefineEconomyMisc()
     CoinsText.setCharacterSize(charsize);
     CoinsText.setFillColor(sf::Color::White);
     CoinsText.setString("Coins:");
+    
     CoinsText.setPosition(sf::Vector2f(coinRectangle.getPosition()));
     textRect = CoinsText.getLocalBounds();
 
@@ -100,15 +113,15 @@ void Player::createBase()
 {
     baseTexture.loadFromFile("images/base.png");
     base.setSize(sf::Vector2f(50, 50));
-    base.setOrigin(base.getSize()/2.f);
-    base.setPosition(sf::Vector2f(60*5, 0));
+    base.setOrigin(base.getSize() / 2.0f);
+    base.setPosition(sf::Vector2f(60 * 5, 0));
     base.move(30, 30);
     base.setTexture(&baseTexture);
 
     enemybaseTexture.loadFromFile("images/base2.png");
     enemybase.setSize(sf::Vector2f(50, 50));
-    enemybase.setOrigin(enemybase.getSize()/2.f);
-    enemybase.setPosition(sf::Vector2f(60*16, 0));
+    enemybase.setOrigin(enemybase.getSize() / 2.0f);
+    enemybase.setPosition(sf::Vector2f(60 * 16, 0));
     enemybase.move(50, 30);
     enemybase.setTexture(&enemybaseTexture);
 }
