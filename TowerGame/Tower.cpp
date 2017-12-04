@@ -9,10 +9,8 @@ Tower::Tower(int type, sf::Vector2i pos, int index, int user) : index(index), us
 	offset = 0;
     else if (user == 2)
 	offset = 60 * 10 + 80;
-
-    Create(type);
-
     soldierP = NULL;
+    Create(type);
 }
 
 
@@ -31,13 +29,14 @@ void Tower::Update(float deltaTime)
     time += deltaTime;
     body.setFillColor(sf::Color::White);
     body.setTexture(&texture);
-    if (time > reloadTime && gotTarget())
-    {
-	cout << "SKJUT!" << endl;
-	soldierP->takeDamage(damagePoints);
-	body.setFillColor(sf::Color::Red);
-	time = 0;
-    }   
+    if (soldierP != NULL)
+	if (time > reloadTime && gotTarget())
+	{
+	    cout << "SKJUT!" << endl;
+	    soldierP->takeDamage(damagePoints);
+	    body.setFillColor(sf::Color::Red);
+	    time = 0;
+	}   
 }
 
 bool Tower::gotTarget()
