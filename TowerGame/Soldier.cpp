@@ -3,8 +3,7 @@
 
 using namespace std;
 
-Soldier::Soldier(int type, int index, int user) : index(index), user(user),
-						  animation()
+Soldier::Soldier(int type, int user) : index(index), user(user), animation()
 {
     if (user == 1)
 	offset = 0;

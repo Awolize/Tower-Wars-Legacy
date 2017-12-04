@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Tower::Tower(int type, sf::Vector2i pos, int index, int user) : index(index), user(user), pos(pos)
+Tower::Tower(int type, sf::Vector2i pos, int user) : user(user), pos(pos)
 {
     if (user == 1)
 	offset = 0;
@@ -52,6 +52,8 @@ void Tower::getTarget(Soldier & soldier)
 {
     if (soldierP == NULL)
 	soldierP = &soldier;
+    else if (!inRange())
+	soldierP = &soldier;
     else if (soldier.getTileNumber() > soldierP->getTileNumber())
 	soldierP = &soldier;
 }
@@ -63,6 +65,7 @@ bool Tower::inRange()
 	soldierP->getPos().y < pos.y + range &&
 	soldierP->getPos().y > pos.y - range)
 	return true;
+    
     return false;
 }
 

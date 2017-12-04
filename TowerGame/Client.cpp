@@ -53,20 +53,20 @@ void Client::RunClient()
 				  if (user == 2)
 				  {
 				      if (option == 1 || option == 2)
-					  towerListP2.push_back(Tower(option, sf::Vector2i(x,y), towerIndexP2++, 2));
+					  towerListP2.push_back(Tower(option, sf::Vector2i(x,y), 2));
 				      else if (option == 3 || option == 4)
-					  soldierListP1.push_back(Soldier(option, soldierIndexP1++, 1));
+					  soldierListP1.push_back(Soldier(option, 1));
 				  }
 				  else 
 				  {
 				      if (option == 1 || option == 2)
 				      {
-					  towerListP1.push_back(Tower(option, sf::Vector2i(x,y), towerIndexP1++, 1));
+					  towerListP1.push_back(Tower(option, sf::Vector2i(x,y), 1));
 					  player.BuyWithCoins(Tower(option).getCost(), 0);
 				      }	  
 				      else if (option == 3 || option == 4)
 				      {
-					  soldierListP2.push_back(Soldier(option, soldierIndexP2++, 2));
+					  soldierListP2.push_back(Soldier(option, 2));
 					  player.BuyWithCoins(Soldier(option).getCost(), Soldier(option).getIncome());
 				      }
 				  } 
@@ -96,11 +96,11 @@ void Client::userInterface()
 	    if (event.key.code == sf::Keyboard::Escape)
 		window.close();
 	    if (event.key.code == sf::Keyboard::Num1)
-		soldierListP1.push_back(Soldier(3, 1, 1));
+		soldierListP1.push_back(Soldier(3,1));
 	    if (event.key.code == sf::Keyboard::Num2)
-		soldierListP1.push_back(Soldier(4, 1, 1));
+		soldierListP1.push_back(Soldier(4,1));
 	    if (event.key.code == sf::Keyboard::Num3)
-		towerListP1.push_back(Tower(1, sf::Vector2i(5,5), towerIndexP1++, 1));
+		towerListP1.push_back(Tower(1, sf::Vector2i(5,5), 1));
 
 	}
     }

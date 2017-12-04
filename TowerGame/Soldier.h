@@ -9,7 +9,7 @@
 class Soldier: public Entity
 {
 public:
-    Soldier(int type, int index, int user);
+    Soldier(int type, int user);
     Soldier(int type);
     ~Soldier();
 
