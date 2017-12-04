@@ -7,6 +7,7 @@
 #include "Soldier.h"
 #include "StoreMenu.h"
 #include "Ground.h"
+#include "Player.h"
 #include <sstream>
 
 using namespace std;
@@ -142,6 +143,7 @@ void Client::Update()
 			tower.getTarget(soldier);
 	    tower.Update(deltaTime);
 	}
+
 }
 
 void Client::Draw()
@@ -150,6 +152,10 @@ void Client::Draw()
     storeMenu.DrawStoreMenu(window);
     ground1.Draw(window);
     ground2.Draw(window);
+    player.drawBase(window);
+    player.drawPortal(window);
+    
+    
 
     if (soldierListP1.size() > 0)
 	for (Soldier & soldier : soldierListP1)

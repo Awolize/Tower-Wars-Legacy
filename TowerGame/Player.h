@@ -21,7 +21,10 @@ public:
     float getCoins() {return coins;};
     float getIncome() {return income;};
     void BuyWithCoins(float cost, float increaseIncome);
-
+    void createBase();
+    void createPortal();
+    void drawBase(sf::RenderWindow& window);
+    void drawPortal(sf::RenderWindow& window);
 private:
     void DefineEconomyMisc();
     //void TimerForIncome(sf::Clock timer);
@@ -39,7 +42,11 @@ private:
     sf::RectangleShape coinRectangle;
     sf::RectangleShape incomeRectangle;
     sf::Clock clock;
-    
+    sf::RectangleShape base;
+    sf::Texture baseTexture;
+    sf::RectangleShape portal;
+    sf::Texture portalTexture;
+    int baseHealth { 100 };
 
 };
 
