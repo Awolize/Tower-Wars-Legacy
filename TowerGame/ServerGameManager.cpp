@@ -2,13 +2,13 @@
 
 ServerGameManager::ServerGameManager() 
 {
-    Tower t1(1, sf::Vector2i(0, 0), 1, 1);
+    Tower t1(1, sf::Vector2i(0, 0), 1);
     t1Cost = t1.getCost();
-    Tower t2(2, sf::Vector2i(0, 0), 1, 1);
+    Tower t2(2, sf::Vector2i(0, 0), 1);
     t2Cost = t2.getCost();
-    Soldier s1(1, 1, 1);
+    Soldier s1(3, 1);
     s1Cost = s1.getCost();
-    Soldier s2(2, 1, 1);
+    Soldier s2(4, 1);
     s2Cost = s2.getCost();
 }
 

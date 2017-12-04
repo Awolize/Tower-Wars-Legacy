@@ -7,7 +7,7 @@
 class Tower : public Entity 
 {
 public: 
-    Tower(int type, sf::Vector2i pos, int index, int user);
+    Tower(int type, sf::Vector2i pos, int user);
     Tower(int type);
     ~Tower();
     void Update(float deltaTime);
@@ -25,7 +25,6 @@ private:
     float reloadTime {0};
     float range {0}; 
     sf::Texture texture;
-    int index;
     int user = 0;
     float offset;
     float time = 0;

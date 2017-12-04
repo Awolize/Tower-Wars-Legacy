@@ -33,38 +33,4 @@ private:
     std::vector<Tower> towerListP1;
     std::vector<Soldier> soldierListP2;
     std::vector<Tower> towerListP2;
-    int towerIndexP1 = 0;
-    int soldierIndexP1 = 0;
-    int towerIndexP2 = 0;
-    int soldierIndexP2 = 0;
 };
-
-/*
-  Restart.deltaTime;
-  Rec();
-  Update();
-  Send();
-  Draw();
-
-Update:
-BuyMenu() // and UI stuff
-
-Loop{ // all tower with all the soldiers
-  Tower[i].Update(Soldier[j], deltaTime);
-}
-Loop{
-  Soldier.Update(deltaTime);
-}
-
-Draw:
-
-GroundP1.Draw(window);
-GroundP2.Draw(window);
-Loop{ // all tower with all the soldiers
-  Tower[i].Draw(window);
-}
-Loop{
-  Soldier[i].Draw(window);
-}
-
- */
