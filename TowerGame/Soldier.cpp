@@ -71,6 +71,8 @@ void Soldier::Update(float deltaTime)
 	animation.Update(row, deltaTime);
 	body.setTextureRect(animation.xyRect);  
     }
+    else
+	tileNumber = -1;
 }
 
 void Soldier::Draw(sf::RenderWindow& window)
