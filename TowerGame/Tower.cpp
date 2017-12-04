@@ -29,21 +29,21 @@ Tower::~Tower() {}
 void Tower::Update(float deltaTime)
 {   
     time += deltaTime;
-    if (soldierP != NULL)
+    if(soldierP != NULL  && gotTarget())
     {
-	if (time > reloadTime && gotTarget())
-	{
-	    body.rotate(-angle);
-	    angle = atan2(pos.y - soldierP->getPos().y, pos.x - soldierP->getPos().x);
-	    angle = angle*100;
-	    cout << "angle: " << angle << endl << endl;
-	    body.rotate(angle);
+	body.rotate(-angle);
+	angle = atan2(pos.y - soldierP->getPos().y, pos.x - soldierP->getPos().x);
+	angle = angle*180/3.14159265359;
+	cout << "angle: " << angle << endl << endl;
+	body.rotate(angle);
 
+	if (time > reloadTime)
+	{
 	    soldierP->takeDamage(damagePoints);
 	    time = 0;
 	    if(!soldierP->Alive())
 		soldierP = NULL;
-	}   
+	} 
     }
     body.setTexture(&texture);
 }
