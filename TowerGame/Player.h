@@ -6,8 +6,6 @@
 #include <vector>
 #include <string>
 #include <iostream>
-#include "Soldier.h"
-//#include "Client.h"
 
 class Player 
 {
@@ -25,6 +23,8 @@ public:
     void createPortal();
     void drawBase(sf::RenderWindow& window);
     void drawPortal(sf::RenderWindow& window);
+    void TakeDamage(int user, int incommingDamage);
+    bool GameOver() { if (baseHealthP1 <= 0 || baseHealthP2 <= 0) return true; else false;};
 private:
     void DefineEconomyMisc();
     //void TimerForIncome(sf::Clock timer);
@@ -47,8 +47,8 @@ private:
     sf::RectangleShape portal;
     sf::RectangleShape enemyportal;
     sf::Texture portalTexture;
-    int baseHealth { 100 };
-
+    int baseHealthP1 { 100 };
+    int baseHealthP2 { 100 };
 };
 
 

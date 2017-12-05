@@ -171,7 +171,7 @@ string StoreMenu::StoreMenuLogic(sf::RenderWindow & window)
 	    if (option == 3 || option == 4)
 	    {
 		data = to_string(option);
-		data += " 0 0";
+		data += " -1 -1";
 		option = 0;
 	    }
 	    else if ( sf::Mouse::getPosition(window).x > maphitbox1.getPosition().x - maphitbox1.getSize().x / 2 &&

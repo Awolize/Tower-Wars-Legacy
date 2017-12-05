@@ -56,7 +56,7 @@ void Client::RunClient()
 				      if (option == 1 || option == 2)
 					  towerListP2.push_back(Tower(option, sf::Vector2i(x,y), 2));
 				      else if (option == 3 || option == 4)
-					  soldierListP1.push_back(Soldier(option, 1));
+					  soldierListP1.push_back(Soldier(option, 1, player));
 				      else if (option == 5)
 				      {
 					  for (auto it = towerListP2.begin(); it != towerListP2.end(); ++it)
@@ -77,7 +77,7 @@ void Client::RunClient()
 				      }	  
 				      else if (option == 3 || option == 4)
 				      {
-					  soldierListP2.push_back(Soldier(option, 2));
+					  soldierListP2.push_back(Soldier(option, 2, player));
 					  player.BuyWithCoins(Soldier(option).getCost(), Soldier(option).getIncome());
 				      }
 				      else if (option == 5)
@@ -104,6 +104,14 @@ void Client::RunClient()
  	Update();
  	Draw();
     }
+    thread.wait();
+    float endScreenTimer = clock.getElapsedTime().asSeconds() + 7;
+    
+    while (endScreenTimer > clock.getElapsedTime().asSeconds())
+    {
+	Draw();
+// get vem som vann
+    }
 }
 
 void Client::userInterface()
@@ -118,9 +126,9 @@ void Client::userInterface()
 	    if (event.key.code == sf::Keyboard::Escape)
 		window.close();
 	    if (event.key.code == sf::Keyboard::Num1)
-		soldierListP1.push_back(Soldier(3,1));
+		soldierListP1.push_back(Soldier(3, 1, player));
 	    if (event.key.code == sf::Keyboard::Num2)
-		soldierListP1.push_back(Soldier(4,1));
+		soldierListP1.push_back(Soldier(4, 1, player));
 	    if (event.key.code == sf::Keyboard::Num3)
 		towerListP1.push_back(Tower(1, sf::Vector2i(5,5), 1));
 	    if (event.key.code == sf::Keyboard::Num4)
@@ -139,6 +147,9 @@ string Client::strRequest()
 
 void Client::Update()
 {
+    if (player.GameOver())
+	ifNext = true;
+
     if (soldierListP1.size() > 0)
 	for (Soldier & soldier : soldierListP1)
 	    soldier.Update(deltaTime);
@@ -166,7 +177,6 @@ void Client::Update()
 			tower.getTarget(soldier);
 	    tower.Update(deltaTime);
 	}
-
 }
 
 void Client::Draw()

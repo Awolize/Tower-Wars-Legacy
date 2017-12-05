@@ -3,13 +3,14 @@
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
 #include "Animation.h"
+#include "Player.h"
 #include <array>
 #include <iostream>
 
 class Soldier: public Entity
 {
 public:
-    Soldier(int type, int user);
+    Soldier(int type, int user, Player & player);
     Soldier(int type);
     ~Soldier();
 
@@ -24,7 +25,6 @@ public:
     float getTileNumber() {return tileNumber-1;};
     void takeDamage(float damage) {healthPoints -= damage; std::cout << healthPoints << std::endl;};
     bool Alive() {if (healthPoints > 0) return true; else return false;};
-   
 
 private:
     int tileNumber = 0;
@@ -48,5 +48,8 @@ private:
     float offset;
     bool faceRight = true;
     bool gotTarget = false;
+    Player * playerP;
 };
 #endif
+
+   
