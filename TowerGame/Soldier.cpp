@@ -3,12 +3,14 @@
 
 using namespace std;
 
-Soldier::Soldier(int type, int user) : index(index), user(user), animation()
+Soldier::Soldier(int type, int user, Player & player) : index(index), user(user), animation()
 {
     if (user == 1)
 	offset = 0;
     else if (user == 2)
 	offset = 60 * 10 + 80;
+
+    playerP = &player;
 
     Create(type);
     animation.Create(&texture, imageCount, switchTime);
@@ -81,7 +83,11 @@ void Soldier::Draw(sf::RenderWindow& window)
 void Soldier::Logic()
 {
     if(tileNumber == 51)
+    {
 	healthPoints = 0;
+	body.setPosition(sf::Vector2f(-1000, -1000));
+	playerP->TakeDamage(user, damagePoints);
+    }
     body.setPosition(sf::Vector2f(tilePos[tileNumber] * 60));
     body.move(sf::Vector2f(30 + offset, 30));
     ++tileNumber;

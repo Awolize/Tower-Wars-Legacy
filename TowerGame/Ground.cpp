@@ -13,7 +13,7 @@ Ground::Ground()
 	{
 	    if (j == 0 && (i == 3 || i == 5))
 		grid.at(i).at(j) = r;
-	    else if (j == 1 && (i == 1 || i == 2 || i == 3 || i ==5 || i == 6 || i == 7 || i == 8))
+	    else if (j == 1 && (i == 1 || i == 2 || i == 3 || i == 5 || i == 6 || i == 7 || i == 8))
 		grid.at(i).at(j) = r;
 	    else if (j == 2 && (i == 1 || i == 8))
 		grid.at(i).at(j) = r;
@@ -44,15 +44,17 @@ Ground::Ground()
 
 void Ground::SellTower(sf::Vector2i pos)
 {
-    grid.at(pos.x).at(pos.y) = 0;
+    if (grid.at(pos.x).at(pos.y) == 2)
+	grid.at(pos.x).at(pos.y) = 0;
 }
 
 bool Ground::IsPlacementAvailable(sf::Vector2i pos)
 {
-    if (grid.at(pos.x).at(pos.y) == 0)
+    if (pos.x == -1 && pos.y == -1)
+	return true;
+    else if (grid.at(pos.x).at(pos.y) == 0)
     {
-	if (pos.x != 0 && pos.y != 0)
-	    grid.at(pos.x).at(pos.y) = 1;
+	grid.at(pos.x).at(pos.y) = 2;
 	return true;
     }
     else return false;

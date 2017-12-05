@@ -20,7 +20,13 @@ void Server::RunServer()
 		string data;
 		packet.clear();
 		socketP1.receive(packet);
-		if(packet.getDataSize() > 0)
+		cout << packet.getDataSize() << endl;
+		if (packet.getDataSize() > 0 && packet.getDataSize() < 10)
+		{
+		   socketP1.send(packet); 
+		   socketP2.send(packet);
+		}
+		else if(packet.getDataSize() > 0)
 		{
 		    cout << "Packet Size:" << packet.getDataSize() << endl;
 		

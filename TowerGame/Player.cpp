@@ -145,10 +145,10 @@ void Player::createPortal()
 
 void Player::drawBase(sf::RenderWindow& window)
 {
-    if (baseHealth > 0)
+    if (baseHealthP1 > 0)
 	window.draw(base);
-
-    window.draw(enemybase);
+    if (baseHealthP2 > 0)
+	window.draw(enemybase);
 }
 
 void Player::drawPortal(sf::RenderWindow& window)
@@ -157,3 +157,10 @@ void Player::drawPortal(sf::RenderWindow& window)
     window.draw(enemyportal);
 }
 
+void Player::TakeDamage(int user, int incommingDamage)
+{
+    if(user == 1)
+	baseHealthP1 -= incommingDamage;
+    else if (user == 2)
+	baseHealthP2 -= incommingDamage;
+}
