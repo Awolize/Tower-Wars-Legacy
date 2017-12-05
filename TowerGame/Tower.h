@@ -4,6 +4,8 @@
 #include "Entity.h"
 #include "Soldier.h"
 #include "math.h"
+#include "Bullet.h"
+#include <vector>
 
 class Tower : public Entity 
 {
@@ -18,6 +20,8 @@ public:
     void getTarget(Soldier & soldier);
     sf::Vector2i getPos() {return pos;};
     float getCost() {return cost;};
+    std::vector<Bullet> bulletList;
+
 private:
     void Create(int type);
     bool inRange();
@@ -35,5 +39,6 @@ private:
     bool firstTarget = true;
     float dir = 0;
     float angle = 0;
+
 };
 #endif

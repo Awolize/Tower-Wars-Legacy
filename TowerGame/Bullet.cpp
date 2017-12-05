@@ -2,20 +2,17 @@
 
 using namespace std;
 
-Bullet::Bullet(int type)
+Bullet::Bullet(int type, sf::Vector2i position, float angle)
 {
-    body.setSize(sf::Vector2f(25, 25));
-    body.setOrigin(sf::Vector2f(body.getSize() / 2.0f));
-
-    if(type == 1)
-	bulletTexture.loadFromFile("images/bullet1.png");
-    else
-	bulletTexture.loadFromFile("images/bullet2.png");
-
-    // imageCount = sf::Vector2i(3, 2);
-    //  switchTime = 2.f;
+    bulletTexture.loadFromFile("images/bullet.png");
     body.setTexture(&bulletTexture);
-    //animation.Create(&bulletTexture, imageCount, switchTime);
+
+    body.setSize(sf::Vector2f(25, 25));
+    body.setOrigin(body.getSize() / 2.0f);
+    body.setPosition(position.x*60, position.y*60);
+
+    //  body.rotate(-angle);
+
 }
 
 Bullet::~Bullet() {}
@@ -26,7 +23,16 @@ void Bullet::Draw(sf::RenderWindow& window)
     window.draw(body);
 }
 
-void Bullet::Update(float deltaTime)
+void Bullet::Update(float deltaTime, sf::Vector2i soldierPos)
 {
-    //animation.Update(row, deltaTime);
+    if(fireReady)
+    {
+	cout << "soldierPos.x: " <<  soldierPos.x << endl; 
+
+	body.move(soldierPos.x*60, soldierPos.y*60);
+
+
+    }
+
 }
+

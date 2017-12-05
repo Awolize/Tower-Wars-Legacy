@@ -35,14 +35,24 @@ void Tower::Update(float deltaTime)
 	angle = atan2(pos.y - soldierP->getPos().y, pos.x - soldierP->getPos().x);
 	angle = angle*180/3.14159265359;
 	body.rotate(angle);
-
+	Bullet bullet(1, soldierP->getPos(), angle);
 	if (time > reloadTime)
 	{
+	    bulletList.push_back(bullet);
+	    bullet.fireReady = true;
+	    for(Bullet & bullet : bulletList)
+		bullet.Update(deltaTime, soldierP->getPos());
+
 	    soldierP->takeDamage(damagePoints);
 	    time = 0;
 	    if(!soldierP->Alive())
 		soldierP = NULL;
-	} 
+	}
+	else if(bulletList.size() > 0)
+	{
+	    cout << "hej" << endl;
+	    bulletList.pop_back();
+	}
     }
     body.setTexture(&texture);
 }
@@ -81,6 +91,12 @@ void Tower::Draw(sf::RenderWindow& window)
 {
     if(true)
 	window.draw(body);
+    
+    for(Bullet & bullet : bulletList)
+    {
+	bullet.Draw(window);
+    }
+    
 }
 
 void Tower::Create(int type)
@@ -92,7 +108,9 @@ void Tower::Create(int type)
 	range = 3;
 	attackSpeed = 0.4;
 	reloadTime = 1 / attackSpeed;
-	damagePoints = 50;
+	damagePoints = 50.001;
+
+
     }
     if(type == 2)
     {
@@ -101,7 +119,8 @@ void Tower::Create(int type)
 	range = 4;
 	attackSpeed = 0.8;
 	reloadTime = 1 / attackSpeed;
-	damagePoints = 40;
+	damagePoints = 40.001;
+
     }
     body.setSize(sf::Vector2f(50, 50));
     body.setOrigin(body.getSize() / 2.0f);
