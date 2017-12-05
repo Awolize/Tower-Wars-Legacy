@@ -1,20 +1,5 @@
 #include "Animation.h"
 
-
-Animation::Animation(sf::Texture* texture, sf::Vector2i imageCount,
-		     float switchTime) :
-    imageCount{ imageCount }, switchTime{ switchTime }, totalTime{ 0.0f },
-    currentImage{ 0, 0 }
-{
-    xyRect.width = texture->getSize().x / imageCount.x;
-    xyRect.height = texture->getSize().y / imageCount.y;
-    created = true;
-}
-
-Animation::Animation()
-{
-}
-
 void Animation::Create(sf::Texture* texture, sf::Vector2i tImageCount, float tSwitchTime)
 {
     imageCount = tImageCount;
@@ -24,10 +9,6 @@ void Animation::Create(sf::Texture* texture, sf::Vector2i tImageCount, float tSw
     created = true;
     xyRect.width = texture->getSize().x / imageCount.x;
     xyRect.height = texture->getSize().y / imageCount.y;
-}
-
-Animation::~Animation()
-{
 }
 
 void Animation::Update(int row, float deltaTime)

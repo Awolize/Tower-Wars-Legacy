@@ -5,23 +5,17 @@
 
 using namespace std;
 
-Player::Player()
-    :coins{100}, income{10} {
-	DefineEconomyMisc();
-	createBase();
-	createPortal();
-		 }
-
-
-void Player::AddIncome()
+Player::Player() :coins{100}, income{10} 
 {
-    coins = coins + income;
+    DefineEconomyMisc();
+    createBase();
+    createPortal();
 }
 
 void Player::TimerForIncome()
 {
     clock.restart();
-    AddIncome();
+    coins = coins + income;
 }
 
 void Player::UpdateEconomy()
@@ -91,16 +85,9 @@ void Player::DefineEconomyMisc()
 }
 
 
-void Player::DrawEconomy(sf::RenderWindow & window)
+void Player::Update()
 { 
     UpdateEconomy();
-    window.draw(incomeRectangle);
-    window.draw(coinRectangle);
-    window.draw(IncomeText);
-    window.draw(CoinsText);
-    window.draw(IncomeValue);
-    window.draw(CoinsValue);
-
 }
 
 void Player::BuyWithCoins(float cost, float increaseIncome)
@@ -143,18 +130,34 @@ void Player::createPortal()
 
 }
 
-void Player::drawBase(sf::RenderWindow& window)
+void Player::Draw(sf::RenderWindow& window)
 {
+    window.draw(incomeRectangle);
+    window.draw(coinRectangle);
+    window.draw(IncomeText);
+    window.draw(CoinsText);
+    window.draw(IncomeValue);
+    window.draw(CoinsValue);
+
+    window.draw(portal);
+    window.draw(enemyportal);
     if (baseHealthP1 > 0)
 	window.draw(base);
     if (baseHealthP2 > 0)
 	window.draw(enemybase);
 }
 
-void Player::drawPortal(sf::RenderWindow& window)
+int Player::getWinner()
 {
-    window.draw(portal);
-    window.draw(enemyportal);
+    if (GameOver())
+    {
+	if (baseHealthP1 > 0)
+	    return 1;
+	else if (baseHealthP2 > 0)
+	    return 2;
+    }
+    else
+	return 0;
 }
 
 void Player::TakeDamage(int user, int incommingDamage)

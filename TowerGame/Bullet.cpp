@@ -12,11 +12,7 @@ Bullet::Bullet(int type, sf::Vector2i position, float angle)
     body.setPosition(position.x*60, position.y*60);
 
     //  body.rotate(-angle);
-
 }
-
-Bullet::~Bullet() {}
-
 
 void Bullet::Draw(sf::RenderWindow& window)
 {
@@ -30,8 +26,6 @@ void Bullet::Update(float deltaTime, sf::Vector2i soldierPos)
 	cout << "soldierPos.x: " <<  soldierPos.x << endl; 
 
 	body.move(soldierPos.x*60, soldierPos.y*60);
-
-
     }
 
 }

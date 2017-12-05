@@ -12,13 +12,9 @@ class Soldier: public Entity
 public:
     Soldier(int type, int user, Player & player);
     Soldier(int type);
-    ~Soldier();
-
     void Logic();
     void Update(float deltaTime);
     void Draw(sf::RenderWindow& window) override;
-    void Delete();
-
     float getCost() {return cost;};
     float getIncome() {return income;};
     sf::Vector2i getPos() {return tilePos[tileNumber-1];};

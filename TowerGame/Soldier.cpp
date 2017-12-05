@@ -49,8 +49,6 @@ Soldier::Soldier(int type)
     }
 }
 
-Soldier::~Soldier() {}
-
 void Soldier::Update(float deltaTime)
 {
     if (Alive())
@@ -119,10 +117,4 @@ void Soldier::Create(int type)
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(sf::Vector2f(-500.0f, -500.0f));
     body.setTexture(&texture);
-}
-
-void Soldier::Delete()
-{
-
-
 }

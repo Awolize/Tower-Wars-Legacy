@@ -6,8 +6,8 @@ class Entity
 {
 public:
     Entity();
-    ~Entity();
     virtual void Draw(sf::RenderWindow &window) = 0;
+protected:
     sf::RectangleShape body;
 };
 

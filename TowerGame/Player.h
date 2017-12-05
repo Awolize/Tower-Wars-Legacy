@@ -11,27 +11,18 @@ class Player
 {
 public: 
     Player();
-    //~Player();
-    void AddIncome();
-    void TimerForIncome();
-    //void UpdateEconomy(float currCoin, float currIncome);
-    void DrawEconomy(sf::RenderWindow & window);
+    void Update();
     float getCoins() {return coins;};
     float getIncome() {return income;};
     void BuyWithCoins(float cost, float increaseIncome);
+    void Draw(sf::RenderWindow& window);
+    void TakeDamage(int user, int incommingDamage);
+    bool GameOver()  { if (baseHealthP1 > 0 && baseHealthP2 > 0) return false; else true; };
+    int getWinner();
+private:
+    void TimerForIncome();
     void createBase();
     void createPortal();
-    void drawBase(sf::RenderWindow& window);
-    void drawPortal(sf::RenderWindow& window);
-    void TakeDamage(int user, int incommingDamage);
-    bool GameOver() 
-    { 
-	if (baseHealthP1 > 0 && baseHealthP2 > 0) 
-	    return false; 
-	else
-	    true;
-    };
-private:
     void DefineEconomyMisc();
     //void TimerForIncome(sf::Clock timer);
     void UpdateEconomy();

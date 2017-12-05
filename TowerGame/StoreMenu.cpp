@@ -1,7 +1,7 @@
 #include "StoreMenu.h" 
 #include <sstream>
 using namespace std;
-
+/*
 Tower StoreMenu::BuyTower(float Coins, Tower Tower, Player Player)
 {
     if (Player.getCoins() >= Tower.getCost())
@@ -18,6 +18,7 @@ Soldier StoreMenu::BuySoldier(float Coins, Soldier Soldier, Player Player)
 	return Soldier;
     } 
 }
+*/
 void StoreMenu::DefineTexture(sf::RenderWindow & window)
 { 
     OptOne.setSize(sf::Vector2f(200, 40));
@@ -98,14 +99,13 @@ void StoreMenu::DefineTexture(sf::RenderWindow & window)
     SellTower.setPosition((OptFive.getPosition().x), (OptFive.getPosition().y));
 }
 
-void StoreMenu::DrawStoreMenu(sf::RenderWindow & window)
+void StoreMenu::Draw(sf::RenderWindow & window)
 {
     if(oneTime)
     {
 	DefineTexture(window);
 	oneTime = false;
     }
-    //window.draw(StoreMenuSprite);
     window.draw(maphitbox1);
     window.draw(maphitbox2);
     window.draw(OptOne);

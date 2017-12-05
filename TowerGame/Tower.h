@@ -12,10 +12,8 @@ class Tower : public Entity
 public: 
     Tower(int type, sf::Vector2i pos, int user);
     Tower(int type);
-    ~Tower();
     void Update(float deltaTime);
-    void Draw(sf::RenderWindow & window); // override;
-    void Delete(); 
+    void Draw(sf::RenderWindow & window) override;
     bool gotTarget();
     void getTarget(Soldier & soldier);
     sf::Vector2i getPos() {return pos;};

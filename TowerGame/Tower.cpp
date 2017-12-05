@@ -24,8 +24,6 @@ Tower::Tower(int type)
 	cost = 20;
 }
 
-Tower::~Tower() {} 
-
 void Tower::Update(float deltaTime)
 {   
     time += deltaTime;
@@ -96,7 +94,6 @@ void Tower::Draw(sf::RenderWindow& window)
     {
 	bullet.Draw(window);
     }
-    
 }
 
 void Tower::Create(int type)
@@ -109,8 +106,6 @@ void Tower::Create(int type)
 	attackSpeed = 0.4;
 	reloadTime = 1 / attackSpeed;
 	damagePoints = 50.001;
-
-
     }
     if(type == 2)
     {
@@ -120,7 +115,6 @@ void Tower::Create(int type)
 	attackSpeed = 0.8;
 	reloadTime = 1 / attackSpeed;
 	damagePoints = 40.001;
-
     }
     body.setSize(sf::Vector2f(50, 50));
     body.setOrigin(body.getSize() / 2.0f);
@@ -128,9 +122,4 @@ void Tower::Create(int type)
     body.move(sf::Vector2f(30 + offset, 30));
     body.setTexture(&texture);
     body.rotate(-90);
-}
-
-void Tower::Delete()
-{
-
 }

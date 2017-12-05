@@ -27,7 +27,7 @@ void Client::RunClient()
 			      sf::Packet packet;
 			      string data;
 			      socket.receive(packet);
-			      if (packet.getDataSize() > 0 && packet.getDataSize() < 10) {}
+			      if (packet.getDataSize() > 0 && packet.getDataSize() < 10) {thread.wait();}
 			      else if(packet.getDataSize() > 0)
 			      {
 				  cout << "Packet Size:" << packet.getDataSize() << endl;
@@ -105,24 +105,30 @@ void Client::RunClient()
  	Update();
  	Draw();
     }
-    sf::Packet packet;
-    string done = "Done!";
-    packet << done;
-    socket.send(packet);
-    
-    cout << "thread.wait()" << endl;
-    thread.wait();
-    float endScreenTimer = clock.getElapsedTime().asSeconds() + 7;
-    
-    cout << endScreenTimer << " > ";
-    cout << clock.getElapsedTime().asSeconds() + 7 << endl;
-
-    while (endScreenTimer > clock.getElapsedTime().asSeconds())
+    if (!window.isOpen())
     {
-	userInterface();
-	Draw();
+	sf::Packet packet;
+	string done = "Done!";
+	packet << done;
+	socket.send(packet);
+    
+	cout << "thread.wait()" << endl;
+	thread.wait();
+	float endScreenTimer = clock.getElapsedTime().asSeconds() + 7;
+    
+	cout << endScreenTimer << " > ";
+	cout << clock.getElapsedTime().asSeconds() << endl;
+
+	while (endScreenTimer > clock.getElapsedTime().asSeconds())
+	{
+	    userInterface();
+	    Draw();
+	}
+	if (player.getWinner() == 1)
+	    cout << "Winner: Player 1" << endl;
+	else if (player.getWinner() == 2)
+	    cout << "Winner: Player 2" << endl;
     }
-    cout << "Någon Vann!" << endl;
 }
 
 void Client::userInterface()
@@ -136,15 +142,14 @@ void Client::userInterface()
 	{
 	    if (event.key.code == sf::Keyboard::Escape)
 		window.close();
-	    if (event.key.code == sf::Keyboard::Num1)
+	    else if (event.key.code == sf::Keyboard::Num1)
 		soldierListP1.push_back(Soldier(3, 1, player));
-	    if (event.key.code == sf::Keyboard::Num2)
+	    else if (event.key.code == sf::Keyboard::Num2)
 		soldierListP1.push_back(Soldier(4, 1, player));
-	    if (event.key.code == sf::Keyboard::Num3)
+	    else if (event.key.code == sf::Keyboard::Num3)
 		towerListP1.push_back(Tower(1, sf::Vector2i(5,5), 1));
-	    if (event.key.code == sf::Keyboard::Num4)
+	    else if (event.key.code == sf::Keyboard::Num4)
 		towerListP1.push_back(Tower(2, sf::Vector2i(3,3), 1));
-
 	}
     }
 }
@@ -188,16 +193,16 @@ void Client::Update()
 			tower.getTarget(soldier);
 	    tower.Update(deltaTime);
 	}
+    player.Update();
 }
 
 void Client::Draw()
 {
     window.clear(sf::Color(0,0,0,255));  
-    storeMenu.DrawStoreMenu(window);
+    storeMenu.Draw(window);
     ground1.Draw(window);
     ground2.Draw(window);
-    player.drawBase(window);
-    player.drawPortal(window);
+    player.Draw(window);
 
     if (soldierListP1.size() > 0)
 	for (Soldier & soldier : soldierListP1)
@@ -211,7 +216,6 @@ void Client::Draw()
     if (towerListP2.size() > 0)
 	for (Tower & tower : towerListP2)
 	    tower.Draw(window);
-    player.DrawEconomy(window);
     window.display();
 }
 

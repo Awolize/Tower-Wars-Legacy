@@ -10,12 +10,12 @@
 class StoreMenu
 {
 public:
-    Tower BuyTower(float, Tower, Player); 
-    Soldier BuySoldier(float, Soldier, Player);
-    void DefineTexture(sf::RenderWindow & window);
-    void DrawStoreMenu(sf::RenderWindow & window);
+//    Tower BuyTower(float, Tower, Player); 
+//    Soldier BuySoldier(float, Soldier, Player);
+    void Draw(sf::RenderWindow & window);
     std::string StoreMenuLogic(sf::RenderWindow & window);
 private:
+    void DefineTexture(sf::RenderWindow & window);
     sf::Font font;
     sf::Text SoldierType1;
     sf::Text SoldierType2;

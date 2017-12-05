@@ -9,7 +9,6 @@ class Bullet : public Entity
 {
 public:
     Bullet(int type, sf::Vector2i position, float angle);
-    ~Bullet();
     void Draw(sf::RenderWindow& window) override;
     void Update(float deltaTime, sf::Vector2i soldierPos);
     bool fireReady { false };
