@@ -24,7 +24,13 @@ public:
     void drawBase(sf::RenderWindow& window);
     void drawPortal(sf::RenderWindow& window);
     void TakeDamage(int user, int incommingDamage);
-    bool GameOver() { if (baseHealthP1 <= 0 || baseHealthP2 <= 0) return true; else false;};
+    bool GameOver() 
+    { 
+	if (baseHealthP1 > 0 && baseHealthP2 > 0) 
+	    return false; 
+	else
+	    true;
+    };
 private:
     void DefineEconomyMisc();
     //void TimerForIncome(sf::Clock timer);

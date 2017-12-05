@@ -27,7 +27,8 @@ void Client::RunClient()
 			      sf::Packet packet;
 			      string data;
 			      socket.receive(packet);
-			      if(packet.getDataSize() > 0)
+			      if (packet.getDataSize() > 0 && packet.getDataSize() < 10) {}
+			      else if(packet.getDataSize() > 0)
 			      {
 				  cout << "Packet Size:" << packet.getDataSize() << endl;
 		
@@ -104,14 +105,24 @@ void Client::RunClient()
  	Update();
  	Draw();
     }
+    sf::Packet packet;
+    string done = "Done!";
+    packet << done;
+    socket.send(packet);
+    
+    cout << "thread.wait()" << endl;
     thread.wait();
     float endScreenTimer = clock.getElapsedTime().asSeconds() + 7;
     
+    cout << endScreenTimer << " > ";
+    cout << clock.getElapsedTime().asSeconds() + 7 << endl;
+
     while (endScreenTimer > clock.getElapsedTime().asSeconds())
     {
+	userInterface();
 	Draw();
-// get vem som vann
     }
+    cout << "Någon Vann!" << endl;
 }
 
 void Client::userInterface()
