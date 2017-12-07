@@ -33,7 +33,6 @@ bool ServerGameManager::Run(float coins, float income, int option, int x, int y,
 
 bool ServerGameManager::IsBuyAcceptable(float coins, int option)
 {
-    cout << coins << endl;
     if(option == 1)
     {
 	if (coins >= t1Cost)

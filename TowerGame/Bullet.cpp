@@ -32,9 +32,6 @@ void Bullet::Update(float deltaTime)
 	body.move(-nPos.x * deltaTime * 500, -nPos.y * deltaTime * 500);
 	if (cPos.x == tPos.x && cPos.y == tPos.y)
 	    bulletHit = true;
-
-	cout << cPos.x << " == "  << tPos.x <<  " && " << cPos.y << " == " << tPos.y << endl;
-
     }
 
 }
