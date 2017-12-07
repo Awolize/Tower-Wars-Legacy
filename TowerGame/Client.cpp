@@ -166,33 +166,29 @@ void Client::Update()
     if (player.GameOver())
 	ifNext = true;
 
-    if (soldierListP1.size() > 0)
-	for (Soldier & soldier : soldierListP1)
-	    soldier.Update(deltaTime);
+    for (Soldier & soldier : soldierListP1)
+	soldier.Update(deltaTime);
 	
-    if (towerListP1.size() > 0)
-	for (Tower & tower : towerListP1)
-	{
-	    if (soldierListP1.size() > 0)
-		if (!tower.gotTarget())	
-		    for (Soldier & soldier : soldierListP1)
-			tower.getTarget(soldier);	 
-	    tower.Update(deltaTime);
-	}
+    for (Tower & tower : towerListP1)
+    {
+	if (soldierListP1.size() > 0)
+	    if (!tower.gotTarget())	
+		for (Soldier & soldier : soldierListP1)
+		    tower.getTarget(soldier);	 
+	tower.Update(deltaTime);
+    }
 
-    if (soldierListP2.size() > 0)
-	for (Soldier & soldier : soldierListP2)
-	    soldier.Update(deltaTime);
+    for (Soldier & soldier : soldierListP2)
+	soldier.Update(deltaTime);
 
-    if (towerListP2.size() > 0)
-	for (Tower & tower : towerListP2)
-	{
-	    if (soldierListP2.size() > 0)
-		if (!tower.gotTarget())
-		    for (Soldier & soldier : soldierListP2)
-			tower.getTarget(soldier);
-	    tower.Update(deltaTime);
-	}
+    for (Tower & tower : towerListP2)
+    {
+	if (soldierListP2.size() > 0)
+	    if (!tower.gotTarget())
+		for (Soldier & soldier : soldierListP2)
+		    tower.getTarget(soldier);
+	tower.Update(deltaTime);
+    }
     player.Update();
 }
 

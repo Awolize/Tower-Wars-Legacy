@@ -27,29 +27,24 @@ Tower::Tower(int type)
 void Tower::Update(float deltaTime)
 {   
     time += deltaTime;
-    if(soldierP != NULL  && gotTarget())
+    for(Bullet & bullet : bulletList)
+	bullet.Update(deltaTime);
+    if(soldierP != NULL && gotTarget())
     {
 	body.rotate(-angle);
 	angle = atan2(pos.y - soldierP->getPos().y, pos.x - soldierP->getPos().x);
 	angle = angle*180/3.14159265359;
 	body.rotate(angle);
-	Bullet bullet(1, soldierP->getPos(), angle);
+
+	
 	if (time > reloadTime)
 	{
-	    bulletList.push_back(bullet);
-	    bullet.fireReady = true;
-	    for(Bullet & bullet : bulletList)
-		bullet.Update(deltaTime, soldierP->getPos());
+	    bulletList.push_back(Bullet(1, getPos(), soldierP->getPos(), angle));
 
 	    soldierP->takeDamage(damagePoints);
 	    time = 0;
 	    if(!soldierP->Alive())
 		soldierP = NULL;
-	}
-	else if(bulletList.size() > 0)
-	{
-	    cout << "hej" << endl;
-	    bulletList.pop_back();
 	}
     }
     body.setTexture(&texture);
@@ -86,14 +81,13 @@ bool Tower::inRange()
 }
 
 void Tower::Draw(sf::RenderWindow& window)
-{
-    if(true)
-	window.draw(body);
-    
+{    
     for(Bullet & bullet : bulletList)
     {
 	bullet.Draw(window);
     }
+    if(true)
+	window.draw(body);
 }
 
 void Tower::Create(int type)

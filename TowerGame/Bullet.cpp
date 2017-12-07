@@ -2,30 +2,39 @@
 
 using namespace std;
 
-Bullet::Bullet(int type, sf::Vector2i position, float angle)
+Bullet::Bullet(int type, sf::Vector2i cPos, sf::Vector2i tPos, float angle) : cPos(cPos), tPos(tPos)
 {
     bulletTexture.loadFromFile("images/bullet.png");
     body.setTexture(&bulletTexture);
 
-    body.setSize(sf::Vector2f(25, 25));
+    body.setSize(sf::Vector2f(25, 10));
     body.setOrigin(body.getSize() / 2.0f);
-    body.setPosition(position.x*60, position.y*60);
+    body.setPosition(cPos.x * 60, cPos.y * 60);
+    body.move(30, 30);
 
-    //  body.rotate(-angle);
+    nPos = cPos - tPos;
+    body.rotate(angle);
+    
 }
 
 void Bullet::Draw(sf::RenderWindow& window)
 {
-    window.draw(body);
+    if(!bulletHit)
+	window.draw(body);
 }
 
-void Bullet::Update(float deltaTime, sf::Vector2i soldierPos)
+void Bullet::Update(float deltaTime)
 {
-    if(fireReady)
+    if(!bulletHit)
     {
-	cout << "soldierPos.x: " <<  soldierPos.x << endl; 
+	pos = body.getPosition();
+	cPos = sf::Vector2i((pos.x / 60), (pos.y / 60));
+	body.move(-nPos.x * deltaTime * 500, -nPos.y * deltaTime * 500);
+	if (cPos.x == tPos.x && cPos.y == tPos.y)
+	    bulletHit = true;
 
-	body.move(soldierPos.x*60, soldierPos.y*60);
+	cout << cPos.x << " == "  << tPos.x <<  " && " << cPos.y << " == " << tPos.y << endl;
+
     }
 
 }

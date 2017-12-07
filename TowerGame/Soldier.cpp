@@ -98,7 +98,7 @@ void Soldier::Create(int type)
 	texture.loadFromFile("images/Soldier1.png");
 	cost = 10;
 	healthPoints = 100;
-	damagePoints = 20;
+	damagePoints = 1;
 	income = 1;
 	moveSpeed = 0.6;
     }
@@ -107,7 +107,7 @@ void Soldier::Create(int type)
 	texture.loadFromFile("images/Soldier2.png");
 	cost = 20;
 	healthPoints = 100;
-	damagePoints = 20;
+	damagePoints = 2;
 	income = 2;
 	moveSpeed = 1.0;	
     }
