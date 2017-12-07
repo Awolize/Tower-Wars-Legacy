@@ -21,7 +21,7 @@ void Player::TimerForIncome()
 void Player::UpdateEconomy()
 {
     sf::Time time = clock.getElapsedTime();
-    if(time.asSeconds() >= 10.0)
+    if(time.asSeconds() >= 15.0)
 	TimerForIncome();
     
     std::stringstream ss;
