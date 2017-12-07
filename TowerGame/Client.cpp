@@ -20,7 +20,7 @@ void Client::RunClient()
 	text.setStyle(sf::Text::Bold);
 	text.setFillColor(sf::Color::Red);
 	text.setString("");  
-	text.setPosition(0, 0); // window.getSize().y/2.0f
+	text.setPosition(0, window.getSize().y/2.0f); 
     
     clock.restart();
     sf::Clock deltaTimeClock;
