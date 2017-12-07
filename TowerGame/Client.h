@@ -33,4 +33,6 @@ private:
     std::vector<Tower> towerListP1;
     std::vector<Soldier> soldierListP2;
     std::vector<Tower> towerListP2;
+	sf::Font font;
+	sf::Text text;
 };
