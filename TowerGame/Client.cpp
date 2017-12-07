@@ -14,6 +14,14 @@ using namespace std;
 
 void Client::RunClient()
 {
+    font.loadFromFile("Arial.ttf");
+	text.setFont(font);
+	text.setCharacterSize(50);
+	text.setStyle(sf::Text::Bold);
+	text.setFillColor(sf::Color::Red);
+	text.setString("");  
+	text.setPosition(0, 0); // window.getSize().y/2.0f
+    
     clock.restart();
     sf::Clock deltaTimeClock;
     cout << "Client.cpp" << endl;
@@ -117,15 +125,8 @@ void Client::RunClient()
     
 	cout << endScreenTimer << " > ";
 	cout << clock.getElapsedTime().asSeconds() << endl;
-	sf::Font font;
-	font.loadFromFile("Arial.ttf");
-	sf::Text text;
-	text.setFont(font);
-	text.setCharacterSize(50);
-	text.setStyle(sf::Text::Bold);
-	text.setFillColor(sf::Color::Red);
-	text.setPosition(0, 0); // window.getSize().y/2.0f
-	string winnerStr = "asdasdasas";
+
+	string winnerStr = "";
 	if (player.getWinner() == 1)
 	    winnerStr = "Winner: Player 1";
 	else if (player.getWinner() == 2)
