@@ -15,12 +15,12 @@ using namespace std;
 void Client::RunClient()
 {
     font.loadFromFile("Arial.ttf");
-	text.setFont(font);
-	text.setCharacterSize(50);
-	text.setStyle(sf::Text::Bold);
-	text.setFillColor(sf::Color::Red);
-	text.setString("");  
-	text.setPosition(0, window.getSize().y/2.0f); 
+    text.setFont(font);
+    text.setCharacterSize(50);
+    text.setStyle(sf::Text::Bold);
+    text.setFillColor(sf::Color::Red);
+    text.setString("");  
+    text.setPosition(100, window.getSize().y/2.0f); 
     
     clock.restart();
     sf::Clock deltaTimeClock;
@@ -128,9 +128,9 @@ void Client::RunClient()
 
 	string winnerStr = "";
 	if (player.getWinner() == 1)
-	    winnerStr = "Winner: Player 1";
+	    winnerStr = "You Win!";
 	else if (player.getWinner() == 2)
-	    winnerStr = "Winner: Player 2";
+	    winnerStr = "You Lose!";
 	text.setString(winnerStr);
 
 	while (endScreenTimer > clock.getElapsedTime().asSeconds())
