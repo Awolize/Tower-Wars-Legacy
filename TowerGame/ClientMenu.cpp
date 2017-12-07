@@ -71,12 +71,8 @@ void ClientMenu::CustomIpAddress(sf::RenderWindow &window)
 	    else if (event.type == sf::Event::KeyPressed)
 	    {
 		if (event.key.code == sf::Keyboard::Escape)
-		{
-		    Client client(window, socket);  //remove later
-		    client.RunClient();  // remove later
-		    
 		    window.close();
-		}
+		
 		else if (event.key.code == sf::Keyboard::Return)
 		    ifNext = true;
 	    }

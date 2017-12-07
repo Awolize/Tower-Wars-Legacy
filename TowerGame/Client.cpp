@@ -149,18 +149,8 @@ void Client::userInterface()
 	if (event.type == sf::Event::Closed)
 	    window.close();
 	else if (event.type == sf::Event::KeyPressed)
-	{
 	    if (event.key.code == sf::Keyboard::Escape)
 		window.close();
-	    else if (event.key.code == sf::Keyboard::Num1)
-		soldierListP1.push_back(Soldier(3, 1, player));
-	    else if (event.key.code == sf::Keyboard::Num2)
-		soldierListP1.push_back(Soldier(4, 1, player));
-	    else if (event.key.code == sf::Keyboard::Num3)
-		towerListP1.push_back(Tower(1, sf::Vector2i(5,5), 1));
-	    else if (event.key.code == sf::Keyboard::Num4)
-		towerListP1.push_back(Tower(2, sf::Vector2i(3,3), 1));
-	}
     }
 }
 
