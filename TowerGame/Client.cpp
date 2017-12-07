@@ -137,7 +137,6 @@ void Client::RunClient()
 	{
 	    userInterface();
 	    Draw();
-	    window.draw(text);
 	}
     }
 }
@@ -223,6 +222,7 @@ void Client::Draw()
     if (towerListP2.size() > 0)
 	for (Tower & tower : towerListP2)
 	    tower.Draw(window);
+	window.draw(text);
     window.display();
 }
 
