@@ -230,6 +230,7 @@ void ClientMenu::Connect(sf::RenderWindow &window)
 		    Client client(window, socket);
 		    client.RunClient();
 		    cout << "ClientMenu.cpp" << endl;
+		    break;
 		}
 	    }
 	}	

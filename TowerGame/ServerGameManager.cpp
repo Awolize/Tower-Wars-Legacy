@@ -1,8 +1,5 @@
 #include "ServerGameManager.h"
 
-#include <iostream>
-using namespace std;
-
 ServerGameManager::ServerGameManager() 
 {
     Tower t1(1);

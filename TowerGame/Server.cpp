@@ -14,22 +14,27 @@ void Server::RunServer()
     clock.restart();
 
     sf::Thread thread1([&](){
-	    while(window.isOpen())
+	    while(window.isOpen() && ifNext == false)
 	    {
 		sf::Packet packet;
 		string data;
 		packet.clear();
 		socketP1.receive(packet);
-		cout << packet.getDataSize() << endl;
 		if (packet.getDataSize() > 0 && packet.getDataSize() < 10)
 		{
-		   socketP1.send(packet); 
-		   socketP2.send(packet);
+		    cout << "Packet Size:" << packet.getDataSize() << endl;
+		    int done = 0;
+		    packet << done;
+		    socketP1.send(packet); 
+		    socketP2.send(packet);
+		    socketP1.disconnect();
+		    socketP2.disconnect();
+		    ifNext = true;
+		    break;
 		}
 		else if(packet.getDataSize() > 0)
 		{
 		    cout << "Packet Size:" << packet.getDataSize() << endl;
-		
 		    stringstream ss;
 		    float coins; 
 		    float income;
@@ -54,16 +59,26 @@ void Server::RunServer()
 	});
 
     sf::Thread thread2([&](){
-	    while(window.isOpen())
+	    while(window.isOpen() && ifNext == false)
 	    {
 		sf::Packet packet;
 		string data;
-		packet.clear();
 		socketP2.receive(packet);
-		if(packet.getDataSize() > 0)
+		if (packet.getDataSize() > 0 &&  packet.getDataSize() < 10)
 		{
 		    cout << "Packet Size:" << packet.getDataSize() << endl;
-		
+		    int coins = 0;
+		    packet << coins;
+		    socketP1.send(packet); 
+		    socketP2.send(packet);
+		    socketP1.disconnect();
+		    socketP2.disconnect();
+		    ifNext = true;
+		    break;
+		}
+		else if(packet.getDataSize() > 0)
+		{
+		    cout << "Packet Size:" << packet.getDataSize() << endl;
 		    stringstream ss;
 		    float coins; 
 		    float income;
@@ -107,5 +122,7 @@ void Server::RunServer()
 	window.clear();
 	window.display();
     }
+    thread1.wait();
+    thread2.wait(); 
 }
 

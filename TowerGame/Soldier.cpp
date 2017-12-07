@@ -98,7 +98,7 @@ void Soldier::Create(int type)
 	texture.loadFromFile("images/Soldier1.png");
 	cost = 10;
 	healthPoints = 100;
-	damagePoints = 1;
+	damagePoints = 100; //redo (1)
 	income = 1;
 	moveSpeed = 0.6;
     }

@@ -17,7 +17,7 @@ public:
     void BuyWithCoins(float cost, float increaseIncome);
     void Draw(sf::RenderWindow& window);
     void TakeDamage(int user, int incommingDamage);
-    bool GameOver()  { if (baseHealthP1 > 0 && baseHealthP2 > 0) return false; else true; };
+    bool GameOver()  { if (baseHealthP1 > 0 && baseHealthP2 > 0) return false; else return true; };
     int getWinner();
 private:
     void TimerForIncome();

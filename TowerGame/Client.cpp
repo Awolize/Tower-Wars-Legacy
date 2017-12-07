@@ -26,12 +26,15 @@ void Client::RunClient()
 			  {
 			      sf::Packet packet;
 			      string data;
-			      socket.receive(packet);
-			      if (packet.getDataSize() > 0 && packet.getDataSize() < 10) {thread.wait();}
-			      else if(packet.getDataSize() > 0)
+			      if (ifNext != true)
+				  socket.receive(packet);
+			      else 
 			      {
-				  cout << "Packet Size:" << packet.getDataSize() << endl;
-		
+				  thread.wait();
+				  break;
+			      }
+			      if (packet.getDataSize() > 0 && ifNext != true)
+			      {
 				  stringstream ss;
 				  int user = 1;
 				  float coins; 
@@ -45,12 +48,6 @@ void Client::RunClient()
 				  }
 				  string data = ss.str();
 				  ss >> coins >> income >> option >> x >> y >> user;
-				  cout << ss.str() << endl;
-				  cout << "Coins: " << coins << endl;
-				  cout << "income: " << income << endl;
-				  cout << "option: " << option << endl;
-				  cout << "x, y: (" << x << ", " << y << ")" << endl;
-				  cout << "user: " << user << endl;
 
 				  if (user == 2)
 				  {
@@ -67,7 +64,6 @@ void Client::RunClient()
 						  break;
 					      }
 				      }
-
 				  }
 				  else 
 				  {
@@ -86,7 +82,9 @@ void Client::RunClient()
 					  for (auto it = towerListP1.begin(); it != towerListP1.end(); ++it)
 					      if (sf::Vector2i(x,y) == it->getPos())
 					      {
+						  cout << "BtowerListP1.size(): " << towerListP1.size() << endl;
 						  towerListP1.erase(it);
+						  cout << "AtowerListP1.size(): " << towerListP1.size() << endl;
 						  player.BuyWithCoins(-10, 0);	
 						  break;
 					      }
@@ -105,29 +103,41 @@ void Client::RunClient()
  	Update();
  	Draw();
     }
-    if (!window.isOpen())
-    {
-	sf::Packet packet;
-	string done = "Done!";
-	packet << done;
-	socket.send(packet);
-    
+    cout << "Game over!" << endl;
+    sf::Packet packet;
+    int done = -5000;
+    packet << done;
+    socket.send(packet);
+    thread.wait();
+    socket.disconnect();
+    if (window.isOpen())
+    {  
 	cout << "thread.wait()" << endl;
-	thread.wait();
 	float endScreenTimer = clock.getElapsedTime().asSeconds() + 7;
     
 	cout << endScreenTimer << " > ";
 	cout << clock.getElapsedTime().asSeconds() << endl;
+	sf::Font font;
+	font.loadFromFile("Arial.ttf");
+	sf::Text text;
+	text.setFont(font);
+	text.setCharacterSize(50);
+	text.setStyle(sf::Text::Bold);
+	text.setFillColor(sf::Color::Red);
+	text.setPosition(0, 0); // window.getSize().y/2.0f
+	string winnerStr = "asdasdasas";
+	if (player.getWinner() == 1)
+	    winnerStr = "Winner: Player 1";
+	else if (player.getWinner() == 2)
+	    winnerStr = "Winner: Player 2";
+	text.setString(winnerStr);
 
 	while (endScreenTimer > clock.getElapsedTime().asSeconds())
 	{
 	    userInterface();
 	    Draw();
+	    window.draw(text);
 	}
-	if (player.getWinner() == 1)
-	    cout << "Winner: Player 1" << endl;
-	else if (player.getWinner() == 2)
-	    cout << "Winner: Player 2" << endl;
     }
 }
 

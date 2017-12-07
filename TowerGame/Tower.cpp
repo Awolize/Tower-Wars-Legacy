@@ -39,7 +39,7 @@ void Tower::Update(float deltaTime)
 	
 	if (time > reloadTime)
 	{
-	    bulletList.push_back(Bullet(1, getPos(), soldierP->getPos(), angle));
+	    bulletList.push_back(Bullet(1, getPos(), soldierP->getPos(), angle, offset));
 
 	    soldierP->takeDamage(damagePoints);
 	    time = 0;

@@ -8,7 +8,7 @@
 class Bullet : public Entity
 {
 public:
-    Bullet(int type, sf::Vector2i cPos, sf::Vector2i tPos, float angle);
+    Bullet(int type, sf::Vector2i cPos, sf::Vector2i tPos, float angle, int offset);
     void Draw(sf::RenderWindow& window) override;
     void Update(float deltaTime);
 
@@ -19,4 +19,5 @@ private:
     sf::Vector2i cPos;
     sf::Vector2i tPos;
     sf::Vector2i nPos;
+    int offset;
 };
