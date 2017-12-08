@@ -14,6 +14,11 @@ Bullet::Bullet(int type, sf::Vector2i cPos, sf::Vector2i tPos, float angle, int 
 
     nPos = cPos - tPos;
     body.rotate(angle);
+    if (type == 1)
+	bulletTexture.loadFromFile("images/bullet1");
+    else 
+	bulletTexture.loadFromFile("images/bullet2");
+    body.setTexture(&bulletTexture);
     
 }
 
@@ -33,6 +38,6 @@ void Bullet::Update(float deltaTime)
 	if (cPos.x == tPos.x && cPos.y == tPos.y)
 	    bulletHit = true;
     }
-
+    body.setTexture(&bulletTexture);
 }
 
