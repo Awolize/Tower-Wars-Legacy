@@ -13,6 +13,7 @@ Tower::Tower(int type, sf::Vector2i pos, int user) : user(user), pos(pos)
 	offset = 60 * 10 + 80;
     soldierP = NULL;
     Create(type);
+    bulletType = type;
 }
 
 
@@ -39,7 +40,7 @@ void Tower::Update(float deltaTime)
 	
 	if (time > reloadTime)
 	{
-	    bulletList.push_back(Bullet(1, getPos(), soldierP->getPos(), angle, offset));
+	    bulletList.push_back(Bullet(bulletType, getPos(), soldierP->getPos(), angle, offset));
 
 	    soldierP->takeDamage(damagePoints);
 	    time = 0;

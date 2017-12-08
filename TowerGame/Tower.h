@@ -37,6 +37,6 @@ private:
     bool firstTarget = true;
     float dir = 0;
     float angle = 0;
-
+    int bulletType = 1;
 };
 #endif

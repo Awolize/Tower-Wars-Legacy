@@ -93,20 +93,20 @@ void Soldier::Logic()
 
 void Soldier::Create(int type)
 {
-    if(type == 3) // change values
+    if(type == 3)
     {
 	texture.loadFromFile("images/Soldier1.png");
 	cost = 10;
 	healthPoints = 100;
-	damagePoints = 100; //redo (1)
+	damagePoints = 1;
 	income = 1;
 	moveSpeed = 0.6;
     }
-    if(type == 4) // change values
+    if(type == 4)
     {
 	texture.loadFromFile("images/Soldier2.png");
 	cost = 20;
-	healthPoints = 100;
+	healthPoints = 200;
 	damagePoints = 2;
 	income = 2;
 	moveSpeed = 1.0;	
