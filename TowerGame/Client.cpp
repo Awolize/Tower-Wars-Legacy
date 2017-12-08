@@ -90,9 +90,7 @@ void Client::RunClient()
 					  for (auto it = towerListP1.begin(); it != towerListP1.end(); ++it)
 					      if (sf::Vector2i(x,y) == it->getPos())
 					      {
-						  cout << "BtowerListP1.size(): " << towerListP1.size() << endl;
 						  towerListP1.erase(it);
-						  cout << "AtowerListP1.size(): " << towerListP1.size() << endl;
 						  player.BuyWithCoins(-10, 0);	
 						  break;
 					      }
