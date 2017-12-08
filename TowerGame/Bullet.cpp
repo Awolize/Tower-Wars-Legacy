@@ -1,8 +1,10 @@
 #include "Bullet.h"
 
+#include <iostream>
+using namespace std;
+
 Bullet::Bullet(int type, sf::Vector2i cPos, sf::Vector2i tPos, float angle, int offset) : cPos(cPos), tPos(tPos), offset(offset)
 {
-    body.setFillColor(sf::Color::Red);
     body.setSize(sf::Vector2f(25, 10));
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(cPos.x * 60 + offset, cPos.y * 60);
@@ -10,10 +12,17 @@ Bullet::Bullet(int type, sf::Vector2i cPos, sf::Vector2i tPos, float angle, int 
 
     nPos = cPos - tPos;
     body.rotate(angle);
+    cout << "BulletType: " << type << endl;
     if (type == 1)
+    {
+	body.setFillColor(sf::Color::Red);
 	bulletTexture.loadFromFile("images/bullet1.png");
+    }
     else 
+    {
+	body.setFillColor(sf::Color::Blue);
 	bulletTexture.loadFromFile("images/bullet2.png");
+    }
     body.setTexture(&bulletTexture);
     
 }
@@ -21,10 +30,7 @@ Bullet::Bullet(int type, sf::Vector2i cPos, sf::Vector2i tPos, float angle, int 
 void Bullet::Draw(sf::RenderWindow& window)
 {
     if(!bulletHit)
-    {
-	body.setTexture(&bulletTexture);
 	window.draw(body);
-    }
 }
 
 void Bullet::Update(float deltaTime)
@@ -37,6 +43,5 @@ void Bullet::Update(float deltaTime)
 	if (cPos.x == tPos.x && cPos.y == tPos.y)
 	    bulletHit = true;
     }
-    body.setTexture(&bulletTexture);
 }
 
