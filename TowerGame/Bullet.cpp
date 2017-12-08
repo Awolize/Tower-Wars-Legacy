@@ -14,7 +14,7 @@ Bullet::Bullet(int type, sf::Vector2i cPos, sf::Vector2i tPos, float angle, int 
     }
     else 
     {
-	body.setFillColor(sf::Color::Transparent);
+	body.setFillColor(sf::Color::Red);
 	bulletTexture.loadFromFile("images/bullet2.png");
     }
     body.setTexture(&bulletTexture);
