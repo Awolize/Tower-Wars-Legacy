@@ -1,30 +1,24 @@
 #include "Bullet.h"
 
-#include <iostream>
-using namespace std;
-
 Bullet::Bullet(int type, sf::Vector2i cPos, sf::Vector2i tPos, float angle, int offset) : cPos(cPos), tPos(tPos), offset(offset)
 {
     body.setSize(sf::Vector2f(25, 10));
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(cPos.x * 60 + offset, cPos.y * 60);
     body.move(30, 30);
-
     nPos = cPos - tPos;
-    body.rotate(angle);
-    cout << "BulletType: " << type << endl;
     if (type == 1)
     {
-	body.setFillColor(sf::Color::Red);
+	body.setFillColor(sf::Color::Blue);
 	bulletTexture.loadFromFile("images/bullet1.png");
     }
     else 
     {
-	body.setFillColor(sf::Color::Blue);
+//	body.setFillColor(sf::Color::Red);
 	bulletTexture.loadFromFile("images/bullet2.png");
     }
     body.setTexture(&bulletTexture);
-    
+    body.rotate(angle);
 }
 
 void Bullet::Draw(sf::RenderWindow& window)
