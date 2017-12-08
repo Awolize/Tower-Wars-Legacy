@@ -19,7 +19,7 @@ public:
     float getIncome() {return income;};
     sf::Vector2i getPos() {return tilePos[tileNumber-1];};
     float getTileNumber() {return tileNumber-1;};
-    void takeDamage(float damage) {healthPoints -= damage; std::cout << healthPoints << std::endl;};
+    void takeDamage(float damage) {healthPoints -= damage;};
     bool Alive() {if (healthPoints > 0) return true; else return false;};
 
 private:

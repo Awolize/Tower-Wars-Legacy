@@ -1,8 +1,6 @@
 #include "Soldier.h"
 #include <iostream>
 
-using namespace std;
-
 Soldier::Soldier(int type, int user, Player & player) : index(index), user(user), animation()
 {
     if (user == 1)

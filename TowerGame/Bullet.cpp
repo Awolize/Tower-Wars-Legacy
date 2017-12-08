@@ -1,11 +1,8 @@
 #include "Bullet.h"
 
-using namespace std;
-
 Bullet::Bullet(int type, sf::Vector2i cPos, sf::Vector2i tPos, float angle, int offset) : cPos(cPos), tPos(tPos), offset(offset)
 {
-    body.setTexture(&bulletTexture);
-
+    body.setFillColor(sf::Color::Red);
     body.setSize(sf::Vector2f(25, 10));
     body.setOrigin(body.getSize() / 2.0f);
     body.setPosition(cPos.x * 60 + offset, cPos.y * 60);
@@ -24,7 +21,10 @@ Bullet::Bullet(int type, sf::Vector2i cPos, sf::Vector2i tPos, float angle, int 
 void Bullet::Draw(sf::RenderWindow& window)
 {
     if(!bulletHit)
+    {
+	body.setTexture(&bulletTexture);
 	window.draw(body);
+    }
 }
 
 void Bullet::Update(float deltaTime)
