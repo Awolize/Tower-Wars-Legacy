@@ -97,10 +97,10 @@ void Tower::Create(int type)
     {
 	texture.loadFromFile("images/Tower1.png");
 	cost = 10;
-	range = 3;
+	range = 2;
 	attackSpeed = 0.4;
 	reloadTime = 1 / attackSpeed;
-	damagePoints = 50.001;
+	damagePoints = 20.0000001;
     }
     if(type == 2)
     {
@@ -109,7 +109,7 @@ void Tower::Create(int type)
 	range = 4;
 	attackSpeed = 0.8;
 	reloadTime = 1 / attackSpeed;
-	damagePoints = 40.001;
+	damagePoints = 40.0000001;
     }
     body.setSize(sf::Vector2f(50, 50));
     body.setOrigin(body.getSize() / 2.0f);

@@ -98,7 +98,7 @@ void Soldier::Create(int type)
 	healthPoints = 100;
 	damagePoints = 1;
 	income = 1;
-	moveSpeed = 0.6;
+	moveSpeed = 0.4;
     }
     if(type == 4)
     {
@@ -107,7 +107,7 @@ void Soldier::Create(int type)
 	healthPoints = 200;
 	damagePoints = 2;
 	income = 2;
-	moveSpeed = 1.0;	
+	moveSpeed = 0.8;	
     }
     imageCount = sf::Vector2i(3, 2);
     switchTime = moveSpeed / 4;
